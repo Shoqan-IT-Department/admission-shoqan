@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "contacts_comissions",
+  "info": {
+    "singularName": "contacts-comission",
+    "pluralName": "contacts-comissions",
+    "displayName": "ContactsComission",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "email": {
+      "type": "text"
+    },
+    "locales": {
+      "type": "text"
+    },
+    "dayswork": {
+      "type": "text"
+    },
+    "number": {
+      "type": "text"
+    },
+    "more": {
+      "type": "string"
+    }
+  }
+}

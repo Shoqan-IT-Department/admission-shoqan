@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "static_infos",
+  "info": {
+    "singularName": "static-info",
+    "pluralName": "static-infos",
+    "displayName": "StaticInfo ",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "block": {
+      "displayName": "title",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.title"
+    },
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.magistr"
+    },
+    "item": {
+      "displayName": "item",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.item"
+    },
+    "title": {
+      "type": "text"
+    }
+  }
+}

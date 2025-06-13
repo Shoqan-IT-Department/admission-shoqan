@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shared_magistrs",
+  "info": {
+    "displayName": "magistr"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

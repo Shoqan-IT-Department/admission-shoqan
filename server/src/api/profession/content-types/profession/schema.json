@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "professions",
+  "info": {
+    "singularName": "profession",
+    "pluralName": "professions",
+    "displayName": "Profession",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "graduate": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::graduate.graduate",
+      "inversedBy": "professions"
+    },
+    "code": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "graduates": {
+      "type": "string"
+    },
+    "form": {
+      "type": "string"
+    }
+  }
+}

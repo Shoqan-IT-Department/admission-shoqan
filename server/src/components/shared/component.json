@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_shared_components",
+  "info": {
+    "displayName": "component",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "text"
+    },
+    "graduate": {
+      "type": "text"
+    },
+    "educat": {
+      "type": "text"
+    },
+    "code": {
+      "type": "text"
+    }
+  }
+}

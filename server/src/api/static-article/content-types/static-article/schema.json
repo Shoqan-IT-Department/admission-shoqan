@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "static_articles",
+  "info": {
+    "singularName": "static-article",
+    "pluralName": "static-articles",
+    "displayName": "StaticArticle"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "static_attributes",
+  "info": {
+    "singularName": "static-attribute",
+    "pluralName": "static-attributes",
+    "displayName": "StaticAttributes"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "text"
+    }
+  }
+}
