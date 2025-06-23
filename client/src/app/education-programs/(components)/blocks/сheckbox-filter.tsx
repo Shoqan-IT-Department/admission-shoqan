@@ -23,32 +23,35 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({ selected, onCha
 
 
     return (
-            <aside className="bg-card rounded-4xl w-100 mr-2">
-                {graduateLevels.map((graduate,key) => (
-                    <div key={key} className="border-b rounded- xl select-none cursor-default leading-none font-semibold text-2xs">
-                        <div className="flex justify-between p-10">
-                            <div>{graduate}</div>
-                            <div>
-                                <input
+        <aside className="bg-card rounded-2xl w-full lg:w-[300px] mr-0 lg:mr-2 ">
+            {graduateLevels.map((graduate, key) => (
+                <div
+                    key={key}
+                    className=" select-none cursor-default leading-none font-semibold text-2xs"
+                >
+                    <div className="flex justify-between items-center  px-6 py-4 md:px-6 md:py-4">
+                        <div className="p-2">{graduate}</div>
+                        <div>
+                            <input
                                 type="checkbox"
                                 checked={selected.includes(graduate)}
                                 onChange={() => handleChange(graduate)}
                             />
-                            </div>
                         </div>
-
                     </div>
-                ))}
-
-                <div className='flex justify-center items-center p-6'>
-                    <Button
-                        onClick={handleReset}
-                        className="mt-2 px-4 py-1 w-max bg-popover hover:bg-muted rounded-xl"
-                    >
-                        Сбросить всё
-                    </Button>
                 </div>
-            </aside>
+            ))}
+
+            <div className="flex justify-center items-center px-4 py-6">
+                <Button
+                    onClick={handleReset}
+                    className="px-4 py-1 w-max bg-popover hover:bg-muted rounded-xl"
+                >
+                    Сбросить всё
+                </Button>
+            </div>
+        </aside>
+
 
     );
 };

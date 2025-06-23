@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Button } from "@/shared/ui/button";
 import { Home } from 'lucide-react';
 import Link from 'next/link';
+import Container from '@/shared/ui/wrappers/container';
 
 export default function Error({
   error,
@@ -17,7 +18,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-4">
+    <Container>
+       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-4">
       <h2 className="text-2xl font-semibold mb-4">Something went wrong!</h2>
       <p className="text-muted-foreground mb-8">
         {error.message || 'An unexpected error occurred'}
@@ -34,5 +36,6 @@ export default function Error({
         </Button>
       </div>
     </div>
+    </Container>
   );
 }

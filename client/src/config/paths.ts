@@ -15,4 +15,5 @@ export const PATHS = {
     PREPARATION:'/preparation',
     EDU_PROGRAMS:'/education-programs',
     NEWS:'/news',
+    ARTICLE:'/article'
 } as const;

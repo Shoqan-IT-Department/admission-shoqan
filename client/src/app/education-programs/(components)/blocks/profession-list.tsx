@@ -5,6 +5,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {Button} from "@/shared/ui/button";
 import {ArrowRight} from "lucide-react";
 import Container from "@/shared/ui/wrappers/container";
+import Link from "next/link";
 
 
 type ProfessionType = {
@@ -18,9 +19,10 @@ type ProfessionType = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    url:string
 };
 
-const ProfessionList = () => {
+const ProfessionList = ({profession}: { profession: ProfessionType }) => {
 
     const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
     const [professions, setProfessions] = useState<ProfessionType[]>([]);
@@ -54,40 +56,57 @@ const ProfessionList = () => {
     }, [selectedGraduates]);
 
     return (
-        <div className="flex items-start gap-4 w-full">
-            <div>
+        <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
+            {/* Блок фильтров */}
+            <div className="w-full lg:w-[300px]">
                 <GraduateCheckboxes
                     selected={selectedGraduates}
                     onChange={setSelectedGraduates}
                 />
             </div>
 
+            {/* Блок с карточками */}
             <div className="min-h-[800px] w-full">
-                <main className="">
-                    {professions.map(({title, subtitle,id, code, form, graduates}) => (
-                        <Card key={id} className="mb-4 rounded-4xl select-none cursor-default">
+                <main>
+                    {professions.map(({ title, subtitle, id, code, form, graduates,url }) => (
+                        <Card
+                            key={id}
+                            className="mb-4 rounded-4xl select-none cursor-default"
+                        >
                             <Container>
-                                <CardHeader className="border-b ">
-                                    <CardTitle>{code || ''} {subtitle || ''}</CardTitle>
-                                    <CardDescription>{title || ''}</CardDescription>
-                                </CardHeader>
+                                <Link href={url || ''   }>
+                                <CardHeader className="border-b">
+                                <CardTitle>
+                                    {code || ''} {subtitle || ''}
+                                </CardTitle>
+                                <CardDescription>{title || ''}</CardDescription>
+                            </CardHeader>
+                                </Link>
                             </Container>
-                            <CardFooter className="flex justify-between">
-                                <CardContent className="flex gap-2 p-0">
-                            <span className="bg-muted-foreground p-2 rounded-2xl">
-                                {graduates || ''}
-                            </span>
+
+                            <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
+                                <CardContent className="flex flex-wrap gap-2 p-0">
+              <span className="bg-muted-foreground p-2 rounded-2xl">
+                {graduates || ''}
+              </span>
                                     {form && (
-                                        <span className="bg-muted-foreground p-2 rounded-2xl">{form}</span>
+                                        <span className="bg-muted-foreground p-2 rounded-2xl">
+                  {form}
+                </span>
                                     )}
                                 </CardContent>
-                                <Button className="hover:bg-ring text-secondary border"><ArrowRight/></Button>
+                                <Link href={url || ''   }>
+                                    <Button className="hover:bg-ring text-secondary border self-end sm:self-auto">
+                                    <ArrowRight />
+                                    </Button>
+                                </Link>
                             </CardFooter>
                         </Card>
-                    ))}</main>
-
+                    ))}
+                </main>
             </div>
         </div>
+
     );
 };
 

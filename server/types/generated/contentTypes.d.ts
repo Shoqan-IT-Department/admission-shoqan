@@ -471,38 +471,6 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
-export interface ApiGraduateGraduate extends Struct.CollectionTypeSchema {
-  collectionName: 'graduates';
-  info: {
-    displayName: 'Graduate';
-    pluralName: 'graduates';
-    singularName: 'graduate';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    graduate: Schema.Attribute.Text;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::graduate.graduate'
-    > &
-      Schema.Attribute.Private;
-    professions: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::profession.profession'
-    >;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
   collectionName: 'news_articles';
   info: {
@@ -551,7 +519,6 @@ export interface ApiProfessionProfession extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     form: Schema.Attribute.String;
-    graduate: Schema.Attribute.Relation<'manyToOne', 'api::graduate.graduate'>;
     graduates: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -565,35 +532,7 @@ export interface ApiProfessionProfession extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-  };
-}
-
-export interface ApiProfessionalProgrammProfessionalProgramm
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'professional_programms';
-  info: {
-    displayName: 'ProfessionalProgramms';
-    pluralName: 'professional-programms';
-    singularName: 'professional-programm';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    content: Schema.Attribute.Component<'shared.component', true>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::professional-programm.professional-programm'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
+    url: Schema.Attribute.Text;
   };
 }
 
@@ -1231,10 +1170,8 @@ declare module '@strapi/strapi' {
       'api::article.article': ApiArticleArticle;
       'api::contacts-comission.contacts-comission': ApiContactsComissionContactsComission;
       'api::global.global': ApiGlobalGlobal;
-      'api::graduate.graduate': ApiGraduateGraduate;
       'api::news-article.news-article': ApiNewsArticleNewsArticle;
       'api::profession.profession': ApiProfessionProfession;
-      'api::professional-programm.professional-programm': ApiProfessionalProgrammProfessionalProgramm;
       'api::static-article.static-article': ApiStaticArticleStaticArticle;
       'api::static-attribute.static-attribute': ApiStaticAttributeStaticAttribute;
       'api::static-info.static-info': ApiStaticInfoStaticInfo;

@@ -6,6 +6,8 @@ import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/shared/ui/card";
 import {SyncLoader} from "react-spinners";
+import Link from "next/link";
+import {PATHS} from "@/config/paths";
 
 
 
@@ -31,8 +33,6 @@ const NewsPage = () => {
     useEffect(() => {
         ADM_URL.get(ENDPOINTS.GET.NEWS_ARTICLE)
             .then((res) => {
-                console.log(res.data.data);
-
                 // Конкатенация url для каждого изображения
                 const mapped = res.data.data.map((item: any) => {
                     const fullImageUrl = item.img?.url
@@ -59,9 +59,10 @@ const NewsPage = () => {
     return(
         <Container>
             <div className="grid grid-cols-3 gap-4">
-                {articles.map((article) => (
-                    <Card key={article.id} className="flex justify-center">
-
+                {articles.map((article, key) => (
+                
+                    <Card key={key} className="flex justify-center rounded-4xl">
+                        <Link href={`/news/${article.id}`}>
                         <CardContent className="flex justify-center">
                             {article.fullImageUrl && (
                                 <img
@@ -77,7 +78,10 @@ const NewsPage = () => {
                             <CardDescription className="text-center">{article.description}</CardDescription>
                         </CardHeader>
                         <CardFooter>date 25 June 2025</CardFooter>
+                        </Link>
                     </Card>
+                    
+                    
                 ))}
             </div>
         </Container>

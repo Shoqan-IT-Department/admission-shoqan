@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import Container from "@/shared/ui/wrappers/container";
+
 import {ArrowRight} from "lucide-react";
 import {Button} from "@/shared/ui/button";
 import Link from "next/link";
@@ -13,17 +12,43 @@ type StaticProgrammType = {
     more: string
 }
 
-const ChoiceCard = () => {
+async function getStaticAttributes() {
+    try {
+        const res = await ADM_URL.get<{data:StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_ATTRIBUTES)
+        return  res.data.data
+    } catch (err) {
+    console.error('Ошибка при получении:', err);
+    return [];
+  }
+}
 
-    const [contents, setContents] = useState<StaticProgrammType[]>([]);
+async function getStaticProfession() {
+    try {
+        const res = await ADM_URL.get<{data:StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_PROGRAMMS)
+        return res.data.data
+    } catch (err) {
+    console.error('Ошибка при получении:', err);
+    return [];
+  }
+}
+export const revalidate = 600;
 
-    useEffect(() => {
-        ADM_URL
-            .get<{ data: StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_PROGRAMMS)
-            .then((res) =>setContents(res.data.data))
-            .catch((err) => console.error('Ошибка при получении статей:', err));
+export default async function ChoiceCard () {
+    const contents = await getStaticProfession()   
+    const attributes = await getStaticAttributes()
 
-    }, []);
+     const title = attributes[1]?.title || '';
+
+
+    // const [contents, setContents] = useState<StaticProgrammType[]>([]);
+
+    // useEffect(() => {
+    //     ADM_URL
+    //         .get<{ data: StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_PROGRAMMS)
+    //         .then((res) =>setContents(res.data.data))
+    //         .catch((err) => console.error('Ошибка при получении статей:', err));
+
+    // }, []);
 
     // const baccalaureate = contents[0]?.baccalaureate || '';
     // const magistracy = contents[0]?.magistracy || '';
@@ -31,23 +56,39 @@ const ChoiceCard = () => {
     // const more = contents[0]?.more || '';
 
     return (
-        <div className="select-none cursor-default">
-            <Link href={PATHS.EDU_PROGRAMS}>
-                <div className="grid grid-cols-3 gap-4 mt-10">
-                    {contents.map((item, key) => (
-                        <div key={key} className="flex bg-card flex-col justify-center items-left  p-6 rounded-4xl">
+     <div>
+  <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mt-6">
+    {title}
+  </h1>
 
-                            <h1 className="scroll-m-20 text-3xl  tracking-tight">
-                                {item.title}
-                            </h1>
-                            <div className="mt-20 items-center flex ">{item.more}<Button className="bg-popover hover:bg-muted ml-4"><ArrowRight /></Button></div>
-                        </div>
-                    ))}
-                </div>
+  <div className="select-none cursor-default mt-10">
+    <Link href={PATHS.EDU_PROGRAMS}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {contents.map((item, key) => (
+          <div
+            key={key}
+            className="bg-card rounded-4xl p-4 sm:p-6 flex flex-col justify-between  hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all hover:text-white duration-700"
+          >
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-10">
+              {item.title}
+            </h1>
 
-            </Link>
-        </div>
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 ">
+                 <div>{item.more}</div>
+              <Button className="bg-popover hover:bg-muted border w-max">
+                <ArrowRight />
+              </Button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Link>
+  </div>
+</div>
+
+
+
     );
 };
 
-export default ChoiceCard;
+

@@ -16,16 +16,17 @@ type ProfessionType = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
+    url: string;
 }
 
-const EducationProgramsPage = () => {
+const EducationProgramsPage = (profession: ProfessionType) => {
 
     return (
         <Container>
-            <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance">
+            <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-10">
            Образовательные программы
             </h1>
-            <ProfessionList/>
+            <ProfessionList profession={profession}/>
         </Container>
     );
 };

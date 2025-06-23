@@ -10,7 +10,6 @@ const HomePage = () => {
             {/*<RoadBlock />*/}
             <InfoBlock />
             <NewsBlock />
-            <ComissionCard/>
         </Container>
 
     )

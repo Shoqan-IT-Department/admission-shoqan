@@ -14,12 +14,6 @@
     "title": {
       "type": "text"
     },
-    "graduate": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::graduate.graduate",
-      "inversedBy": "professions"
-    },
     "code": {
       "type": "text"
     },
@@ -31,6 +25,9 @@
     },
     "form": {
       "type": "string"
+    },
+    "url": {
+      "type": "text"
     }
   }
 }
