@@ -35,6 +35,7 @@ export const ENDPOINTS = {
         VALUES_PROFESSIONS:"/api/get-values-professions",
         GRADUATES:"/api/graduates",
         PROFESSIONS:"/api/professions",
-        NEWS_ARTICLE:"/api/news-articles?populate=*"
+        NEWS_ARTICLE:"/api/news-articles?populate=*",
+        LINK:"/api/links",
     },
 } as const;

@@ -2,10 +2,10 @@
 
 import Container from "@/shared/ui/wrappers/container";
 import { Button } from "@/shared/ui/button";
-import "@/app/styles.css";
+import "@/app/[locale]/styles.css";
 import { Eye, Search, Menu } from "lucide-react";
 import { Switch } from "@/shared/ui/switch";
-// import Logo from "@/widgets/logotype/logo-blue.svg"
+import Logotype from "@/widgets/logotype/logo.svg"
 import Link from "next/link";
 import {PATHS} from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
@@ -14,6 +14,7 @@ import React, {useState, Suspense} from "react";
 import {Input} from "@/shared/ui/input";
 import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 import MobileMenu from '@/shared/ui/mobile-menu'
+import Image from "next/image";
 // import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 
 
@@ -38,14 +39,16 @@ const Header = () => {
                   <Button className="hover:bg-ring text-secondary rounded-2xl hover:shadow-lg">
                     <Search />
                   </Button>
-                  <Switch id="switcher-lang" />
+                  {/*<Switch id="switcher-lang" />*/}
                 </div>
 
                 {/* Центр: контакты */}
                 <div className="flex gap-2 text-secondary items-center">
                   <nav className="flex text-foreground items-center gap-4 flex-wrap">
                     <PhoneLink number="+77471001930" />
-                      <LocaleSwitcher/>
+                      <Suspense fallback={<div>Loading...</div>}>
+                          <LocaleSwitcher/>
+                      </Suspense>
                   </nav>
                 </div>
               </div>
@@ -56,7 +59,7 @@ const Header = () => {
           <Container>
             <div className="hidden sm:flex justify-between items-center gap-4 mt-6">
               <Link href={PATHS.HOME}>
-                {/* <Logo /> */}
+                <Logotype />
               </Link>
               <nav className="flex flex-wrap items-center gap-10">
                 {NAVIGATION_HEADER.map(({ label, pathname }) => (

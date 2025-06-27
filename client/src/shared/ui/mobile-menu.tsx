@@ -10,7 +10,7 @@ import PhoneLink from "@/shared/ui/phone-link";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 import {Sheet, SheetContent, SheetFooter, SheetTitle, SheetTrigger} from "@/shared/ui/sheet";
-import {useState} from "react";
+import {useState, Suspense} from "react";
 
 type MobileMenuProps = {
   open: boolean
@@ -43,7 +43,9 @@ export default function MobileMenu() {
           </nav>
             <SheetFooter>
                 <div className="flex justify-between items-center ">
-                    <LocaleSwitcher />
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <LocaleSwitcher />
+                    </Suspense>
                     <Switch id="lang-switch" />
                 </div>
             </SheetFooter>

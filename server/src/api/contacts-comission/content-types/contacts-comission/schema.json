@@ -4,7 +4,7 @@
   "info": {
     "singularName": "contacts-comission",
     "pluralName": "contacts-comissions",
-    "displayName": "ContactsComission",
+    "displayName": "Контакты-Перечень",
     "description": ""
   },
   "options": {
@@ -28,6 +28,48 @@
     },
     "more": {
       "type": "string"
+    },
+    "doc": {
+      "type": "text"
+    },
+    "med": {
+      "type": "text"
+    },
+    "identifycard": {
+      "type": "text"
+    },
+    "photos": {
+      "type": "text"
+    },
+    "card": {
+      "type": "string"
+    },
+    "certificate": {
+      "type": "text"
+    },
+    "grant": {
+      "type": "text"
+    },
+    "cardboard": {
+      "type": "text"
+    },
+    "envelope": {
+      "type": "text"
+    },
+    "sectitle": {
+      "type": "text"
+    },
+    "instagram": {
+      "type": "text"
+    },
+    "instaurl": {
+      "type": "text"
+    },
+    "toogis": {
+      "type": "text"
+    },
+    "toogisurl": {
+      "type": "text"
     }
   }
 }

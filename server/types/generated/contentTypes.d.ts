@@ -373,44 +373,12 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
-  collectionName: 'articles';
-  info: {
-    description: '';
-    displayName: 'Article';
-    pluralName: 'articles';
-    singularName: 'article';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Blocks;
-    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::article.article'
-    > &
-      Schema.Attribute.Private;
-    publish: Schema.Attribute.Date;
-    publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.Blocks;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiContactsComissionContactsComission
   extends Struct.CollectionTypeSchema {
   collectionName: 'contacts_comissions';
   info: {
     description: '';
-    displayName: 'ContactsComission';
+    displayName: '\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B-\u041F\u0435\u0440\u0435\u0447\u0435\u043D\u044C';
     pluralName: 'contacts-comissions';
     singularName: 'contacts-comission';
   };
@@ -418,11 +386,20 @@ export interface ApiContactsComissionContactsComission
     draftAndPublish: true;
   };
   attributes: {
+    card: Schema.Attribute.String;
+    cardboard: Schema.Attribute.Text;
+    certificate: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dayswork: Schema.Attribute.Text;
+    doc: Schema.Attribute.Text;
     email: Schema.Attribute.Text;
+    envelope: Schema.Attribute.Text;
+    grant: Schema.Attribute.Text;
+    identifycard: Schema.Attribute.Text;
+    instagram: Schema.Attribute.Text;
+    instaurl: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     locales: Schema.Attribute.Text;
     localizations: Schema.Attribute.Relation<
@@ -430,10 +407,15 @@ export interface ApiContactsComissionContactsComission
       'api::contacts-comission.contacts-comission'
     > &
       Schema.Attribute.Private;
+    med: Schema.Attribute.Text;
     more: Schema.Attribute.String;
     number: Schema.Attribute.Text;
+    photos: Schema.Attribute.Text;
     publishedAt: Schema.Attribute.DateTime;
+    sectitle: Schema.Attribute.Text;
     title: Schema.Attribute.Text;
+    toogis: Schema.Attribute.Text;
+    toogisurl: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -471,10 +453,42 @@ export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiLinkLink extends Struct.CollectionTypeSchema {
+  collectionName: 'links';
+  info: {
+    description: '';
+    displayName: 'Link';
+    pluralName: 'links';
+    singularName: 'link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    facebook: Schema.Attribute.Text;
+    instagram: Schema.Attribute.Text;
+    linkedin: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::link.link'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tiktok: Schema.Attribute.Text;
+    toogis: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    youtube: Schema.Attribute.Text;
+  };
+}
+
 export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
   collectionName: 'news_articles';
   info: {
-    displayName: 'NewsArticle';
+    description: '';
+    displayName: '\u041D\u043E\u0432\u043E\u0441\u0442\u0438';
     pluralName: 'news-articles';
     singularName: 'news-article';
   };
@@ -506,7 +520,7 @@ export interface ApiProfessionProfession extends Struct.CollectionTypeSchema {
   collectionName: 'professions';
   info: {
     description: '';
-    displayName: 'Profession';
+    displayName: '\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438';
     pluralName: 'professions';
     singularName: 'profession';
   };
@@ -1167,9 +1181,9 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::article.article': ApiArticleArticle;
       'api::contacts-comission.contacts-comission': ApiContactsComissionContactsComission;
       'api::global.global': ApiGlobalGlobal;
+      'api::link.link': ApiLinkLink;
       'api::news-article.news-article': ApiNewsArticleNewsArticle;
       'api::profession.profession': ApiProfessionProfession;
       'api::static-article.static-article': ApiStaticArticleStaticArticle;

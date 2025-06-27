@@ -1,14 +1,6 @@
 export const LANGUAGES = [
     {
         id: 1,
-        label: 'Қазақша',
-        code: 'kk',
-        country: 'KZ',
-        locale: 'kk-KZ',
-        subLocale: 'kk_KZ',
-    },
-    {
-        id: 2,
         label: 'Русский',
         code: 'ru',
         country: 'RU',
@@ -16,11 +8,20 @@ export const LANGUAGES = [
         subLocale: 'ru_RU',
     },
     {
-        id: 3,
-        label: 'English',
-        code: 'en',
-        country: 'US',
-        locale: 'en-US',
-        subLocale: 'en_US',
+        id: 2,
+        label: 'Қазақша',
+        code: 'kk',
+        country: 'KZ',
+        locale: 'kk-KZ',
+        subLocale: 'kk_KZ',
     },
+    
+    // {
+    //     id: 3,
+    //     label: 'English',
+    //     code: 'en',
+    //     country: 'US',
+    //     locale: 'en-US',
+    //     subLocale: 'en_US',
+    // },
 ] as const;
