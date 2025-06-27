@@ -34,13 +34,13 @@ export default function MobileMenu() {
             <SheetTitle>
                 <Input placeholder="Поиск..." className="rounded-xl border-none shadow-md max-w-[350px]" />
             </SheetTitle>
-          <nav className="flex flex-col gap-2 mt-4">
-            {NAVIGATION_HEADER.map(({ label, pathname }) => (
-                <Link key={pathname} href={pathname} className="text-lg font-medium hover:underline">
-                  {label}
-                </Link>
-            ))}
-          </nav>
+          {/*<nav className="flex flex-col gap-2 mt-4">*/}
+          {/*  {NAVIGATION_HEADER.map(({ label, pathname }) => (*/}
+          {/*      <Link key={pathname} href={pathname} className="text-lg font-medium hover:underline">*/}
+          {/*        {label}*/}
+          {/*      </Link>*/}
+          {/*  ))}*/}
+          {/*</nav>*/}
             <SheetFooter>
                 <div className="flex justify-between items-center ">
                     <Suspense fallback={<div>Loading...</div>}>

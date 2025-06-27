@@ -1,7 +1,6 @@
-'use client'
 
 import Container from "@/shared/ui/wrappers/container";
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/shared/ui/card";
@@ -24,47 +23,29 @@ type Article = {
     fullImageUrl?: string | null;
 };
 
-const NewsPage = () => {
+export const revalidate = 600; // Регенерация каждые 60 секунд
 
-    const [articles, setArticles] = useState<Article[]>([]);
-    const [loading, setLoading] = useState(true);
+export default async function NewsPage(){
 
-    useEffect(() => {
-        ADM_URL.get(ENDPOINTS.GET.NEWS_ARTICLE)
-            .then((res) => {
-                // Конкатенация url для каждого изображения
-                const mapped = res.data.data.map((item: any) => {
-                    const fullImageUrl = item.img?.url
-                        ? `${ADM_URL.defaults.baseURL}${item.img.url}`
-                        : null;
+    try {
+        const res = await ADM_URL.get(ENDPOINTS.GET.NEWS_ARTICLE);
 
-                    return {
-                        ...item,
-                        fullImageUrl,
-                    };
-                });
+        const articles: Article[] = res.data.data.map((item: any) => ({
+            ...item,
+            fullImageUrl: item.img?.url ? `${ADM_URL.defaults.baseURL}${item.img.url}` : null,
+        }));
 
-                setArticles(mapped);
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error("Ошибка при получении статей:", err);
-                setLoading(false);
-            });
-    }, []);
-
-    if (loading) return <span className="pt-6 pb-6"><SyncLoader color="#1470B9FF" /></span>;
 
     return(
        <Container>
-           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6">
+           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 pb-6">
                {articles.map((article) => (
                    <div key={article.id}>
                        <Card
                            className="flex flex-col rounded-4xl overflow-hidden h-full"
                        >
-                           <Link href={PATHS.NEWS} className="flex flex-col">
-                               {article.fullImageUrl && (
+                           <Link href={`${PATHS.NEWS}/${article.id}`} className="flex flex-col">
+                           {article.fullImageUrl && (
                                    <CardContent className="p-4 pt-1 flex justify-center items-center">
                                        <img
                                            src={article.fullImageUrl}
@@ -100,10 +81,14 @@ const NewsPage = () => {
                        </Card>
                    </div>
                ))}
-           </div>
+                </div>
        </Container>
     )
+} catch (err) {
+        console.error("Ошибка при получении статей:", err);
+        return <div className="p-6"><span className="pt-6 pb-6"><SyncLoader color="#1470B9FF" /></span></div>;
+    }
 }
 
-export default NewsPage;
+
 
