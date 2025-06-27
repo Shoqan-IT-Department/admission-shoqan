@@ -3,5 +3,5 @@ import axios, { AxiosInstance } from 'axios';
 
 
 export const ADM_URL = axios.create({
-    baseURL: "http://localhost:1337",
+    baseURL: "https://admission.shokan.edu.kz/",
 });
