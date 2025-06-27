@@ -61,15 +61,15 @@ const Header = () => {
               <Link href={PATHS.HOME}>
                 <Logotype />
               </Link>
-              <nav className="flex flex-wrap items-center gap-10">
-                {NAVIGATION_HEADER.map(({ label, pathname }) => (
-                    <Link key={pathname} href={pathname}>
-                      <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">
-                        {label}
-                      </small>
-                    </Link>
-                ))}
-              </nav>
+              {/*<nav className="flex flex-wrap items-center gap-10">*/}
+              {/*  {NAVIGATION_HEADER.map(({ label, pathname }) => (*/}
+              {/*      <Link key={pathname} href={pathname}>*/}
+              {/*        <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">*/}
+              {/*          {label}*/}
+              {/*        </small>*/}
+              {/*      </Link>*/}
+              {/*  ))}*/}
+              {/*</nav>*/}
             </div>
           </Container>
         </header>
