@@ -24,6 +24,7 @@ type ProfessionType = {
     url:string
 };
 
+
 const ProfessionList = () => {
 
     const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);

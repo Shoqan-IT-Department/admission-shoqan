@@ -44,30 +44,12 @@ export default async function CommisionBlock() {
 
     const contents = await getCommission();
 
-    const title = contents[0]?.title || '';
-    const email = contents[0]?.email || '';
-    const locales = contents[0]?.locales || '';
-    const number = contents[0]?.number || '';
-    const dayswork = contents[0]?.dayswork || '';
-    const more = contents[0]?.more || '';
-    const doc = contents[0]?.doc|| '';
-    const med = contents[0]?.med || '';
-    const identifycard = contents[0]?.identifycard || '';
-    const photos = contents[0]?.photos || '';
-    const card = contents[0]?.card || '';
-    const certificate = contents[0]?.certificate || '';
-    const grant = contents[0]?.grant || '';
-    const envelope = contents[0]?.envelope || '';
-    const sectitle = contents[0]?.sectitle || '';
-    const instagram = contents[0]?.instagram || '';
-    const instaurl = contents[0]?.instaurl || '';
-    const toogis = contents[0]?.toogis || '';
     const toogisurl = contents[0]?.toogisurl || '';
 
     return (
         <div id="comission" className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full rounded-4xl select-none mb-6 ">
             <div className="mt-10">
-                <div className="bg-card hover:text-primary hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all p-6  shadow rounded-4xl select-none hover:shadow-2xl duration-200">
+                <div className="bg-card p-6  shadow rounded-4xl select-none hover:shadow-2xl ">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
                         {t("commisionblock.sectitle")}
                     </h2>
@@ -86,7 +68,7 @@ export default async function CommisionBlock() {
 
             {/* Правая колонка */}
             <div className="mt-10">
-                <div className="bg-card p-6 focus:text-white hover:text-primary hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all  hover:shadow-2xl duration-200 rounded-4xl">
+                <div className="bg-card p-6 focus:text-white rounded-4xl hover:shadow-2xl">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
                         {t("commisionblock.title")}
                     </h2>
@@ -105,7 +87,7 @@ export default async function CommisionBlock() {
                         </div>
                         <div className="flex items-center mb-4">
                             <Mail className="text-muted" />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{email}</p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">university@shokan.edu.kz</p>
                         </div>
                         <div className="flex items-center">
                             <Clock className="text-muted" />

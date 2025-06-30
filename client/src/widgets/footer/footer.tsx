@@ -94,7 +94,7 @@ export default async function Footer(){
             {t("contact.title")}
           </h3>
           <p className="leading-7 font-semibold text-primary ">
-            {locales}
+            
           </p>
           <p className="leading-7 font-semibold text-primary ">
             {mail}
@@ -155,7 +155,6 @@ export default async function Footer(){
         </div>
       </div>
 
-      {/* ===== Третья строка: 3 выровненных колонки ===== */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 font-semibold ">
         {/* Приемная комиссия */}
         <div>
@@ -163,14 +162,10 @@ export default async function Footer(){
             {t("commision.title")}
           </h3>
           <p className="leading-7 font-semibold text-primary">
-            {number}
-          </p>
-          <p className="leading-7 font-semibold text-primary ">
-            admission@narxoz.kz
+           <Link href="tel:+77471001930">+77471001930</Link>
           </p>
         </div>
 
-        {/* Пресс-служба */}
         <div>
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
             {t("student.title")}
