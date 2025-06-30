@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ newsId
                             <p className="mb-4 text-justify">{article.description}</p>
                         </div>
                         <div>
-                            <p>
+                            <p className="text-right leading-7 [&:not(:first-child)]:mt-6">
                                 {(() => {
                                     const date = new Date(article.published);
                                     const day = date.getDate();

@@ -56,7 +56,7 @@ export default async function ChoiceCard () {
     // const more = contents[0]?.more || '';
 
     return (
-     <div>
+     <div id="choice">
   <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mt-6">
     {title}
   </h1>

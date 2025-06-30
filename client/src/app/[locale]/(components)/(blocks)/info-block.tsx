@@ -35,7 +35,7 @@ export default async function InfoBlock() {
   const description = articles[0]?.description || '';
 
   return (
-    <div>
+    <div >
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full mt-5 select-none cursor-default leading-none font-semibold text-2xs gap-4">
     <div className="flex-1">
       <h2 className="scroll-m-20 text-2xl sm:text-3xl font-semibold tracking-tight">

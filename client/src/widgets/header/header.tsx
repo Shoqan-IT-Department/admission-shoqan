@@ -3,23 +3,21 @@
 import Container from "@/shared/ui/wrappers/container";
 import { Button } from "@/shared/ui/button";
 import "@/app/[locale]/styles.css";
-import { Eye, Search, Menu } from "lucide-react";
-import { Switch } from "@/shared/ui/switch";
+import { Search } from "lucide-react";
 import Logotype from "@/widgets/logotype/logo.svg"
 import Link from "next/link";
 import {PATHS} from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import PhoneLink from "@/shared/ui/phone-link";
 import React, {useState, Suspense} from "react";
-import {Input} from "@/shared/ui/input";
-import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 import MobileMenu from '@/shared/ui/mobile-menu'
-import Image from "next/image";
+import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
+import {useTranslations} from "use-intl";
 // import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 
 
 const Header = () => {
-
+    const t = useTranslations('Header');
       const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
     return (
@@ -35,10 +33,10 @@ const Header = () => {
               <div className="hidden sm:flex justify-between items-center gap-4">
                 {/* Левая часть */}
                 <div className="flex gap-2 items-center">
-                  <Input className="no-clear-button rounded-xl border-0 hover:shadow-md" type="search" />
-                  <Button className="hover:bg-ring text-secondary rounded-2xl hover:shadow-lg">
-                    <Search />
-                  </Button>
+
+                  {/*<Button className="hover:bg-ring text-secondary rounded-2xl hover:shadow-lg">*/}
+                  {/*  <Search />*/}
+                  {/*</Button>*/}
                   {/*<Switch id="switcher-lang" />*/}
                 </div>
 
@@ -61,15 +59,15 @@ const Header = () => {
               <Link href={PATHS.HOME}>
                 <Logotype />
               </Link>
-              {/*<nav className="flex flex-wrap items-center gap-10">*/}
-              {/*  {NAVIGATION_HEADER.map(({ label, pathname }) => (*/}
-              {/*      <Link key={pathname} href={pathname}>*/}
-              {/*        <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">*/}
-              {/*          {label}*/}
-              {/*        </small>*/}
-              {/*      </Link>*/}
-              {/*  ))}*/}
-              {/*</nav>*/}
+              <nav className="flex flex-wrap items-center gap-10">
+                {NAVIGATION_HEADER.map(({ label, pathname }) => (
+                    <Link key={pathname} href={pathname}>
+                      <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">
+                          {t(label)}
+                      </small>
+                    </Link>
+                ))}
+              </nav>
             </div>
           </Container>
         </header>

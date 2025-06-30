@@ -3,21 +3,25 @@ import { PATHS } from '@/config/paths';
 
 export const NAVIGATION_HEADER = [
     {
-        label: 'Admission',
-        pathname: PATHS.ADMISSION,
+        label: 'home',
+        pathname: PATHS.HOME,
 
     },
     {
-        label: 'University',
-        pathname: PATHS.UNIVERSITY,
-    },
-    {
-        label: 'Education',
-        pathname: PATHS.EDUCATION,
-    },
-    {
-        label: 'Science',
-        pathname: PATHS.SCIENCE,
+        label: 'choice',
+        pathname: PATHS.CHOICE,
 
+    },
+    {
+        label: 'newsblock',
+        pathname: PATHS.NEWSBLOCK,
+    },
+    {
+        label: 'commision',
+        pathname: PATHS.COMISSION,
+    },
+    {
+        label: 'education-programs',
+        pathname: PATHS.EDU_PROGRAMS,
     },
 ] as const;

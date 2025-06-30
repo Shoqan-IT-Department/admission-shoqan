@@ -64,18 +64,20 @@ export default async function NewsPage(){
                                            .join(" ") + (article.description.split(" ").length > 30 ? "..." : "")}
                                    </CardDescription>
                                </CardHeader>
-                               <CardFooter className="text-center text-xs text-text-background pb-4">
-                                   {(() => {
-                                       const date = new Date(article.published);
-                                       const day = date.getDate();
-                                       const month = date.getMonth();
-                                       const year = date.getFullYear();
-                                       const months = [
-                                           "января", "февраля", "марта", "апреля", "мая", "июня",
-                                           "июля", "августа", "сентября", "октября", "ноября", "декабря"
-                                       ];
-                                       return `${day} ${months[month]} ${year}`;
-                                   })()}
+                               <CardFooter className=" text-text-background pt-2">
+                                   <p className="text-right leading-7 [&:not(:first-child)]:mt-6">
+                                {(() => {
+                                    const date = new Date(article.published);
+                                    const day = date.getDate();
+                                    const month = date.getMonth();
+                                    const year = date.getFullYear();
+                                    const months = [
+                                        "января", "февраля", "марта", "апреля", "мая", "июня",
+                                        "июля", "августа", "сентября", "октября", "ноября", "декабря"
+                                    ];
+                                    return `${day} ${months[month]} ${year}`;
+                                })()}
+                            </p>
                                </CardFooter>
                            </Link>
                        </Card>

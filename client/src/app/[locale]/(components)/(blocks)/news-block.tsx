@@ -44,7 +44,7 @@ export default async function NewsBlock() {
 
 
     return (
-        <div className="select-none cursor-default">
+        <div id="news" className="select-none cursor-default">
             <div>
                 <div className="flex justify-between items-center mt-6 pb-4 rounded-4x">
                     <div>

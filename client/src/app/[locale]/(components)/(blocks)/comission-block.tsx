@@ -65,7 +65,7 @@ export default async function CommisionBlock() {
     const toogisurl = contents[0]?.toogisurl || '';
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full rounded-4xl select-none mb-6 ">
+        <div id="comission" className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full rounded-4xl select-none mb-6 ">
             <div className="mt-10">
                 <div className="bg-card hover:text-primary hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all p-6  shadow rounded-4xl select-none hover:shadow-2xl duration-200">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -93,21 +93,15 @@ export default async function CommisionBlock() {
                     <div className="m-6 ">
                         <div className="flex items-center mb-4">
                             <Phone className="text-muted" />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="tel:+77471001930">{number}</Link></p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="tel:+77471001930">+77471001930</Link></p>
                         </div>
                         <div className="flex items-center mb-4">
                             <MapPinCheckInside className="text-muted" />
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href={toogisurl}>{t("commisionblock.toogis")}</Link></p>
                         </div>
                         <div className="flex items-center mb-4">
-                            <Instagram className="text-muted" />
-                            <Link href={instaurl}>
-                                <p className="ml-2 scroll-m-20 font-semibold  text-xl">{instagram}</p>
-                            </Link>
-                        </div>
-                        <div className="flex items-center mb-4">
                             <MapPinHouse className="text-muted " />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{locales}</p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.locale")}</p>
                         </div>
                         <div className="flex items-center mb-4">
                             <Mail className="text-muted" />
@@ -115,7 +109,7 @@ export default async function CommisionBlock() {
                         </div>
                         <div className="flex items-center">
                             <Clock className="text-muted" />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{dayswork}</p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.schedule")}</p>
                         </div>
                     </div>
                 </div>
