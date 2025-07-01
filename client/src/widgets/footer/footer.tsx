@@ -94,10 +94,7 @@ export default async function Footer(){
             {t("contact.title")}
           </h3>
           <p className="leading-7 font-semibold text-primary ">
-            
-          </p>
-          <p className="leading-7 font-semibold text-primary ">
-            {mail}
+            <Link href={`mailto: university@shoqan.edu.kz`}><span className="hover:underline">university@shoqan.edu.kz</span></Link>
           </p>
         </div>
 
@@ -124,10 +121,10 @@ export default async function Footer(){
             {t("school.title")}
           </h3>
           <ul className="space-y-1 text-primary font-semibold ">
-            <Link href={"https://shokan.edu.kz/ru/schools/agrotehnicheskij-institut-im-sadvakasova/"}> <li>{t("school.agro")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/schools/pedagogical-institute/"}><li> {t("school.ped")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/schools/vysshaya-shkola-mediciny/"}><li>{t("school.med")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/schools/vysshaya-shkola-biznesa-i-prava/"}> <li>{t("school.business")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/schools/agrotehnicheskij-institut-im-sadvakasova/"}> <li className="hover:underline">{t("school.agro")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/schools/pedagogical-institute/"}><li className="hover:underline"> {t("school.ped")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/schools/vysshaya-shkola-mediciny/"}><li className="hover:underline">{t("school.med")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/schools/vysshaya-shkola-biznesa-i-prava/"}> <li className="hover:underline">{t("school.business")}</li></Link>
           </ul>
         </div>
 
@@ -137,9 +134,9 @@ export default async function Footer(){
             {t("incoming.title")}
           </h3>
           <ul className="space-y-1 text-primary font-semibold ">
-            <Link href={"https://shokan.edu.kz/ru/undergraduate/"}><li>{t("incoming.bacalaur")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/graduate/"}><li>{t("incoming.magistracy")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/phd/"}><li>{t("incoming.doctor")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/undergraduate/"}><li className="hover:underline">{t("incoming.bacalaur")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/graduate/"}><li className="hover:underline" >{t("incoming.magistracy")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/phd/"}><li className="hover:underline">{t("incoming.doctor")}</li></Link>
 
           </ul>
         </div>
@@ -150,7 +147,7 @@ export default async function Footer(){
             {t("additionally")}
           </h3>
           <ul className="space-y-1 text-primary font-semibold ">
-            <Link href={"https://shokan.edu.kz/ru/e-university/"}><li>{t("electronic")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/e-university/"}><li className="hover:underline">{t("electronic")}</li></Link>
           </ul>
         </div>
       </div>
@@ -162,18 +159,18 @@ export default async function Footer(){
             {t("commision.title")}
           </h3>
           <p className="leading-7 font-semibold text-primary">
-           <Link href="tel:+77471001930">+77471001930</Link>
+           <Link href="tel:+77471001930"><span className="hover:underline">+77471001930</span></Link>
           </p>
         </div>
 
         <div>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
+          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight hover:underline text-primary mb-2">
             {t("student.title")}
           </h3>
           <ul className="space-y-1 text-primary font-semibold ">
-            <Link href={"https://shokan.edu.kz/ru/student-life/struktura-departamenta-molodezhnoj-politiki/"}><li>{t("student.structure")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/student-life/psychologist-blog/"}><li>{t("student.psychology")}</li></Link>
-            <Link href={"https://shokan.edu.kz/ru/student-life/obshezhitiya/"}><li>{t("student.dormitories")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/student-life/struktura-departamenta-molodezhnoj-politiki/"}><li className="hover:underline">{t("student.structure")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/student-life/psychologist-blog/"}><li className="hover:underline">{t("student.psychology")}</li></Link>
+            <Link href={"https://shokan.edu.kz/ru/student-life/obshezhitiya/"}><li className="hover:underline">{t("student.dormitories")}</li></Link>
           </ul>
         </div>
       </div>

@@ -5,6 +5,7 @@ import Link from "next/link";
 import {PATHS} from "@/config/paths";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
+import { getTranslations } from "next-intl/server";
 
 
 type StaticProgrammType = {
@@ -34,6 +35,7 @@ async function getStaticProfession() {
 export const revalidate = 600;
 
 export default async function ChoiceCard () {
+  const t = await getTranslations('HomePage')
     const contents = await getStaticProfession()   
     const attributes = await getStaticAttributes()
 
@@ -58,7 +60,7 @@ export default async function ChoiceCard () {
     return (
      <div id="choice">
   <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mt-6">
-    {title}
+    {t("choiceblock.title")}
   </h1>
 
   <div className="select-none cursor-default mt-10">

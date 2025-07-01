@@ -28,7 +28,11 @@ export default async function LocaleLayout({
   }
  
   return (
-    <html lang={locale}>
+    <html
+        lang={locale}
+        suppressHydrationWarning
+        translate='no'
+    >
       <body className="bg-muted-foreground">
         <NextIntlClientProvider>
           <Header/>

@@ -7,6 +7,7 @@ import {ArrowRight} from "lucide-react";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import NewsCard from "@/app/[locale]/(components)/(cards)/news-card";
+import { getTranslations } from "next-intl/server";
 
 
 type StaticAttributesType = {
@@ -25,8 +26,8 @@ async function getStaticAttributes() {
 
 export const revalidate = 600;
 
-export default async function NewsBlock() {
-
+export default async function NewsBlock({ locale }: { locale: string }) {
+    const t = await getTranslations("HomePage")
     const attributes = await getStaticAttributes()
 
     // const [attributes, setAttributes] = useState<StaticAttributesType[]>([]);
@@ -39,8 +40,7 @@ export default async function NewsBlock() {
 
     // }, []);
 
-    const title = attributes[0]?.title || '';
-    const subtitle = attributes[0]?.subtitle || '';
+   
 
 
     return (
@@ -49,23 +49,23 @@ export default async function NewsBlock() {
                 <div className="flex justify-between items-center mt-6 pb-4 rounded-4x">
                     <div>
                          <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight ">
-                        {title || ''}
+                        {t("newsblock.title")}
                     </h1>
                     </div>
                     <Link href={PATHS.NEWS}>
                         <div className="flex p-2 rounded-lg gap-4 items-center border">
-                            <p className="pr-10">{subtitle || ''}</p>
+                            <p className="pr-10">{t("newsblock.subtitle")}</p>
                             <Button className="bg-popover hover:bg-muted "><ArrowRight /></Button>
                         </div>
                     </Link>
                 </div>
                 <div className="flex flex-wrap gap-3 mt-2">
                         <Button className="text-secondary hover:bg-ring rounded-lg px-4 py-2">
-                            {subtitle || ''}
+                           {t("newsblock.subtitle")}
                         </Button>
                 </div>
                 <div className="mt-10">
-                    <NewsCard/>
+                    <NewsCard locale={locale}/>
                 </div>
                 {/*<div className="mt-10">*/}
                 {/*    <ComissionCard/>*/}

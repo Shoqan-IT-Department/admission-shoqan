@@ -22,8 +22,15 @@ type StaticArticleType = {
             };
         }
     };
+
+};
+type ArticleWithImage = StaticArticleType & {
+    fullImageUrl?: string;
 };
 
+type Props = {
+    locale: string;
+};
 type Article = {
     id: number;
     title: string;
@@ -34,29 +41,45 @@ type Article = {
         hash: string;
         ext: string;
     };
-    fullImageUrl?: string | null;
+    fullImageUrl?: string;
 };
 
-async function getNewsArticle() {
-   try {
-     const res = ADM_URL.get<{data: StaticArticleType[]}>(ENDPOINTS.GET.NEWS_ARTICLE) 
-     const merge = (await res).data.data
-     return merge.map((item) => ({
-      ...item,
-      fullImageUrl: item.img?.url ? `${ADM_URL.defaults.baseURL}${item.img.url}` : undefined,
-    }));
-   } catch (err) {
-    console.error("Ошибка при получении статей:", err);
+ // поправь путь если нужно
+export async function getNewsArticle(locale: string = 'ru-RU'): Promise<ArticleWithImage[]> {
+    const localesToTry = [locale, 'ru-RU'];
+
+    for (const loc of localesToTry) {
+        try {
+            const res = await ADM_URL.get<{ data: StaticArticleType[] }>(
+                `${ENDPOINTS.GET.NEWS_ARTICLE}&locale=${loc}`
+            );
+
+            const articles = res.data.data;
+
+            if (articles.length > 0) {
+                return articles.map((item) => ({
+                    ...item,
+                    fullImageUrl: item.img?.url
+                        ? `${ADM_URL.defaults.baseURL}${item.img.url}`
+                        : undefined,
+                }));
+            }
+        } catch (err) {
+            console.error(`Ошибка при получении статей (locale=${loc}):`, err);
+        }
+    }
+
     return [];
-   }
-    
 }
+
+
+
+
 
 export const revalidate = 600;
 
-export default async function NewsCard(){
-
-     const articles = await getNewsArticle();
+export default async function NewsCard({ locale }: { locale: string }){
+     const articles = await getNewsArticle(locale);
 
     if (!articles.length) {
    return <span className="pt-6 pb-6 flex justify-center items-center"><SyncLoader color="#1470B9FF" /></span>;

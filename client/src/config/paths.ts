@@ -15,8 +15,8 @@ export const PATHS = {
     // PREPARATION:'/preparation',
     EDU_PROGRAMS:'/education-programs',
     NEWS:'/news',
-    CHOICE:'#choice',
-    NEWSBLOCK:'#news',
-    COMISSION:'#comission',
+    CHOICE:'/#choice',
+    NEWSBLOCK:'/#news',
+    COMISSION:'/#comission',
     // ARTICLE:'/article'
 } as const;

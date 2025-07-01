@@ -1,8 +1,14 @@
 'use client'
 
-import React from 'react';
+import React, {use} from 'react';
 import Container from "@/shared/ui/wrappers/container";
 import ProfessionList from "@/app/[locale]/education-programs/(components)/blocks/profession-list";
+
+type PageProps = {
+    params: {
+        locale: string;
+    };
+};
 
 type ProfessionType = {
     id: number;
@@ -18,16 +24,16 @@ type ProfessionType = {
     url: string;
 }
 
-const EducationProgramsPage = () => {
-
+export default function EducationProgramsPage ({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = use(params);
     return (
         <Container>
             <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-10">
            Образовательные программы
             </h1>
-            <ProfessionList />
+            <ProfessionList locale={locale}/>
         </Container>
     );
 };
 
-export default EducationProgramsPage;
+

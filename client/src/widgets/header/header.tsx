@@ -22,7 +22,7 @@ const Header = () => {
 
     return (
         <header>
-          <div className="border-b pb-5 mt-5">
+          <div className="border-b pb-3 pt-3">
             <Container>
               {/* Мобильное меню */}
               <div className="sm:hidden">
