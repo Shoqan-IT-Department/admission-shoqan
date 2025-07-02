@@ -9,8 +9,8 @@ import Footer from "@/widgets/footer/footer";
 
 
 export const metadata: Metadata = {
-  title: "Shoqan News",
-  description: "Shoqan",
+  title: "Admission Commission Shokan",
+  description: "Shokan",
 };
 
 
@@ -32,6 +32,7 @@ export default async function LocaleLayout({
         lang={locale}
         suppressHydrationWarning
         translate='no'
+        className='select-none'
     >
       <body className="bg-muted-foreground">
         <NextIntlClientProvider>

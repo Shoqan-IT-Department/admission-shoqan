@@ -3,6 +3,7 @@
 import React, {use} from 'react';
 import Container from "@/shared/ui/wrappers/container";
 import ProfessionList from "@/app/[locale]/education-programs/(components)/blocks/profession-list";
+import { useTranslations } from 'next-intl';
 
 type PageProps = {
     params: {
@@ -26,10 +27,11 @@ type ProfessionType = {
 
 export default function EducationProgramsPage ({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = use(params);
+    const t = useTranslations('ProffesionPage')
     return (
         <Container>
             <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-10">
-           Образовательные программы
+                {t('title')}
             </h1>
             <ProfessionList locale={locale}/>
         </Container>

@@ -35,22 +35,24 @@ export default async function InfoBlock() {
   const description = articles[0]?.description || '';
 
   return (
-    <div >
+    <div className="pt-6">
   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center w-full mt-5 select-none cursor-default leading-none font-semibold text-2xs gap-4">
     <div className="flex-1">
       <h2 className="scroll-m-20 text-2xl sm:text-3xl font-semibold tracking-tight">
         {t('infoblock.title')}
       </h2>
-       <p className="leading-7 [&:not(:first-child)]:mt-6 whitespace-normal break-words">
-    {t('infoblock.description')}</p>
+      <div className=" pt-6 w-[85%] sm:text-justify">
+        <p className="leading-7 [&:not(:first-child)]:mt-6 whitespace-normal break-words ">
+          {t('infoblock.description')}</p>
+      </div>
     </div>
 
     <Link href={PATHS.EDU_PROGRAMS}>
-      <div className="border rounded-lg flex items-center gap-2 p-2">
-        <span className="text-sm">Образовательные программы</span>
-        <Button className="bg-popover hover:bg-muted">
-            <ArrowRight />
-          </Button>
+      <div className="border border-border rounded-lg flex items-center gap-2 p-2 animated-border">
+        <span className="text-sm">{t('infoblock.program')}</span>
+        <Button className="bg-popover hover:bg-muted transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-60">
+          <ArrowRight />
+        </Button>
       </div>
     </Link>
   </div>

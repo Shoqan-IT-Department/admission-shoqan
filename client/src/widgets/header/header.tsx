@@ -9,7 +9,7 @@ import Link from "next/link";
 import {PATHS} from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import PhoneLink from "@/shared/ui/phone-link";
-import React, {useState, Suspense} from "react";
+import React, {useState, Suspense, useEffect} from "react";
 import MobileMenu from '@/shared/ui/mobile-menu'
 import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 import {useTranslations} from "use-intl";
@@ -18,15 +18,43 @@ import {useTranslations} from "use-intl";
 
 const Header = () => {
     const t = useTranslations('Header');
-      const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
+    // const [showHeader, setShowHeader] = useState(true);
+    // const [lastScrollY, setLastScrollY] = useState(0);
+    //
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const currentScrollY = window.scrollY;
+    //
+    //         if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    //             // Скролл вниз
+    //             setShowHeader(false);
+    //         } else {
+    //             // Скролл вверх
+    //             setShowHeader(true);
+    //         }
+    //
+    //         setLastScrollY(currentScrollY);
+    //     };
+    //
+    //     window.addEventListener('scroll', handleScroll);
+    //
+    //     return () => window.removeEventListener('scroll', handleScroll);
+    // }, [lastScrollY]);
 
     return (
+        // <header className={`bg-muted-foreground sticky top-0 left-0 w-full z-50 transition-transform duration-300 ${
+        //     showHeader ? 'translate-y-0' : '-translate-y-full'
+        // }`}>
         <header>
           <div className="border-b pb-3 pt-3">
             <Container>
               {/* Мобильное меню */}
-              <div className="sm:hidden">
+              <div className="sm:hidden flex items-center justify-end">
+                
                 <MobileMenu />
+                  <Suspense fallback={<div>Loading...</div>}>
+                        <LocaleSwitcher />
+                  </Suspense>
               </div>
 
               {/* Десктопный хедер */}
@@ -62,9 +90,10 @@ const Header = () => {
               <nav className="flex flex-wrap items-center gap-10">
                 {NAVIGATION_HEADER.map(({ label, pathname }) => (
                     <Link key={pathname} href={pathname}>
-                      <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">
-                          {t(label)}
-                      </small>
+                        <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
+                            <span className="relative z-10">{t(label)}</span>
+                            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-popover scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                        </small>
                     </Link>
                 ))}
               </nav>

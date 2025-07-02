@@ -1,4 +1,5 @@
 'use client';
+
 import {
   Select,
   SelectContent,
@@ -9,6 +10,7 @@ import {
 import { useTransition } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useLocale } from 'use-intl';
+import Cookies from 'js-cookie';
 import { LANGUAGES } from '@/config/languages';
 
 export default function LocaleSwitcher() {
@@ -20,6 +22,7 @@ export default function LocaleSwitcher() {
 
   const handleChangeLocale = (newLocale: string) => {
     startTransition(() => {
+      Cookies.set('NEXT_LOCALE', newLocale);
       const currentPath = pathname.split('/').slice(2).join('/');
       const queryString = searchParams.toString();
       const hash = window.location.hash;

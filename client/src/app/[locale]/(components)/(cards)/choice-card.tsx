@@ -63,15 +63,15 @@ export default async function ChoiceCard () {
     {t("choiceblock.title")}
   </h1>
 
-  <div className="select-none cursor-default mt-10">
+  <div className="cursor-default mt-10">
     <Link href={PATHS.EDU_PROGRAMS}>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {contents.map((item, key) => (
           <div
             key={key}
-            className="bg-card rounded-4xl p-4 sm:p-6 flex flex-col justify-between  hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all hover:text-white duration-700"
+            className="bg-card h-[268px] rounded-4xl p-4 sm:p-6 flex flex-col justify-between  hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all hover:text-white duration-700"
           >
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-10">
+            <h1 className="text-4xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-10">
               {item.title}
             </h1>
 

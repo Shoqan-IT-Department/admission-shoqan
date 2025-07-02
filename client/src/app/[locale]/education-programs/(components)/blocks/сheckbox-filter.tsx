@@ -1,16 +1,22 @@
+'use client'
+
 import React from "react";
 import {Checkbox} from "@/shared/ui/checkbox";
 import {Button} from "@/shared/ui/button";
 import Container from "@/shared/ui/wrappers/container";
+import { useTranslations } from "next-intl";
 
 type GraduateCheckboxesProps = {
     selected: string[];
     onChange: (selected: string[]) => void;
 };
 
-const graduateLevels = ["Бакалавриат", "Магистратура", "Аспирантура", "Докторантура"];
+const graduateLevels = ["Бакалавриат", "Магистратура", "Докторантура", "Резидентура"];
 
 const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({ selected, onChange }) => {
+
+    const t = useTranslations('ProffesionPage')
+
     const handleChange = (graduate: string) => {
         const newSelected = selected.includes(graduate)
             ? selected.filter(g => g !== graduate)
@@ -28,7 +34,6 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({ selected, onCha
             {graduateLevels.map((graduate, key) => (
                 <Container key={key}>
                 <div
-                    key={key}
                     className=" select-none border-b cursor-default leading-none font-semibold text-2xs"
                 >
                     <div className="flex justify-between items-center  px-6 py-4 md:px-6 md:py-4">
@@ -50,7 +55,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({ selected, onCha
                     onClick={handleReset}
                     className="px-4 py-1 w-max bg-popover hover:bg-muted rounded-xl"
                 >
-                    Сбросить всё
+                    {t('button')}
                 </Button>
             </div>
         </aside>

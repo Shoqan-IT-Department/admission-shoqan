@@ -26,8 +26,8 @@ export default function MobileMenu() {
         setTimeout(() => {
             if (targetPath.startsWith('#')) {
                 // Якорь на этой же странице
-                const el = document.querySelector(targetPath);
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                const element = document.querySelector(targetPath);
+                if (element) element.scrollIntoView({ behavior: 'smooth' });
                 return;
             }
 
@@ -75,14 +75,6 @@ export default function MobileMenu() {
                         </button>
                     ))}
                 </nav>
-
-                <SheetFooter>
-                    <div className="flex justify-between items-center w-full">
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <LocaleSwitcher />
-                        </Suspense>
-                    </div>
-                </SheetFooter>
             </SheetContent>
         </Sheet>
     );

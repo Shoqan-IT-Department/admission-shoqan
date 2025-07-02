@@ -62,14 +62,10 @@ const ProfessionList = ({ locale }: Props) => {
 
             for (const loc of localesToTry) {
                 const url = buildQuery(selectedGraduates, loc);
-                console.log("fetching from:", url);
                 const res = await ADM_URL.get<{ data: ProfessionType[] }>(url);
                 result = res.data.data;
-
-
                 if (result.length > 0) break;
             }
-            console.log(result);
             setProfessions(result);
         } catch (error) {
             console.error("Ошибка при загрузке профессий:", error);

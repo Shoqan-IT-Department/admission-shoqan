@@ -29,11 +29,11 @@ export default async function StaticInfoBlock() {
   const contents = await getStaticInfo();
 
   return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 select-none cursor-default leading-none font-semibold text-2xs">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-10 select-none cursor-default leading-none font-semibold text-2xs ">
         {contents.map((block, key) => (
             <div
                 key={key}
-                className="flex flex-col justify-center items-start bg-card p-6 rounded-4xl"
+                className="flex flex-col justify-center items-start bg-card p-6 rounded-4xl "
             >
               <h1 className="scroll-m-20 text-3xl tracking-tight text-chart-5 lg:text-5xl">
                 {block.title}

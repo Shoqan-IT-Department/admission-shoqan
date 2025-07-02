@@ -55,7 +55,7 @@ export default async function NewsBlock({ locale }: { locale: string }) {
                     <Link href={PATHS.NEWS}>
                         <div className="flex p-2 rounded-lg gap-4 items-center border">
                             <p className="pr-10">{t("newsblock.subtitle")}</p>
-                            <Button className="bg-popover hover:bg-muted "><ArrowRight /></Button>
+                            <Button className="bg-popover hover:bg-muted transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-60"><ArrowRight /></Button>
                         </div>
                     </Link>
                 </div>

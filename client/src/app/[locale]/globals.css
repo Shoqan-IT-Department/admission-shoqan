@@ -6,8 +6,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -49,7 +47,7 @@
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(0.534 0.139 248.966);
+  --popover: oklch(0.402 0.128 256.674);
   --popover-foreground: oklch(0.145 0 0);
   --primary: oklch(1 0 89.876);
   --primary-foreground: oklch(0.985 0 0);
@@ -68,7 +66,7 @@
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-4: oklch(0.875 0.179 92.68);
   --chart-5: oklch(0.769 0.188 70.08);
   --sidebar: oklch(0.985 0 0);
   --primary-blue: oklch(0.402 0.128 256.674);
@@ -145,4 +143,41 @@ body::-webkit-scrollbar {
 
 html {
   scroll-behavior: smooth;
+}
+
+@keyframes dashAround {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animated-border {
+  position: relative;
+  z-index: 0;
+}
+
+.animated-border::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem; /* такой же как у rounded-lg */
+  border: 2px dashed transparent;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.animated-border:hover::after {
+  border-color: #D1D5DB; /* например, цвет popover или muted */
+  animation: dashAround 1.5s linear forwards;
+  mask-image: linear-gradient(90deg, black 50%, transparent 50%);
+  mask-size: 200% 100%;
+  mask-position: right;
+}
+
+::-webkit-scrollbar {
+  width: 0.5px;
+
 }

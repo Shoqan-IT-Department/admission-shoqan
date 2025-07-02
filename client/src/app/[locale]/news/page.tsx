@@ -13,7 +13,7 @@ import {
 import { SyncLoader } from "react-spinners";
 import Link from "next/link";
 import { PATHS } from "@/config/paths";
-
+import { getTranslations } from 'next-intl/server';
 type Article = {
     id: number;
     title: string;
@@ -38,6 +38,7 @@ export const revalidate = 600;
 
 export default async function NewsPage({ params }: { params: Promise<{ locale: string }> }) {
     const { locale } = await params;
+    const t = await getTranslations('NewsPage');
     const fallbackLocale = "ru-RU";
 
     const localesToTry = [locale, fallbackLocale];
@@ -72,8 +73,14 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
         );
     }
 
+
     return (
         <Container>
+            <div>
+               <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-5">
+                {t('title')}
+                </h1>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 pb-6">
                 {articles.map((article) => (
                     <div key={article.id}>

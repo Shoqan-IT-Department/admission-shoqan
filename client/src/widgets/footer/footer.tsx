@@ -14,6 +14,7 @@ import {
   FaTiktok
 } from 'react-icons/fa';
 import {CiMap} from "react-icons/ci";
+import Decoration from "@/shared/ui/decoration";
 
 type FooterType = {
   instagram: string;
@@ -85,7 +86,7 @@ export default async function Footer(){
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Логотип */}
         <div>
-          <Logotype />
+          <Decoration />
         </div>
 
         {/* Контакты */}
@@ -104,11 +105,11 @@ export default async function Footer(){
             Социальные сети
           </h3>
           <div className="flex gap-4 text-xl text-primary">
-            <Link href={toogis}><CiMap /></Link>
-            <Link href={instagram}><FaInstagram /></Link>
-            <Link href={youtube}><FaYoutube /></Link>
-            <Link href={linkedin}> <FaLinkedinIn /></Link>
-            <Link href={facebook}><FaFacebookF /></Link>
+            <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1" href={toogis}><CiMap /></Link>
+            <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1" href={instagram}><FaInstagram /></Link>
+            <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1" href={youtube}><FaYoutube /></Link>
+            <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"  href={linkedin}> <FaLinkedinIn /></Link>
+            <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1" href={facebook}><FaFacebookF /></Link>
           </div>
         </div>
       </div>
