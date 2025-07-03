@@ -9,7 +9,7 @@ import Footer from "@/widgets/footer/footer";
 
 
 export const metadata: Metadata = {
-  title: "Admission Commission Shokan",
+  title: "Admission Shokan",
   description: "Shokan",
 };
 
