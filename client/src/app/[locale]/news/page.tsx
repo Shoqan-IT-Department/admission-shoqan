@@ -1,5 +1,5 @@
 import Container from "@/shared/ui/wrappers/container";
-import React, {JSX} from "react";
+import React from "react";
 import { ADM_URL } from "@/config/instance";
 import { ENDPOINTS } from "@/config/endpoints";
 import {
@@ -12,9 +12,8 @@ import {
 } from "@/shared/ui/card";
 import { SyncLoader } from "react-spinners";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
-import { getPaths } from "@/config/paths";
-
+import { PATHS } from "@/config/paths";
+import { getTranslations } from 'next-intl/server';
 type Article = {
     id: number;
     title: string;
@@ -37,14 +36,9 @@ type Article = {
 
 export const revalidate = 600;
 
-export default async function NewsPage({
-                                           params,
-                                       }: {
-    params: { locale: string };
-}): Promise<JSX.Element> {
-    const { locale } = params;
-    const PATHS = getPaths(locale);
-    const t = await getTranslations("NewsPage");
+export default async function NewsPage({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = await params;
+    const t = await getTranslations('NewsPage');
     const fallbackLocale = "ru-RU";
 
     const localesToTry = [locale, fallbackLocale];
@@ -79,11 +73,12 @@ export default async function NewsPage({
         );
     }
 
+
     return (
         <Container>
             <div>
                 <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-5">
-                    {t("title")}
+                    {t('title')}
                 </h1>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 pb-6">
@@ -112,7 +107,9 @@ export default async function NewsPage({
                                                 .split(" ")
                                                 .slice(0, 30)
                                                 .join(" ") +
-                                            (article.description.split(" ").length > 30 ? "..." : "")}
+                                            (article.description.split(" ").length > 30
+                                                ? "..."
+                                                : "")}
                                     </CardDescription>
                                 </CardHeader>
                                 <CardFooter className="text-text-background pt-2">
@@ -148,3 +145,4 @@ export default async function NewsPage({
         </Container>
     );
 }
+

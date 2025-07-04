@@ -33,14 +33,14 @@ type ProfessionType = {
 
 type Props = {
     locale: string;
-    initialProfessions: ProfessionType[];
 };
 
-const ProfessionList = ({ locale, initialProfessions }: Props) => {
-    const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
-    const [professions, setProfessions] = useState<ProfessionType[]>(initialProfessions);
+const ProfessionList = ({ locale }: Props) => {
 
-    const fallbackLocale = 'ru-RU';
+    const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
+    const [professions, setProfessions] = useState<ProfessionType[]>([]);
+
+    const fallbackLocale = 'ru-RU'; // запасной язык
 
     const buildQuery = (graduates: string[], loc: string) => {
         const params = new URLSearchParams();
@@ -55,7 +55,7 @@ const ProfessionList = ({ locale, initialProfessions }: Props) => {
         return `/api/professions?${params.toString()}`;
     };
 
-    const fetchFiltered = async () => {
+    const fetchProfessions = async () => {
         try {
             const localesToTry = [locale, fallbackLocale];
             let result: ProfessionType[] = [];
@@ -66,7 +66,6 @@ const ProfessionList = ({ locale, initialProfessions }: Props) => {
                 result = res.data.data;
                 if (result.length > 0) break;
             }
-
             setProfessions(result);
         } catch (error) {
             console.error("Ошибка при загрузке профессий:", error);
@@ -74,15 +73,12 @@ const ProfessionList = ({ locale, initialProfessions }: Props) => {
     };
 
     useEffect(() => {
-        if (selectedGraduates.length > 0) {
-            fetchFiltered();
-        } else {
-            setProfessions(initialProfessions);
-        }
-    }, [selectedGraduates]);
+        fetchProfessions();
+    }, [selectedGraduates, locale]);
 
     return (
         <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
+            {/* Фильтры */}
             <div className="w-full lg:w-[300px]">
                 <GraduateCheckboxes
                     selected={selectedGraduates}
@@ -90,10 +86,14 @@ const ProfessionList = ({ locale, initialProfessions }: Props) => {
                 />
             </div>
 
+            {/* Карточки */}
             <div className="min-h-[800px] w-full">
                 <main>
                     {professions.map((prof) => (
-                        <Card key={prof.id} className="mb-4 rounded-4xl select-none cursor-default">
+                        <Card
+                            key={prof.id}
+                            className="mb-4 rounded-4xl select-none cursor-default"
+                        >
                             <Container>
                                 <Link href={prof.url || ''}>
                                     <CardHeader className="border-b">
@@ -107,7 +107,9 @@ const ProfessionList = ({ locale, initialProfessions }: Props) => {
 
                             <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
                                 <CardContent className="flex flex-wrap gap-2 p-0">
-                                    <span className="bg-muted-foreground p-2 rounded-2xl">{prof.graduates}</span>
+                  <span className="bg-muted-foreground p-2 rounded-2xl">
+                    {prof.graduates}
+                  </span>
                                     {prof.form && (
                                         <span className="bg-muted-foreground p-2 rounded-2xl">
                       {prof.form}

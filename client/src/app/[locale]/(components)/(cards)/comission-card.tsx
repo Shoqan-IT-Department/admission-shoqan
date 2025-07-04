@@ -1,4 +1,4 @@
-    import {ArrowRight, Clock, Mail, MapPin, Phone} from "lucide-react";
+import {ArrowRight, Clock, Mail, MapPin, Phone} from "lucide-react";
 import Container from "@/shared/ui/wrappers/container";
 import {Button} from "@/shared/ui/button";
 import {ADM_URL} from "@/config/instance";

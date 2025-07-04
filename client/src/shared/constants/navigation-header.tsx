@@ -1,17 +1,27 @@
-'use client';
+import { PATHS } from '@/config/paths';
 
-import { useLocale } from 'use-intl';
-import { getPaths } from '@/config/paths';
 
-export const useNavigationHeader = () => {
-    const locale = useLocale();
-    const PATHS = getPaths(locale);
+export const NAVIGATION_HEADER = [
+    {
+        label: 'home',
+        pathname: PATHS.HOME,
 
-    return [
-        { label: 'home', pathname: PATHS.HOME },
-        { label: 'choice', pathname: PATHS.CHOICE },
-        { label: 'newsblock', pathname: PATHS.NEWSBLOCK },
-        { label: 'commision', pathname: PATHS.COMISSION },
-        { label: 'education-programs', pathname: PATHS.EDU_PROGRAMS },
-    ] as const;
-};
+    },
+    {
+        label: 'choice',
+        pathname: PATHS.CHOICE,
+
+    },
+    {
+        label: 'newsblock',
+        pathname: PATHS.NEWSBLOCK,
+    },
+    {
+        label: 'commision',
+        pathname: PATHS.COMISSION,
+    },
+    {
+        label: 'education-programs',
+        pathname: PATHS.EDU_PROGRAMS,
+    },
+] as const;

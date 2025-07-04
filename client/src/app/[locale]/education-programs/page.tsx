@@ -1,6 +1,15 @@
-import { ADM_URL } from "@/config/instance";
-import { Metadata } from "next";
+'use client'
+
+import React, {use} from 'react';
+import Container from "@/shared/ui/wrappers/container";
 import ProfessionList from "@/app/[locale]/education-programs/(components)/blocks/profession-list";
+import { useTranslations } from 'next-intl';
+
+type PageProps = {
+    params: {
+        locale: string;
+    };
+};
 
 type ProfessionType = {
     id: number;
@@ -13,41 +22,20 @@ type ProfessionType = {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    locale: string;
-    url: string | null;
-};
-
-type PageProps = {
-    params: { locale: string };
-};
-
-export const revalidate = 60; // ISR: каждые 60 секунд
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-    return {
-        title: params.locale === 'kk' ? 'Білім беру бағдарламалары' : 'Образовательные программы',
-    };
+    url: string;
 }
 
-export default async function EducationProgramsPage({ params }: PageProps) {
-    const fallbackLocale = 'ru-RU';
-    const locale = params.locale;
+export default function EducationProgramsPage ({ params }: { params: Promise<{ locale: string }> }) {
+    const { locale } = use(params);
+    const t = useTranslations('ProffesionPage')
+    return (
+        <Container>
+            <h1 className="scroll-m-20 pt-6 text-4xl font-bold tracking-tight text-balance mb-10">
+                {t('title')}
+            </h1>
+            <ProfessionList locale={locale}/>
+        </Container>
+    );
+};
 
-    const buildQuery = (loc: string) => {
-        const params = new URLSearchParams();
-        params.set('locale', loc);
-        return `/api/professions?${params.toString()}`;
-    };
 
-    let data: ProfessionType[] = [];
-    const localesToTry = [locale, fallbackLocale];
-
-    for (const loc of localesToTry) {
-        const url = buildQuery(loc);
-        const res = await ADM_URL.get<{ data: ProfessionType[] }>(url);
-        data = res.data.data;
-        if (data.length > 0) break;
-    }
-
-    return <ProfessionList initialProfessions={data} locale={locale} />;
-}

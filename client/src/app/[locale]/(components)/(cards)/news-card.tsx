@@ -3,9 +3,9 @@ import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/shared/ui/card";
 import {SyncLoader} from "react-spinners";
-import Link from "next/link";
-import {getPaths} from "@/config/paths";
 
+import {PATHS} from "@/config/paths";
+import {Link} from "@/i18n/navigation";
 
 type StaticArticleType = {
     id: number;
@@ -45,7 +45,7 @@ type Article = {
     fullImageUrl?: string;
 };
 
- // поправь путь если нужно
+// поправь путь если нужно
 export async function getNewsArticle(locale: string = 'ru-RU'): Promise<ArticleWithImage[]> {
     const localesToTry = [locale, 'ru-RU'];
 
@@ -80,11 +80,11 @@ export async function getNewsArticle(locale: string = 'ru-RU'): Promise<ArticleW
 export const revalidate = 600;
 
 export default async function NewsCard({ locale }: { locale: string }){
-     const articles = await getNewsArticle(locale);
-     const PATHS = getPaths(locale);
+    const articles = await getNewsArticle(locale);
+
     if (!articles.length) {
-   return <span className="pt-6 pb-6 flex justify-center items-center"><SyncLoader color="#1470B9FF" /></span>;
-  }
+        return <span className="pt-6 pb-6 flex justify-center items-center"><SyncLoader color="#1470B9FF" /></span>;
+    }
     // const [articles, setArticles] = useState<Article[]>([]);
     // const [loading, setLoading] = useState(true);
 

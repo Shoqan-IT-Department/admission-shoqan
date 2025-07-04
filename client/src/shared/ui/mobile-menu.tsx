@@ -7,7 +7,7 @@ import { Switch } from '@/shared/ui/switch'
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import {Sheet, SheetContent, SheetFooter, SheetTitle, SheetTrigger} from "@/shared/ui/sheet";
 import React, {useState, Suspense} from "react";
-import {useNavigationHeader} from "@/shared/constants/navigation-header";
+import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 import Link from "next/link";
 import {useTranslations} from "use-intl";
 import Logo from "@/widgets/logotype/logo.svg"
@@ -19,7 +19,6 @@ export default function MobileMenu() {
     const [open, setOpen] = useState(false);
     const router = useRouter();
     const currentPath = usePathname();
-    const navItems = useNavigationHeader();
 
     const handleClick = (targetPath: string) => {
         setOpen(false); // Закрываем меню
@@ -64,13 +63,16 @@ export default function MobileMenu() {
                 <SheetTitle />
 
                 <nav className="flex flex-col gap-2 mt-4">
-                    {navItems.map(({ label, pathname }) => (
-                        <Link key={pathname} href={pathname}>
-                            <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
-                                <span className="relative z-10">{t(label)}</span>
-                                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-popover scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                    {NAVIGATION_HEADER.map(({ label, pathname }) => (
+                        <button
+                            key={pathname}
+                            onClick={() => handleClick(pathname)}
+                            className="text-left"
+                        >
+                            <small className="text-lg font-medium leading-none hover:border-b-2 border-popover pb-1.5">
+                                {t(label)}
                             </small>
-                        </Link>
+                        </button>
                     ))}
                 </nav>
             </SheetContent>
