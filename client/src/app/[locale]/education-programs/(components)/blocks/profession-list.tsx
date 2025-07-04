@@ -33,14 +33,14 @@ type ProfessionType = {
 
 type Props = {
     locale: string;
+    initialProfessions: ProfessionType[];
 };
 
-const ProfessionList = ({ locale }: Props) => {
-
+const ProfessionList = ({ locale, initialProfessions }: Props) => {
     const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
-    const [professions, setProfessions] = useState<ProfessionType[]>([]);
+    const [professions, setProfessions] = useState<ProfessionType[]>(initialProfessions);
 
-    const fallbackLocale = 'ru-RU'; // запасной язык
+    const fallbackLocale = 'ru-RU';
 
     const buildQuery = (graduates: string[], loc: string) => {
         const params = new URLSearchParams();
@@ -55,7 +55,7 @@ const ProfessionList = ({ locale }: Props) => {
         return `/api/professions?${params.toString()}`;
     };
 
-    const fetchProfessions = async () => {
+    const fetchFiltered = async () => {
         try {
             const localesToTry = [locale, fallbackLocale];
             let result: ProfessionType[] = [];
@@ -66,6 +66,7 @@ const ProfessionList = ({ locale }: Props) => {
                 result = res.data.data;
                 if (result.length > 0) break;
             }
+
             setProfessions(result);
         } catch (error) {
             console.error("Ошибка при загрузке профессий:", error);
@@ -73,12 +74,15 @@ const ProfessionList = ({ locale }: Props) => {
     };
 
     useEffect(() => {
-        fetchProfessions();
-    }, [selectedGraduates, locale]);
+        if (selectedGraduates.length > 0) {
+            fetchFiltered();
+        } else {
+            setProfessions(initialProfessions);
+        }
+    }, [selectedGraduates]);
 
     return (
         <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
-            {/* Фильтры */}
             <div className="w-full lg:w-[300px]">
                 <GraduateCheckboxes
                     selected={selectedGraduates}
@@ -86,14 +90,10 @@ const ProfessionList = ({ locale }: Props) => {
                 />
             </div>
 
-            {/* Карточки */}
             <div className="min-h-[800px] w-full">
                 <main>
                     {professions.map((prof) => (
-                        <Card
-                            key={prof.id}
-                            className="mb-4 rounded-4xl select-none cursor-default"
-                        >
+                        <Card key={prof.id} className="mb-4 rounded-4xl select-none cursor-default">
                             <Container>
                                 <Link href={prof.url || ''}>
                                     <CardHeader className="border-b">
@@ -107,9 +107,7 @@ const ProfessionList = ({ locale }: Props) => {
 
                             <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
                                 <CardContent className="flex flex-wrap gap-2 p-0">
-                  <span className="bg-muted-foreground p-2 rounded-2xl">
-                    {prof.graduates}
-                  </span>
+                                    <span className="bg-muted-foreground p-2 rounded-2xl">{prof.graduates}</span>
                                     {prof.form && (
                                         <span className="bg-muted-foreground p-2 rounded-2xl">
                       {prof.form}
