@@ -22,12 +22,20 @@ export default function LocaleSwitcher() {
 
   const handleChangeLocale = (newLocale: string) => {
     startTransition(() => {
-      Cookies.set('NEXT_LOCALE', newLocale);
-      const currentPath = pathname.split('/').slice(2).join('/');
+      // Сохраняем локаль в куку
+      Cookies.set('NEXT_LOCALE', newLocale, {
+        path: '/',
+        sameSite: 'lax',
+      });
+
+      // Удаляем старую локаль из URL и строим новый путь
+      const pathWithoutLocale = pathname.split('/').slice(2).join('/') || '';
       const queryString = searchParams.toString();
       const hash = window.location.hash;
-      const newPath = `/${newLocale}/${currentPath}${queryString ? `?${queryString}` : ''}${hash}`;
 
+      const newPath = `/${newLocale}/${pathWithoutLocale}${queryString ? `?${queryString}` : ''}${hash}`;
+
+      // Навигация на новый путь с локалью
       router.push(newPath);
     });
   };
