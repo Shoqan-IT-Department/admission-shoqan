@@ -4,7 +4,8 @@ import {ENDPOINTS} from "@/config/endpoints";
 import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} from "@/shared/ui/card";
 import {SyncLoader} from "react-spinners";
 import Link from "next/link";
-import {PATHS} from "@/config/paths";
+import {getPaths} from "@/config/paths";
+
 
 type StaticArticleType = {
     id: number;
@@ -80,7 +81,7 @@ export const revalidate = 600;
 
 export default async function NewsCard({ locale }: { locale: string }){
      const articles = await getNewsArticle(locale);
-
+     const PATHS = getPaths(locale);
     if (!articles.length) {
    return <span className="pt-6 pb-6 flex justify-center items-center"><SyncLoader color="#1470B9FF" /></span>;
   }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {PATHS} from "@/config/paths";
+import {getPaths} from "@/config/paths";
 import {Button} from "@/shared/ui/button";
 import {ArrowRight} from "lucide-react";
 import {ENDPOINTS} from "@/config/endpoints";
@@ -28,11 +28,10 @@ async function getArticles(): Promise<StaticArticleType[]> {
 
 export const revalidate = 600;
 
-export default async function InfoBlock() {
+export default async function InfoBlock({ locale }: { locale: string }) {
+  const PATHS = getPaths(locale);
   const t = await getTranslations('HomePage');
   const articles = await getArticles();
-  const title = articles[0]?.title || '';
-  const description = articles[0]?.description || '';
 
   return (
     <div className="pt-6">
@@ -61,7 +60,7 @@ export default async function InfoBlock() {
      <VideoComponent />
   </div>
    <InfoCard/>
-  <ChoiceCard />
+  <ChoiceCard locale={locale} />
 </div>
 
     // <div>

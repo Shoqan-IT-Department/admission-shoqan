@@ -2,10 +2,10 @@
 import {ArrowRight} from "lucide-react";
 import {Button} from "@/shared/ui/button";
 import Link from "next/link";
-import {PATHS} from "@/config/paths";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import { getTranslations } from "next-intl/server";
+import {getPaths} from "@/config/paths";
 
 
 type StaticProgrammType = {
@@ -13,7 +13,7 @@ type StaticProgrammType = {
     more: string
 }
 
-async function getStaticAttributes() {
+async function getStaticAttributes({ locale }: { locale: string }) {
     try {
         const res = await ADM_URL.get<{data:StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_ATTRIBUTES)
         return  res.data.data
@@ -34,12 +34,12 @@ async function getStaticProfession() {
 }
 export const revalidate = 600;
 
-export default async function ChoiceCard () {
+export default async function ChoiceCard ({ locale }: { locale: string }) {
+    const PATHS = getPaths(locale);
   const t = await getTranslations('HomePage')
-    const contents = await getStaticProfession()   
-    const attributes = await getStaticAttributes()
+    const contents = await getStaticProfession()
 
-     const title = attributes[1]?.title || '';
+
 
 
     // const [contents, setContents] = useState<StaticProgrammType[]>([]);

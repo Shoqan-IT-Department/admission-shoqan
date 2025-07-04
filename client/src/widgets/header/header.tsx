@@ -6,18 +6,21 @@ import "@/app/[locale]/styles.css";
 import { Search } from "lucide-react";
 import Logotype from "@/widgets/logotype/logo.svg"
 import Link from "next/link";
-import {PATHS} from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import PhoneLink from "@/shared/ui/phone-link";
 import React, {useState, Suspense, useEffect} from "react";
 import MobileMenu from '@/shared/ui/mobile-menu'
-import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
-import {useTranslations} from "use-intl";
+import {useNavigationHeader} from "@/shared/constants/navigation-header";
+import {useLocale, useTranslations} from "use-intl";
+import {getPaths} from "@/config/paths";
 // import {NAVIGATION_HEADER} from "@/shared/constants/navigation-header";
 
 
 const Header = () => {
+    const locale = useLocale();         // ✅ client hook
     const t = useTranslations('Header');
+    const PATHS = getPaths(locale);
+    const navItems = useNavigationHeader();
     // const [showHeader, setShowHeader] = useState(true);
     // const [lastScrollY, setLastScrollY] = useState(0);
     //
@@ -88,14 +91,14 @@ const Header = () => {
                 <Logotype />
               </Link>
               <nav className="flex flex-wrap items-center gap-10">
-                {NAVIGATION_HEADER.map(({ label, pathname }) => (
-                    <Link key={pathname} href={pathname}>
-                        <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
-                            <span className="relative z-10">{t(label)}</span>
-                            <span className="absolute bottom-0 left-0 w-full h-[2px] bg-popover scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-                        </small>
-                    </Link>
-                ))}
+                  {navItems.map(({ label, pathname }) => (
+                      <Link key={pathname} href={pathname}>
+                          <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
+                              <span className="relative z-10">{t(label)}</span>
+                              <span className="absolute bottom-0 left-0 w-full h-[2px] bg-popover scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+                          </small>
+                      </Link>
+                  ))}
               </nav>
             </div>
           </Container>

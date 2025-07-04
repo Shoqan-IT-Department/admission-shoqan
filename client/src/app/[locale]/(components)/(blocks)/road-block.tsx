@@ -4,11 +4,14 @@ import Container from "@/shared/ui/wrappers/container";
 import {ChevronRight, House} from "lucide-react";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
-import {PATHS} from "@/config/paths";
 import React from "react";
+import {useLocale} from "use-intl";
+import {getPaths} from "@/config/paths";
 
 
 const RoadBlock = () => {
+    const locale = useLocale();
+    const PATHS = getPaths(locale);
 
     const location = usePathname()
     const pathNameMap = Object.entries(PATHS).reduce((acc, [key, value]) => {

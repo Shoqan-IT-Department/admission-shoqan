@@ -14,13 +14,15 @@ import Cookies from 'js-cookie';
 import { LANGUAGES } from '@/config/languages';
 
 export default function LocaleSwitcher() {
-  const locale = useLocale();
+  const currentLocale = useLocale(); // Текущая локаль
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = usePathname(); // /ru/about, /kk/education
   const searchParams = useSearchParams();
 
   const handleChangeLocale = (newLocale: string) => {
+    if (newLocale === currentLocale) return;
+
     startTransition(() => {
       // Сохраняем локаль в куку
       Cookies.set('NEXT_LOCALE', newLocale, {
@@ -28,14 +30,16 @@ export default function LocaleSwitcher() {
         sameSite: 'lax',
       });
 
-      // Удаляем старую локаль из URL и строим новый путь
-      const pathWithoutLocale = pathname.split('/').slice(2).join('/') || '';
+      // Удаляем текущую локаль из URL (первая часть)
+      const pathParts = pathname.split('/');
+      const pathWithoutLocale = pathParts.slice(2).join('/');
       const queryString = searchParams.toString();
       const hash = window.location.hash;
 
-      const newPath = `/${newLocale}/${pathWithoutLocale}${queryString ? `?${queryString}` : ''}${hash}`;
+      // Формируем новый путь с нужной локалью
+      const newPath = `/${newLocale}${pathWithoutLocale ? `/${pathWithoutLocale}` : ''}${queryString ? `?${queryString}` : ''}${hash}`;
 
-      // Навигация на новый путь с локалью
+      // Навигация
       router.push(newPath);
     });
   };
@@ -43,19 +47,16 @@ export default function LocaleSwitcher() {
   return (
     <div>
       <Select
-        value={locale}
+        value={currentLocale}
         onValueChange={handleChangeLocale}
         disabled={isPending}
       >
-        <SelectTrigger className='border !text-inherit !bg-transparent hover:!bg-background/10 shadow-none'>
-          <SelectValue placeholder='language' />
+        <SelectTrigger className="border !text-inherit !bg-transparent hover:!bg-background/10 shadow-none">
+          <SelectValue placeholder="language" />
         </SelectTrigger>
-        <SelectContent className='shadow-xl shadow-primary/5'>
+        <SelectContent className="shadow-xl shadow-primary/5">
           {LANGUAGES.map((lng) => (
-            <SelectItem
-              key={lng.id}
-              value={lng.code}
-            >
+            <SelectItem key={lng.id} value={lng.code}>
               {lng.label}
             </SelectItem>
           ))}

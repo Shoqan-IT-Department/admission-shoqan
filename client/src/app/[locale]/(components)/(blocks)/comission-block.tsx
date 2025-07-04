@@ -3,6 +3,7 @@ import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
+import {getPaths} from "@/config/paths";
 
 
 
@@ -38,8 +39,8 @@ async function getCommission(): Promise<CommisionContactsType[]> {
     }
 }
 
-export default async function CommisionBlock() {
-
+export default async function CommisionBlock({ locale }: { locale: string }) {
+    const PATHS = getPaths(locale);
     const t = await getTranslations('HomePage');
 
     const contents = await getCommission();

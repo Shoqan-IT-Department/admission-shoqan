@@ -6,12 +6,10 @@ const intlMiddleware = createMiddleware(routing);
 
 export function middleware(req: NextRequest) {
   const res = intlMiddleware(req);
-
   const urlLocale = req.nextUrl.pathname.split('/')[1];
   const cookieLocale = req.cookies.get('NEXT_LOCALE')?.value;
 
-  if (cookieLocale !== urlLocale) {
-    // Установим куку синхронно с языком в URL
+  if (cookieLocale && cookieLocale !== urlLocale) {
     res.headers.set('Set-Cookie', `NEXT_LOCALE=${urlLocale}; Path=/; SameSite=Lax`);
   }
 
@@ -19,5 +17,5 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: '/((?!api|trpc|_next|_vercel|.*\\..*).*)',
+  matcher: '/((?!api|_next|.*\\..*).*)',
 };

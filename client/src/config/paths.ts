@@ -2,21 +2,13 @@
 
 
 
-export const PATHS = {
-    HOME: '/',
-    // ADMISSION: '/admission',
-    // UNIVERSITY: '/university',
-    // EDUCATION: '/education',
-    // SCIENCE: '/science-and-innovation',
-    // FACULTIES: '/faculties',
-    // SERVICES: '/services',
-    // EMPLOYEES:'/employees',
-    // COOPERATION:'/cooperation',
-    // PREPARATION:'/preparation',
-    EDU_PROGRAMS:'/education-programs',
-    NEWS:'/news',
-    CHOICE:'/#choice',
-    NEWSBLOCK:'/#news',
-    COMISSION:'/#comission',
-    // ARTICLE:'/article'
-} as const;
+// config/paths.ts
+// config/paths.ts
+export const getPaths = (locale: string) => ({
+  HOME: `/${locale}`,
+  EDU_PROGRAMS: `/${locale}/education-programs`,
+  NEWS: `/${locale}/news`,
+  CHOICE: `/${locale}/#choice`,
+  NEWSBLOCK: `/${locale}/#news`,
+  COMISSION: `/${locale}/#comission`,
+});
