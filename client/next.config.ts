@@ -33,13 +33,6 @@ const nextConfig: NextConfig = {
     },
 }
 
-// module.exports = {
-//   i18n: {
-//     locales: [ 'ru', 'kk'],
-//     defaultLocale: 'ru',
-//     localeDetection: true,
-//   },
-// };
 
 
 
