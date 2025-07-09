@@ -1,11 +1,9 @@
 'use client'
 
 import Container from "@/shared/ui/wrappers/container";
-import { Button } from "@/shared/ui/button";
 import "@/app/[locale]/styles.css";
-import { Search } from "lucide-react";
 import Logotype from "@/widgets/logotype/logo.svg"
-import Link from "next/link";
+import {Link} from "@/i18n/navigation";
 import {PATHS} from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
 import PhoneLink from "@/shared/ui/phone-link";

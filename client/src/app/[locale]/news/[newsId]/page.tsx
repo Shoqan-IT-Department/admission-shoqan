@@ -15,7 +15,6 @@ type Article = {
     };
 };
 
-// ❗ Типизация для параметров маршрута
 
 export default async function ArticlePage({
                                               params,

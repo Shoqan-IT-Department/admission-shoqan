@@ -1,28 +1,3 @@
-
-
-// type ParamsType = {
-//     item:{
-//         title: string,
-//         description: string
-//     },
-//     content:{
-//         title: string,
-//         description: string
-//     },
-//     block:{
-//         title: string,
-//         description: string
-//     }
-// }
-//
-// export const params = qs.stringify({
-//   populate: {
-//     item: true,
-//     block: true,
-//     content: true,
-//   }
-// }, { encodeValuesOnly: true });
-
 export const ENDPOINTS = {
     GET: {
         ARTICLE: "/api/articles",

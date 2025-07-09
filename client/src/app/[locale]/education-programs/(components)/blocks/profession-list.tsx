@@ -15,6 +15,7 @@ import { ArrowRight } from "lucide-react";
 import Container from "@/shared/ui/wrappers/container";
 import Link from "next/link";
 import GraduateCheckboxes from "@/app/[locale]/education-programs/(components)/blocks/сheckbox-filter";
+import { cn } from "@/lib/utils";
 
 type ProfessionType = {
     id: number;
@@ -35,12 +36,14 @@ type Props = {
     locale: string;
 };
 
-const ProfessionList = ({ locale }: Props) => {
+const ITEMS_PER_PAGE = 5;
 
+const ProfessionList = ({ locale }: Props) => {
     const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
     const [professions, setProfessions] = useState<ProfessionType[]>([]);
+    const [currentPage, setCurrentPage] = useState(1);
 
-    const fallbackLocale = 'ru-RU'; // запасной язык
+    const fallbackLocale = 'ru-RU';
 
     const buildQuery = (graduates: string[], loc: string) => {
         const params = new URLSearchParams();
@@ -66,7 +69,9 @@ const ProfessionList = ({ locale }: Props) => {
                 result = res.data.data;
                 if (result.length > 0) break;
             }
+
             setProfessions(result);
+            setCurrentPage(1); // сброс при фильтрации
         } catch (error) {
             console.error("Ошибка при загрузке профессий:", error);
         }
@@ -76,9 +81,35 @@ const ProfessionList = ({ locale }: Props) => {
         fetchProfessions();
     }, [selectedGraduates, locale]);
 
+    const totalPages = Math.ceil(professions.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paginatedProfessions = professions.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+    const getVisiblePageNumbers = (totalPages: number, currentPage: number) => {
+        const pages: (number | string)[] = [];
+
+        if (totalPages <= 7) {
+            for (let i = 1; i <= totalPages; i++) pages.push(i);
+        } else {
+            pages.push(1);
+
+            if (currentPage > 3) pages.push("...");
+
+            const start = Math.max(2, currentPage - 1);
+            const end = Math.min(totalPages - 1, currentPage + 1);
+
+            for (let i = start; i <= end; i++) pages.push(i);
+
+            if (currentPage < totalPages - 2) pages.push("...");
+
+            pages.push(totalPages);
+        }
+
+        return pages;
+    };
+
     return (
         <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
-            {/* Фильтры */}
             <div className="w-full lg:w-[300px]">
                 <GraduateCheckboxes
                     selected={selectedGraduates}
@@ -86,10 +117,9 @@ const ProfessionList = ({ locale }: Props) => {
                 />
             </div>
 
-            {/* Карточки */}
             <div className="min-h-[800px] w-full">
                 <main>
-                    {professions.map((prof) => (
+                    {paginatedProfessions.map((prof) => (
                         <Card
                             key={prof.id}
                             className="mb-4 rounded-4xl select-none cursor-default"
@@ -107,13 +137,13 @@ const ProfessionList = ({ locale }: Props) => {
 
                             <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
                                 <CardContent className="flex flex-wrap gap-2 p-0">
-                  <span className="bg-muted-foreground p-2 rounded-2xl">
-                    {prof.graduates}
-                  </span>
+                                    <span className="bg-muted-foreground p-2 rounded-2xl">
+                                        {prof.graduates}
+                                    </span>
                                     {prof.form && (
                                         <span className="bg-muted-foreground p-2 rounded-2xl">
-                      {prof.form}
-                    </span>
+                                            {prof.form}
+                                        </span>
                                     )}
                                 </CardContent>
                                 <Link href={prof.url || ''}>
@@ -124,7 +154,47 @@ const ProfessionList = ({ locale }: Props) => {
                             </CardFooter>
                         </Card>
                     ))}
+
+                    {/* Адаптивная пагинация */}
                 </main>
+                 <div className='w-full items center pb-6'>
+                     {totalPages > 1 && (
+                        <div className="flex justify-center mt-6 gap-2 flex-wrap">
+                            <Button
+                                variant="outline"
+                                disabled={currentPage === 1}
+                                onClick={() => setCurrentPage((p) => p - 1)}
+                            >
+                                Назад
+                            </Button>
+
+                            {getVisiblePageNumbers(totalPages, currentPage).map((page, i) =>
+                                typeof page === "number" ? (
+                                    <Button
+    key={i}
+    className={cn(
+        currentPage === page ? 'text-muted-foreground' : 'text-foreground'
+    )}
+    variant={currentPage === page ? 'default' : 'outline'}
+    onClick={() => setCurrentPage(page)}
+>
+    {page}
+</Button>
+                                ) : (
+                                    <span key={i} className="px-2 py-1 text-popover select-none">…</span>
+                                )
+                            )}
+
+                            <Button
+                                variant="outline"
+                                disabled={currentPage === totalPages}
+                                onClick={() => setCurrentPage((p) => p + 1)}
+                            >
+                                Вперёд
+                            </Button>
+                        </div>
+                    )}
+                   </div>
             </div>
         </div>
     );

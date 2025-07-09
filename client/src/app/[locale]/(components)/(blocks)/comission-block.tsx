@@ -79,7 +79,7 @@ export default async function CommisionBlock() {
                         </div>
                         <div className="flex items-center mb-4">
                             <MapPinCheckInside className="text-muted" />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href={toogisurl}>{t("commisionblock.toogis")}</Link></p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="https://go.2gis.com/MWQci">{t("commisionblock.toogis")}</Link></p>
                         </div>
                         <div className="flex items-center mb-4">
                             <MapPinHouse className="text-muted " />

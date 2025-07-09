@@ -1,0 +1,96 @@
+{
+  "HomePage": {
+    "choiceblock": {
+      "title": "Admission"
+    },
+    "newsblock": {
+      "title": "News",
+      "subtitle": "All news"
+    },
+    "commisionblock": {
+      "title": "Admission Office Contacts",
+      "subtitle": "All news",
+      "more": "Read more",
+      "med": "- Medical certificate (Form №075-U)",
+      "identifycard": "- Copy of vaccination passport (for full-time study)",
+      "photos": "- 4 photos 3×4 cm",
+      "card": "- Copy of ID card (must have original with you)",
+      "certificate": "- UNT certificate (if available)",
+      "grant": "- Grant certificate (if available)",
+      "cardboard": "- Cardboard folder – 1 pc.",
+      "envelope": "- A5 envelope – 1 pc.",
+      "doc": "- Original educational document",
+      "sectitle": "List of required documents",
+      "toogis": "You can find us on 2GIS",
+      "locale": "Kazakhstan, 020000, Kokshetau, Abay Street, 76, Main Building, Room 116a",
+      "schedule": "Mon - Fri: 8:30 - 17:00, Sat: 8:30 - 14:00"
+    }
+  },
+  "Header": {
+    "home": "Home",
+    "commision": "Admission Office Contacts",
+    "newsblock": "News",
+    "choice": "Admission",
+    "education-programs": "List of Educational Programs"
+  },
+  "Footer": {
+    "home": "Home",
+    "commision": "Admission Office Contacts",
+    "newsblock": "News",
+    "choice": "Admission",
+    "education-programs": "List of Educational Programs",
+    "title": "Learn. Explore. Act.",
+    "document": "List of Documents",
+    "contact": "Admission Office Contacts",
+    "news": "News",
+    "university": "University",
+    "copyright": "© Non-profit Joint Stock Company 'Sh. Ualikhanov Kokshetau University', 2025",
+    "prof": "List of Educational Programs",
+    "social": "Social media:",
+    "2gis": "2GIS",
+    "instagram": "Instagram",
+    "youtube": "YouTube",
+    "linkedin": "LinkedIn",
+    "facebook": "Facebook",
+    "tiktok": "TikTok",
+    "school": {
+      "title": "Schools",
+      "agro": "S. Sadvakasov Agro-Technical Institute",
+      "ped": "Pedagogical Institute",
+      "med": "Medical Institute",
+      "business": "School of Business and Law"
+    },
+    "additionally": "Additionally",
+    "electronic": "e-University",
+    "incoming": {
+      "title": "For Applicants",
+      "bacalaur": "Bachelor's Degree",
+      "magistracy": "Master's Degree",
+      "doctor": "Doctorate"
+    },
+    "commision": {
+      "title": "Admission Office"
+    },
+    "contact": {
+      "title": "Contacts"
+    },
+    "student": {
+      "title": "Student Life",
+      "structure": "Structure of the Youth Policy Department",
+      "psychology": "Psychologist's Blog",
+      "dormitories": "Dormitories"
+    }
+  },
+  "ProffesionPage": {
+    "title": "Educational Programs",
+    "button": "Reset"
+  },
+  "NewsPage": {
+    "title": "News"
+  },
+  "ProfessionPage":{
+    "title": "Educational Programs",
+    "button": "Reset",
+    "graduateLevels": ["Bachelor's Degree", "Master's Degree", "Doctorate", "Residency"]
+  }
+}
