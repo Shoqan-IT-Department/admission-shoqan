@@ -523,7 +523,7 @@ export interface ApiProfessionProfession extends Struct.CollectionTypeSchema {
   collectionName: 'professions';
   info: {
     description: '';
-    displayName: '\u041F\u0440\u043E\u0444\u0435\u0441\u0441\u0438\u0438';
+    displayName: 'Profession';
     pluralName: 'professions';
     singularName: 'profession';
   };
@@ -545,13 +545,13 @@ export interface ApiProfessionProfession extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    form: Schema.Attribute.String &
+    form: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    graduates: Schema.Attribute.String &
+    graduates: Schema.Attribute.Text &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -658,21 +658,45 @@ export interface ApiStaticInfoStaticInfo extends Struct.CollectionTypeSchema {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    block: Schema.Attribute.Component<'shared.title', false>;
-    content: Schema.Attribute.Component<'shared.magistr', false>;
+    block: Schema.Attribute.Component<'shared.title', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Schema.Attribute.Component<'shared.magistr', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    item: Schema.Attribute.Component<'shared.item', false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    item: Schema.Attribute.Component<'shared.item', false> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::static-info.static-info'
-    > &
-      Schema.Attribute.Private;
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.Text;
+    title: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -683,6 +707,7 @@ export interface ApiStaticProgrammStaticProgramm
   extends Struct.CollectionTypeSchema {
   collectionName: 'static_programms';
   info: {
+    description: '';
     displayName: 'StaticProgramms';
     pluralName: 'static-programms';
     singularName: 'static-programm';
@@ -690,19 +715,33 @@ export interface ApiStaticProgrammStaticProgramm
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::static-programm.static-programm'
-    > &
-      Schema.Attribute.Private;
-    more: Schema.Attribute.Text;
+    >;
+    more: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Schema.Attribute.DateTime;
-    title: Schema.Attribute.Text;
+    title: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

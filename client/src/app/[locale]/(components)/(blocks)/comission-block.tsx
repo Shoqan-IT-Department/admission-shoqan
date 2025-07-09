@@ -75,7 +75,7 @@ export default async function CommisionBlock() {
                     <div className="m-6 ">
                         <div className="flex items-center mb-4">
                             <Phone className="text-muted" />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="tel:+77471001930">+77471001930</Link></p>
+                            <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="tel:+77084443051">+77084443051</Link>, <Link href="tel:+77162251112">+77162251112</Link></p>
                         </div>
                         <div className="flex items-center mb-4">
                             <MapPinCheckInside className="text-muted" />

@@ -14,6 +14,10 @@ type StaticProgrammType = {
     more: string
 }
 
+type  StaticProgramBlockProps = {
+  locale: string;
+};
+
 async function getStaticAttributes() {
     try {
         const res = await ADM_URL.get<{data:StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_ATTRIBUTES)
@@ -23,41 +27,34 @@ async function getStaticAttributes() {
         return [];
     }
 }
+function mapLocaleToApi(locale: string): string {
+  const localeMap: Record<string, string> = {
+    ru: 'ru-RU',
+    en: 'en',
+    kk: 'kk',
+  };
 
-async function getStaticProfession() {
-    try {
-        const res = await ADM_URL.get<{data:StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_PROGRAMMS)
-        return res.data.data
-    } catch (err) {
-        console.error('Ошибка при получении:', err);
-        return [];
-    }
+  return localeMap[locale] || 'ru-RU'; // fallback на русский
+}
+
+async function getStaticProfession(locale: string = 'ru') {
+    const apiLocale = mapLocaleToApi(locale);
+  try {
+    const res = await ADM_URL.get<{ data: StaticProgrammType[] }>(
+      `${ENDPOINTS.GET.STATIC_PROGRAMMS}?locale=${apiLocale}`
+    );
+    return res.data.data;
+  } catch (err) {
+    console.error('Ошибка при получении программ:', err);
+    return [];
+  }
 }
 export const revalidate = 600;
 
-export default async function ChoiceCard () {
+export default async function ChoiceCard ({ locale }: StaticProgramBlockProps) {
     const t = await getTranslations('HomePage')
-    const contents = await getStaticProfession()
+    const contents = await getStaticProfession(locale)
     const attributes = await getStaticAttributes()
-
-    const title = attributes[1]?.title || '';
-
-
-    // const [contents, setContents] = useState<StaticProgrammType[]>([]);
-
-    // useEffect(() => {
-    //     ADM_URL
-    //         .get<{ data: StaticProgrammType[] }>(ENDPOINTS.GET.STATIC_PROGRAMMS)
-    //         .then((res) =>setContents(res.data.data))
-    //         .catch((err) => console.error('Ошибка при получении статей:', err));
-
-    // }, []);
-
-    // const baccalaureate = contents[0]?.baccalaureate || '';
-    // const magistracy = contents[0]?.magistracy || '';
-    // const postgraduate = contents[0]?.postgraduate || '';
-    // const more = contents[0]?.more || '';
-
     return (
         <div id="choice">
             <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight mt-6">
@@ -88,9 +85,6 @@ export default async function ChoiceCard () {
                 </Link>
             </div>
         </div>
-
-
-
     );
 };
 

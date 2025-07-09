@@ -23,7 +23,7 @@
       "sectitle": "List of required documents",
       "toogis": "You can find us on 2GIS",
       "locale": "Kazakhstan, 020000, Kokshetau, Abay Street, 76, Main Building, Room 116a",
-      "schedule": "Mon - Fri: 8:30 - 17:00, Sat: 8:30 - 14:00"
+      "schedule": "Mon - Fri: 09:00-18:00, Break: 1:00 PM – 2:00 PM"
     }
   },
   "Header": {
@@ -81,16 +81,17 @@
       "dormitories": "Dormitories"
     }
   },
-  "ProffesionPage": {
+ "ProffesionPage": {
     "title": "Educational Programs",
-    "button": "Reset"
+    "button": "Reset",
+    "graduateLevels": {
+      "0": "Undergraduate",
+      "1": "Graduate",
+      "2": "Doctoral Studies",
+      "3": "Residency"
+    }
   },
   "NewsPage": {
     "title": "News"
-  },
-  "ProfessionPage":{
-    "title": "Educational Programs",
-    "button": "Reset",
-    "graduateLevels": ["Bachelor's Degree", "Master's Degree", "Doctorate", "Residency"]
   }
 }

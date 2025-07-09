@@ -10,7 +10,7 @@ const HomePage = ({ params }: { params: Promise<{ locale: string }> }) => {
     const { locale } = use(params);
     return (
         <Container >
-            <ComponentsBlock/>
+            <ComponentsBlock locale={locale}/>
             <CommisionBlock/>
             <NewsBlock locale={locale} />
         </Container>

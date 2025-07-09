@@ -11,11 +11,14 @@ type GraduateCheckboxesProps = {
     onChange: (selected: string[]) => void;
 };
 
-const graduateLevels = ["Бакалавриат", "Магистратура", "Докторантура", "Резидентура"];
 
 const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({ selected, onChange }) => {
 
     const t = useTranslations('ProffesionPage')
+
+    const graduateLevels: string[] = Array.from({ length: 4 }, (_, i) =>
+        t(`graduateLevels.${i}`)
+    );
 
     const handleChange = (graduate: string) => {
         const newSelected = selected.includes(graduate)

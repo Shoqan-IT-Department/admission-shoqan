@@ -15,13 +15,12 @@ export const LANGUAGES = [
         locale: 'kk-KZ',
         subLocale: 'kk_KZ',
     },
-    
-    // {
-    //     id: 3,
-    //     label: 'English',
-    //     code: 'en',
-    //     country: 'US',
-    //     locale: 'en-US',
-    //     subLocale: 'en_US',
-    // },
+    {
+        id: 3,
+        label: 'English',
+        code: 'en',
+        country: 'US',
+        locale: 'en-US',
+        subLocale: 'en_US',
+    },
 ] as const;

@@ -160,8 +160,11 @@ export default async function Footer(){
             {t("commision.title")}
           </h3>
           <p className="leading-7 font-semibold text-primary">
-           <Link href="tel:+77471001930"><span className="hover:underline">+77471001930</span></Link>
+            <Link href="tel:+77084443051">+77084443051</Link>
           </p>
+           <p className="leading-7 font-semibold text-primary">
+            <Link href="tel:+77162251112">+77162251112</Link>
+            </p>
         </div>
 
         <div>

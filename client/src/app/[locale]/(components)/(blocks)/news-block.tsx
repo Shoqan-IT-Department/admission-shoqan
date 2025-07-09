@@ -47,19 +47,19 @@ export default async function NewsBlock({ locale }: { locale: string }) {
     return (
         <div id="news" className="select-none cursor-default">
             <div>
+                 <Link href={PATHS.NEWS}>
                 <div className="flex justify-between items-center mt-6 pb-4 rounded-4x">
                     <div>
                         <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight ">
                             {t("newsblock.title")}
                         </h1>
                     </div>
-                    <Link href={PATHS.NEWS}>
-                        <div className="flex p-2 rounded-lg gap-4 items-center border">
-                            <p className="pr-10">{t("newsblock.subtitle")}</p>
+                        <div className="flex p-2 gap-4 items-center">
                             <Button className="bg-popover hover:bg-muted transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-60"><ArrowRight /></Button>
                         </div>
-                    </Link>
+                        
                 </div>
+                </Link>
                 <div className="flex flex-wrap gap-3 mt-2">
                     <Button className="text-secondary hover:bg-ring rounded-lg px-4 py-2">
                         {t("newsblock.subtitle")}

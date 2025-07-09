@@ -28,14 +28,14 @@ async function getArticles(): Promise<StaticArticleType[]> {
 
 export const revalidate = 600;
 
-export default async function ComponentsBlock() {
+export default async function ComponentsBlock({ locale }: { locale: string }) {
   return (
       <div className="pt-6">
-        <div className="mt-10 rounded-md">
+        <div className="mt-4 rounded-md">
           <VideoComponent />
         </div>
-        <InfoCard/>
-        <ChoiceCard />
+        <InfoCard locale={locale}/>
+        <ChoiceCard locale={locale}/>
       </div>
 
       // <div>
