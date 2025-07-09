@@ -15,7 +15,7 @@ import { ArrowRight } from "lucide-react";
 import Container from "@/shared/ui/wrappers/container";
 import Link from "next/link";
 import GraduateCheckboxes from "@/app/[locale]/education-programs/(components)/blocks/сheckbox-filter";
-import { cn } from "@/lib/utils";
+import Pagination from "@/shared/ui/pagination";
 
 type ProfessionType = {
     id: number;
@@ -42,12 +42,15 @@ const ProfessionList = ({ locale }: Props) => {
     const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
     const [professions, setProfessions] = useState<ProfessionType[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [totalCount, setTotalCount] = useState(0);
 
     const fallbackLocale = 'ru-RU';
 
-    const buildQuery = (graduates: string[], loc: string) => {
+    const buildQuery = (graduates: string[], loc: string, start: number, limit: number) => {
         const params = new URLSearchParams();
         params.set('locale', loc);
+        params.set('pagination[start]', start.toString());
+        params.set('pagination[limit]', limit.toString());
 
         if (graduates.length === 1) {
             params.set("filters[graduates][$eq]", graduates[0]);
@@ -62,64 +65,54 @@ const ProfessionList = ({ locale }: Props) => {
         try {
             const localesToTry = [locale, fallbackLocale];
             let result: ProfessionType[] = [];
+            let total = 0;
 
             for (const loc of localesToTry) {
-                const url = buildQuery(selectedGraduates, loc);
-                const res = await ADM_URL.get<{ data: ProfessionType[] }>(url);
+                const start = (currentPage - 1) * ITEMS_PER_PAGE;
+                const url = buildQuery(selectedGraduates, loc, start, ITEMS_PER_PAGE);
+                const res = await ADM_URL.get<{
+                    data: ProfessionType[];
+                    meta: { pagination: { total: number } };
+                }>(url);
                 result = res.data.data;
+                total = res.data.meta.pagination.total;
                 if (result.length > 0) break;
             }
 
             setProfessions(result);
-            setCurrentPage(1); // сброс при фильтрации
+            setTotalCount(total);
         } catch (error) {
             console.error("Ошибка при загрузке профессий:", error);
         }
     };
 
+    // Загружаем данные при изменении фильтра или страницы
     useEffect(() => {
         fetchProfessions();
-    }, [selectedGraduates, locale]);
+    }, [selectedGraduates, locale, currentPage]);
 
-    const totalPages = Math.ceil(professions.length / ITEMS_PER_PAGE);
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const paginatedProfessions = professions.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+    // Скроллим вверх при смене страницы
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [currentPage]);
 
-    const getVisiblePageNumbers = (totalPages: number, currentPage: number) => {
-        const pages: (number | string)[] = [];
-
-        if (totalPages <= 7) {
-            for (let i = 1; i <= totalPages; i++) pages.push(i);
-        } else {
-            pages.push(1);
-
-            if (currentPage > 3) pages.push("...");
-
-            const start = Math.max(2, currentPage - 1);
-            const end = Math.min(totalPages - 1, currentPage + 1);
-
-            for (let i = start; i <= end; i++) pages.push(i);
-
-            if (currentPage < totalPages - 2) pages.push("...");
-
-            pages.push(totalPages);
-        }
-
-        return pages;
-    };
+    const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
     return (
         <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
             <div className="w-full lg:w-[300px]">
                 <GraduateCheckboxes
                     selected={selectedGraduates}
-                    onChange={setSelectedGraduates}
+                    onChange={(selected) => {
+                        setCurrentPage(1); // сброс при смене фильтра
+                        setSelectedGraduates(selected);
+                    }}
                 />
             </div>
 
             <div className="min-h-[800px] w-full">
                 <main>
-                    {paginatedProfessions.map((prof) => (
+                    {professions.map((prof) => (
                         <Card
                             key={prof.id}
                             className="mb-4 rounded-4xl select-none cursor-default"
@@ -154,47 +147,15 @@ const ProfessionList = ({ locale }: Props) => {
                             </CardFooter>
                         </Card>
                     ))}
-
-                    {/* Адаптивная пагинация */}
                 </main>
-                 <div className='w-full items center pb-6'>
-                     {totalPages > 1 && (
-                        <div className="flex justify-center mt-6 gap-2 flex-wrap">
-                            <Button
-                                variant="outline"
-                                disabled={currentPage === 1}
-                                onClick={() => setCurrentPage((p) => p - 1)}
-                            >
-                                Назад
-                            </Button>
 
-                            {getVisiblePageNumbers(totalPages, currentPage).map((page, i) =>
-                                typeof page === "number" ? (
-                                    <Button
-    key={i}
-    className={cn(
-        currentPage === page ? 'text-muted-foreground' : 'text-foreground'
-    )}
-    variant={currentPage === page ? 'default' : 'outline'}
-    onClick={() => setCurrentPage(page)}
->
-    {page}
-</Button>
-                                ) : (
-                                    <span key={i} className="px-2 py-1 text-popover select-none">…</span>
-                                )
-                            )}
-
-                            <Button
-                                variant="outline"
-                                disabled={currentPage === totalPages}
-                                onClick={() => setCurrentPage((p) => p + 1)}
-                            >
-                                Вперёд
-                            </Button>
-                        </div>
-                    )}
-                   </div>
+                <div className='w-full items-center pb-6'>
+                    <Pagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        onChange={setCurrentPage}
+                    />
+                </div>
             </div>
         </div>
     );

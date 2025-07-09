@@ -163,7 +163,7 @@ export default async function Footer(){
             <Link href="tel:+77084443051">+77084443051</Link>
           </p>
            <p className="hover:underline leading-7 font-semibold text-primary">
-            <Link href="tel:+77162251112">+77162251112</Link>
+            <Link href="tel:+77162721112">+77162721112</Link>
             </p>
         </div>
 
