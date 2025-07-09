@@ -65,7 +65,7 @@ export default async function NewsBlock({ locale }: { locale: string }) {
                         {t("newsblock.subtitle")}
                     </Button>
                 </div>
-                <div className="mt-10">
+                <div className="mt-4">
                     <NewsCard locale={locale}/>
                 </div>
                 {/*<div className="mt-10">*/}

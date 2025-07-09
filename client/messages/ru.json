@@ -89,5 +89,10 @@
   },
   "NewsPage":{
     "title":"Новости"
+  },
+  "Decoration":{
+    "learn": "Учись.",
+    "explore": "Исследуй.",
+    "act":"Действуй."
   }
 }

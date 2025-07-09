@@ -91,5 +91,10 @@
   },
   "NewsPage":{
     "title":"Жаңалықтар"
-  }
+  },
+  "Decoration": {
+  "learn": "Оқы.",
+  "explore": "Зертте.",
+  "act": "Істе."
+}
 }

@@ -102,7 +102,7 @@ export default async function Footer(){
         {/* Соцсети */}
         <div>
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
-            Социальные сети
+            {t("social")}
           </h3>
           <div className="flex gap-4 text-xl text-primary">
             <Link className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1" href={toogis}><CiMap /></Link>
@@ -159,10 +159,10 @@ export default async function Footer(){
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
             {t("commision.title")}
           </h3>
-          <p className="leading-7 font-semibold text-primary">
+          <p className="hover:underlin eleading-7 font-semibold text-primary">
             <Link href="tel:+77084443051">+77084443051</Link>
           </p>
-           <p className="leading-7 font-semibold text-primary">
+           <p className="hover:underline leading-7 font-semibold text-primary">
             <Link href="tel:+77162251112">+77162251112</Link>
             </p>
         </div>

@@ -46,7 +46,7 @@
     "university": "University",
     "copyright": "© Non-profit Joint Stock Company 'Sh. Ualikhanov Kokshetau University', 2025",
     "prof": "List of Educational Programs",
-    "social": "Social media:",
+    "social": "Social media",
     "2gis": "2GIS",
     "instagram": "Instagram",
     "youtube": "YouTube",
@@ -93,5 +93,10 @@
   },
   "NewsPage": {
     "title": "News"
-  }
+  },
+  "Decoration": {
+  "learn": "Learn.",
+  "explore": "Explore.",
+  "act": "Act."
+}
 }
