@@ -1,7 +1,10 @@
+
+
 import { ADM_URL } from "@/config/instance";
 import { notFound } from "next/navigation";
 import Container from "@/shared/ui/wrappers/container";
 import { ENDPOINTS } from "@/config/endpoints";
+import ReactMarkdown from "react-markdown";
 
 export const dynamic = "force-dynamic";
 
@@ -13,6 +16,7 @@ type Article = {
     img?: {
         url: string;
     };
+    subtitle: string;
 };
 
 
@@ -44,19 +48,23 @@ export default async function ArticlePage({
         return (
             <Container>
                 <div className="p-6">
-                    {article.img?.url && (
+                    <div className="flex justify-center">
+                         {article.img?.url && (
                         <img
                             src={`${ADM_URL.defaults.baseURL}${article.img.url}`}
                             alt={article.title}
                             className="rounded-xl max-w-full"
                         />
                     )}
-                    <div className="mt-6 text-center">
-                        <h1 className="text-2xl font-bold mb-4">{article.title}</h1>
-                        <p className="mb-4 text-justify">{article.description}</p>
+                    </div>
+                    <div className="mt-6 text-left">
+                        <h1 className="text-2xl font-bold mb-4 text-center">{article.title}</h1>
+                        <ReactMarkdown>
+                                {article.subtitle}
+                        </ReactMarkdown>
                     </div>
                     <div>
-                        <p className="text-right leading-7 [&:not(:first-child)]:mt-6">
+                        <h1 className="text-right text-xl font-bold">
                             {(() => {
                                 const date = new Date(article.published);
                                 const day = date.getDate();
@@ -68,7 +76,7 @@ export default async function ArticlePage({
                                 ];
                                 return `${day} ${months[month]} ${year}`;
                             })()}
-                        </p>
+                        </h1>
                     </div>
                 </div>
             </Container>

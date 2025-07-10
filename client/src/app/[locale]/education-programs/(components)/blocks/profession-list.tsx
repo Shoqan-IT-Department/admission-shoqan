@@ -70,10 +70,7 @@ const ProfessionList = ({ locale }: Props) => {
             for (const loc of localesToTry) {
                 const start = (currentPage - 1) * ITEMS_PER_PAGE;
                 const url = buildQuery(selectedGraduates, loc, start, ITEMS_PER_PAGE);
-                const res = await ADM_URL.get<{
-                    data: ProfessionType[];
-                    meta: { pagination: { total: number } };
-                }>(url);
+                const res = await ADM_URL.get<{data: ProfessionType[]; meta: { pagination: { total: number } };}>(url);
                 result = res.data.data;
                 total = res.data.meta.pagination.total;
                 if (result.length > 0) break;

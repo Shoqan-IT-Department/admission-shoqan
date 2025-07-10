@@ -148,7 +148,7 @@ export default async function NewsCard({ locale }: { locale: string }){
                         </CardDescription>
                     </CardHeader>
                     <CardFooter className="text-text-background pt-2">
-                        <p className="text-right leading-7 [&:not(:first-child)]:mt-6">
+                        <p className="text-right text-xl font-bold">
                             {(() => {
                                 const date = new Date(article.published);
                                 const day = date.getDate();

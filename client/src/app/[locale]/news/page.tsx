@@ -87,7 +87,7 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
             <Card className="flex flex-col rounded-4xl overflow-hidden">
                 <Link
                     href={`${PATHS.NEWS}/${article.id}`}
-                    className="flex flex-col"
+                    className="flex flex-col whitespace-pre-wrap"
                 >
                     {article.fullImageUrl && (
                         <CardContent className="p-4 pt-1 flex justify-center items-center">
@@ -115,7 +115,7 @@ export default async function NewsPage({ params }: { params: Promise<{ locale: s
                         </CardDescription>
                     </CardHeader>
                     <CardFooter className="text-text-background pt-2">
-                        <p className="text-right leading-7 [&:not(:first-child)]:mt-6">
+                        <p className="text-right text-xl font-bold">
                             {(() => {
                                 const date = new Date(article.published);
                                 const day = date.getDate();

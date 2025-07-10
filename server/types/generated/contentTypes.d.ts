@@ -487,6 +487,7 @@ export interface ApiLinkLink extends Struct.CollectionTypeSchema {
 export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
   collectionName: 'news_articles';
   info: {
+    description: '';
     displayName: '\u041D\u043E\u0432\u043E\u0441\u0442\u0438';
     pluralName: 'news-articles';
     singularName: 'news-article';
@@ -512,6 +513,7 @@ export interface ApiNewsArticleNewsArticle extends Struct.CollectionTypeSchema {
     >;
     published: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.RichText;
     title: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &

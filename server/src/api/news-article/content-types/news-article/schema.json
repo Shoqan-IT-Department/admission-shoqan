@@ -4,7 +4,8 @@
   "info": {
     "singularName": "news-article",
     "pluralName": "news-articles",
-    "displayName": "Новости"
+    "displayName": "Новости",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -18,21 +19,25 @@
     "title": {
       "type": "text"
     },
-    "description": {
-      "type": "text"
-    },
     "published": {
       "type": "date"
     },
     "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "description": {
+      "type": "text"
+    },
+    "subtitle": {
+      "type": "richtext"
     }
   }
 }
