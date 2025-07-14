@@ -25,6 +25,10 @@ type FooterType = {
   tiktok: string;
 }
 
+type Props = {
+  className?: string;
+};
+
 
 type CommisionContactsType = {
   email: string;
@@ -55,7 +59,7 @@ async function getCommission(): Promise<CommisionContactsType[]> {
 
 
 
-export default async function Footer(){
+export default async function Footer({ className }: Props){
 
 
   const t = await getTranslations("Footer");
@@ -77,7 +81,7 @@ export default async function Footer(){
 
   return (
         // <ViewTransitionWrap name="footer">
-            <footer className="bg-popover w-full position-fixed">
+            <footer className={`bg-popover w-full ${className}`}>
   <Container>
 
     <div className="max-w-[2000 px] mx-auto px-4 space-y-12 pt-10 pb-12">

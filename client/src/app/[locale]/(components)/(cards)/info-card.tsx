@@ -45,12 +45,14 @@ export default async function StaticInfoBlock({ locale }: StaticInfoBlockProps) 
       {contents.map((block, key) => (
         <div
           key={key}
-          className="flex flex-col justify-center items-start bg-card p-6 rounded-4xl "
+          className="flex flex-col justify-center items-start bg-card p-6 rounded-4xl h-[268px]"
         >
-          <h1 className="scroll-m-20 text-3xl tracking-tight text-chart-5 lg:text-5xl">
+          <div>
+            <h1 className="scroll-m-20 text-3xl tracking-tight text-chart-5 lg:text-5xl">
             {block.title}
           </h1>
           <p className="mt-20">{block.description}</p>
+          </div>
         </div>
       ))}
     </div>

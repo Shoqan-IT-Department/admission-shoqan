@@ -1,4 +1,4 @@
-import {Clock, Instagram,MapPinHouse, MapPinCheckInside, Mail, MapPin, Phone, Hotel} from "lucide-react";
+import {Clock, Instagram, Map, MapPinCheckInside, Mail, MapPin, Phone, Hotel} from "lucide-react";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";
 import Link from "next/link";
@@ -82,8 +82,8 @@ export default async function CommisionBlock() {
                             <MapPinCheckInside className="text-muted" />
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="https://go.2gis.com/MWQci">{t("commisionblock.toogis")}</Link></p>
                         </div>
-                        <div className="flex items-center mb-4">
-                            <MapPinHouse className="text-muted " />
+                        <div className="flex items-center mb-4 lg:font-medium md:font-medium ">
+                            <Map className="text-muted " />
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.locale")}</p>
                         </div>
                          <div className="flex items-center mb-4">

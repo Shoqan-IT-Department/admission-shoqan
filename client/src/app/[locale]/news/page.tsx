@@ -14,6 +14,7 @@ import { SyncLoader } from "react-spinners";
 import {Link} from "@/i18n/navigation";
 import { PATHS } from "@/config/paths";
 import { getTranslations } from 'next-intl/server';
+import type { Metadata } from "next";
 type Article = {
     id: number;
     title: string;
@@ -33,6 +34,15 @@ type Article = {
     };
     fullImageUrl?: string | null;
 };
+
+export const metadata: Metadata = {
+  title: {
+    default: "Новости",
+    template:"%s - Новости"
+  },
+  description: "Новости приемной комиссии университета им. Шокана Уалиханова",
+};
+
 
 export const revalidate = 600;
 

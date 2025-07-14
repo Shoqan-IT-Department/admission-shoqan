@@ -5,12 +5,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/widgets/header/header";
 import Footer from "@/widgets/footer/footer";
+import { Suspense } from 'react';
+import LoaderSkeleton from "@/shared/ui/loader-skeleton";
 // import {ThemeProvider} from "@/shared/helpers/theme-provider";
 
 
 export const metadata: Metadata = {
-  title: "Admission Shokan",
-  description: "Shokan",
+  title: "Приемная комиссия",
+  description: "Приемная комиссия университета им. Шокана Уалиханова",
 };
 
 
@@ -37,8 +39,11 @@ export default async function LocaleLayout({
       <body className="bg-muted-foreground">
         <NextIntlClientProvider>
           <Header/>
-      <main className=''>{children}</main>
-      <Footer/>
+       <Suspense fallback={<LoaderSkeleton/>}>
+
+            <main>{children}</main>
+          </Suspense>
+      <Footer className='fixed'/>
       </NextIntlClientProvider>
       </body>
     </html>
