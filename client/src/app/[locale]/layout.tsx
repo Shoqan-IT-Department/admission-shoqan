@@ -40,10 +40,9 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Header/>
        <Suspense fallback={<LoaderSkeleton/>}>
-
-            <main>{children}</main>
-          </Suspense>
-      <Footer className='fixed'/>
+        <main>{children}</main>
+        </Suspense>
+      <Footer className=''/>
       </NextIntlClientProvider>
       </body>
     </html>

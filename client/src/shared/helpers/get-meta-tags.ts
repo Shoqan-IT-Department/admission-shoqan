@@ -42,15 +42,15 @@ export function getMetaTags({
       { name: 'Styazhkin' },
       {
         name: 'Приемная Комиссия',
-        url: 'https://admission-api.shokan.edu.kz',
+        url: 'https://admission.shokan.edu.kz',
       },
     ],
     alternates: {
-      canonical: `https://admission-api.shokan.edu.kz/${pathname}`,
+      canonical: `https://admission.shokan.edu.kz${pathname}`,
       languages: Object.fromEntries(
         LANGUAGES.map((lang) => [
           lang.locale,
-          `https://admission-api.shokan.edu.kz/${lang.code}${pathname}`,
+          `https://admission.shokan.edu.kz/${lang.code}${pathname}`,
         ]),
       ),
     },

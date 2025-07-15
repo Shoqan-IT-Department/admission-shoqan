@@ -49,7 +49,7 @@ export default async function CommisionBlock() {
     return (
         <div id="comission" className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full rounded-4xl select-none mb-6 ">
             <div className="mt-10">
-                <div className="bg-card p-6  shadow rounded-4xl select-none hover:shadow-2xl ">
+                <div className="bg-card p-6  shadow rounded-4xl select-none ">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
                         {t("commisionblock.sectitle")}
                     </h2>
@@ -63,13 +63,14 @@ export default async function CommisionBlock() {
                         <div className="mb-2"><p className="scroll-m-20 font-semibold  pb-2 text-xl">{t("commisionblock.grant")}</p></div>
                         <div className="mb-2"><p className="scroll-m-20 font-semibold pb-2 text-xl">{t("commisionblock.envelope")}</p></div>
                         <div className="mb-2"><p className="scroll-m-20 font-semibold pb-2 text-xl">{t("commisionblock.folder")}</p></div>
+                        <div className="mb-2"><p className="scroll-m-20 font-semibold pb-2 text-xl">{t("commisionblock.exam")}</p></div>
                     </div>
                 </div>
             </div>
 
             {/* Правая колонка */}
             <div className="mt-10">
-                <div className="bg-card p-6 focus:text-white rounded-4xl hover:shadow-2xl">
+                <div className="bg-card p-6 focus:text-white rounded-4xl shadow">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
                         {t("commisionblock.title")}
                     </h2>

@@ -145,7 +145,6 @@ export default async function Footer({ className }: Props){
 
           </ul>
         </div>
-
         {/* Дополнительно */}
         <div>
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-3">
@@ -156,7 +155,6 @@ export default async function Footer({ className }: Props){
           </ul>
         </div>
       </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 font-semibold ">
         {/* Приемная комиссия */}
         <div>
@@ -170,7 +168,6 @@ export default async function Footer({ className }: Props){
             <Link href="tel:+77162721112">+77162721112</Link>
             </p>
         </div>
-
         <div>
           <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight hover:underline text-primary mb-2">
             {t("student.title")}
@@ -183,41 +180,10 @@ export default async function Footer({ className }: Props){
         </div>
       </div>
     </div>
-
-{/*<div className=" select-none grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-10 text-primary pb-10 ">*/}
-    {/*  <div>*/}
-    {/*    <span>*/}
-    {/*      <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight ">*/}
-    {/*      </h2>*/}
-    {/*    </span>*/}
-    {/*  </div>*/}
-    {/*  <div>*/}
-    {/*    <ul>*/}
-    {/*      <li></li>*/}
-    {/*    </ul>*/}
-    {/*    <ul className="flex gap-4">*/}
-    {/*      <li className="pb-3"><Link href={toogis}><Map /></Link></li>*/}
-    {/*      <li className="pb-3"><Link href={instagram}><Instagram /></Link></li>*/}
-    {/*      <li className="pb-3"><Link href={youtube}><Youtube /></Link></li>*/}
-    {/*      <li className="pb-3"><Link href={linkedin}><Linkedin /></Link></li>*/}
-    {/*      <li className="pb-3"><Link href={facebook}><Facebook /></Link></li>*/}
-    {/*    </ul>*/}
-    {/*  </div>*/}
-    {/*  <div>*/}
-    {/*    <ul className="space-y-2">*/}
-    {/*    </ul>*/}
-    {/*  </div>*/}
-    {/*</div>*/}
-
-    {/* Третий блок */}
-
   </Container>
               <div className="flex  border-t flex-col sm:flex-row justify-center items-center pt-3 pb-3 text-primary text-center text-sm gap-4">
                 <p>{t('copyright')}</p>
               </div>
 </footer>
-
-        // </ViewTransitionWrap>
-
     );
 };
