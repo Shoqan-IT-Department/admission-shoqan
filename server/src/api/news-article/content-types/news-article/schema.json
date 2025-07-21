@@ -38,6 +38,9 @@
     },
     "subtitle": {
       "type": "richtext"
+    },
+    "descriptor": {
+      "type": "blocks"
     }
   }
 }

@@ -2,7 +2,7 @@
 
 # Absolute path to your user-installed NVM (adjust if needed)
 export NVM_DIR="/home/ualikhanov/.nvm"
-
+export PORT=4080
 # Load nvm and set correct Node version
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   source "$NVM_DIR/nvm.sh"

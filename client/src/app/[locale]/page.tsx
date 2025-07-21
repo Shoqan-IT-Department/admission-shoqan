@@ -9,7 +9,7 @@ import { META_INFO } from '@/shared/constants/meta/meta-info';
 import { PATHS } from '@/config/paths';
 import { PageLocaleParamsType } from '@/shared/types/params.type';
 import { getMetaTags } from '@/shared/helpers/get-meta-tags';
-
+import Footer from "@/widgets/footer/footer";
 
 type PageProps = {
   params: Promise<PageLocaleParamsType>;

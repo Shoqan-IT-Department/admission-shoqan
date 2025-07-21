@@ -81,7 +81,7 @@ export default async function Footer({ className }: Props){
 
   return (
         // <ViewTransitionWrap name="footer">
-            <footer className={`bg-popover w-full ${className}`}>
+            <footer className={`bg-popover w-full bottom-0 ${className}`}>
   <Container>
 
     <div className="max-w-[2000 px] mx-auto px-4 space-y-12 pt-10 pb-12">
@@ -169,7 +169,7 @@ export default async function Footer({ className }: Props){
             </p>
         </div>
         <div>
-          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight hover:underline text-primary mb-2">
+          <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
             {t("student.title")}
           </h3>
           <ul className="space-y-1 text-primary font-semibold ">
