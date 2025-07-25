@@ -1,6 +1,3 @@
-
-
-
 import {PATHS} from "@/config/paths";
 import {Button} from "@/shared/ui/button";
 import {ArrowRight} from "lucide-react";
@@ -10,40 +7,15 @@ import NewsCard from "@/app/[locale]/(components)/(cards)/news-card";
 import { getTranslations } from "next-intl/server";
 import {Link} from "@/i18n/navigation";
 
-
 type StaticAttributesType = {
     title: string;
     subtitle: string;
-}
-async function getStaticAttributes() {
-    try {
-        const res = ADM_URL.get<{data:StaticAttributesType[] }>(ENDPOINTS.GET.STATIC_ATTRIBUTES)
-        return (await res).data.data
-    } catch (err) {
-        console.error('Ошибка при получении:', err);
-        return [];
-    }
 }
 
 export const revalidate = 600;
 
 export default async function NewsBlock({ locale }: { locale: string }) {
     const t = await getTranslations("HomePage")
-    const attributes = await getStaticAttributes()
-
-    // const [attributes, setAttributes] = useState<StaticAttributesType[]>([]);
-
-    // useEffect(() => {
-    //     ADM_URL
-    //         .get<{ data: StaticAttributesType[] }>(ENDPOINTS.GET.STATIC_ATTRIBUTES)
-    //         .then((res) =>setAttributes(res.data.data))
-    //         .catch((err) => console.error('Ошибка при получении статей:', err));
-
-    // }, []);
-
-
-
-
     return (
         <div id="news" className="select-none cursor-default">
             <div>

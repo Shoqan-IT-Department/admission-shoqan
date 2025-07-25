@@ -14,7 +14,14 @@ import { SyncLoader } from "react-spinners";
 import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/config/paths";
 import { getTranslations } from "next-intl/server";
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata  } from "next";
+import { getMetaTags } from '@/shared/helpers/get-meta-tags';
+import { PageLocaleParamsType } from '@/shared/types/params.type';
+import { META_INFO } from '@/shared/constants/meta/meta-info';
+
+type PageProps = {
+  params: Promise<PageLocaleParamsType>;
+};
 
 type Article = {
     id: number;
@@ -36,13 +43,26 @@ type Article = {
     fullImageUrl?: string | null;
 };
 
-export const metadata: Metadata = {
-    title: {
-        default: "Новости",
-        template: "%s - Новости",
-    },
-    description: "Новости приемной комиссии университета им. Шокана Уалиханова",
-};
+export async function generateMetadata(
+  { params }: PageProps,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const { locale } = await params;
+  const title = META_INFO.news.title[locale];
+  const description = META_INFO.news.description[locale];
+  const tags = META_INFO.news.keywords[locale];
+  const actualImages: string[] = [META_INFO.cover[locale]];
+  const previousImages = (await parent).openGraph?.images || [];
+  return getMetaTags({
+    title,
+    description,
+    tags,
+    
+    pathname: PATHS.EDU_PROGRAMS,
+    images: [...actualImages, ...previousImages],
+    locale,
+  });
+}
 
 export const revalidate = 600;
 
@@ -76,7 +96,6 @@ export default async function NewsPage({
             console.error(`Ошибка при получении статей (${loc}):`, err);
         }
     }
-
     if (!articles.length) {
         return (
             <div className="p-6">
@@ -86,7 +105,6 @@ export default async function NewsPage({
             </div>
         );
     }
-
     return (
         <Container className="min-h-[700px]">
             <div>

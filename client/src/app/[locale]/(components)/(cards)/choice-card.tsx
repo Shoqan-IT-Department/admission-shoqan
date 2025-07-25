@@ -1,7 +1,5 @@
-
 import {ArrowRight} from "lucide-react";
 import {Button} from "@/shared/ui/button";
-
 import {PATHS} from "@/config/paths";
 import {ADM_URL} from "@/config/instance";
 import {ENDPOINTS} from "@/config/endpoints";

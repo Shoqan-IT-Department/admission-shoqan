@@ -13,9 +13,10 @@ import LoaderSkeleton from "@/shared/ui/loader-skeleton";
 export const metadata: Metadata = {
   title: "Приемная комиссия",
   description: "Приемная комиссия университета им. Шокана Уалиханова",
+   icons: {
+    icon: '/favicon.png',
+  },
 };
-
-
 export default async function LocaleLayout({
   children,
   params
@@ -28,7 +29,6 @@ export default async function LocaleLayout({
   if (!hasLocale(routing.locales, locale)) {
     notFound();
   }
- 
   return (
     <html
         lang={locale}

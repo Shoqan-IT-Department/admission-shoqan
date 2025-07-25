@@ -82,13 +82,9 @@ const ProfessionList = ({ locale }: Props) => {
             console.error("Ошибка при загрузке профессий:", error);
         }
     };
-
-    // Загружаем данные при изменении фильтра или страницы
     useEffect(() => {
         fetchProfessions();
     }, [selectedGraduates, locale, currentPage]);
-
-    // Скроллим вверх при смене страницы
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentPage]);
@@ -101,7 +97,7 @@ const ProfessionList = ({ locale }: Props) => {
                 <GraduateCheckboxes
                     selected={selectedGraduates}
                     onChange={(selected) => {
-                        setCurrentPage(1); // сброс при смене фильтра
+                        setCurrentPage(1);
                         setSelectedGraduates(selected);
                     }}
                 />

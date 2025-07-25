@@ -4,8 +4,6 @@ import {ENDPOINTS} from "@/config/endpoints";
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 
-
-
 type CommisionContactsType = {
     title: string;
     email: string;
@@ -67,8 +65,6 @@ export default async function CommisionBlock() {
                     </div>
                 </div>
             </div>
-
-            {/* Правая колонка */}
             <div className="mt-10">
                 <div className="bg-card p-6 focus:text-white rounded-4xl shadow">
                     <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
@@ -105,7 +101,5 @@ export default async function CommisionBlock() {
                 </div>
             </div>
         </div>
-
-
     );
 }

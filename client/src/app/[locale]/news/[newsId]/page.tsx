@@ -40,9 +40,7 @@ export default async function ArticlePage({
         break;
       }
     }
-
     if (!article) return notFound();
-
     const formatRichTextToMarkdown = (text: string) => {
       return text
         .replace(/^(\d+)\)\s+/gm, "$1. ")
@@ -52,10 +50,9 @@ export default async function ArticlePage({
         .replace(/^\s+/gm, "")
         .replace(/\r/g, "");
     };
-
     return (
       <Container>
-        <div className="p-6">
+        <div className="p-6 min-h-[1000px]">
           {/* Картинка */}
           <div className="flex justify-center">
             {article.img?.url ? (
@@ -66,8 +63,6 @@ export default async function ArticlePage({
               />
             ) : null}
           </div>
-
-          {/* Заголовок и подзаголовок */}
           <div className="mt-6 text-left">
             <h1 className="text-2xl font-bold mb-4 text-center">
               {article.title || ""}
@@ -79,8 +74,6 @@ export default async function ArticlePage({
               </ReactMarkdown>
             </div>
           </div>
-
-          {/* Дата */}
           <div>
             <h1 className="text-right text-xl font-bold">
               {article.published

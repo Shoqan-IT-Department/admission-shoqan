@@ -1,7 +1,6 @@
 'use client'
 
 import React from "react";
-import {Checkbox} from "@/shared/ui/checkbox";
 import {Button} from "@/shared/ui/button";
 import Container from "@/shared/ui/wrappers/container";
 import { useTranslations } from "next-intl";
