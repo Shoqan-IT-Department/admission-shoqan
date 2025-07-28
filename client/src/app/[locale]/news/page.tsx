@@ -158,20 +158,7 @@ export default async function NewsPage({
                                                   const day = date.getDate();
                                                   const month = date.getMonth();
                                                   const year = date.getFullYear();
-                                                  const months = [
-                                                      "января",
-                                                      "февраля",
-                                                      "марта",
-                                                      "апреля",
-                                                      "мая",
-                                                      "июня",
-                                                      "июля",
-                                                      "августа",
-                                                      "сентября",
-                                                      "октября",
-                                                      "ноября",
-                                                      "декабря",
-                                                  ];
+                                                  const months: string[] = Array.from({ length: 12 }, (_, i) =>t(`monthly.${i}`));
                                                   return `${day} ${months[month]} ${year}`;
                                               })()
                                             : ""}

@@ -4,6 +4,7 @@ import Container from "@/shared/ui/wrappers/container";
 import { ENDPOINTS } from "@/config/endpoints";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { getTranslations } from "next-intl/server";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +51,7 @@ export default async function ArticlePage({
         .replace(/^\s+/gm, "")
         .replace(/\r/g, "");
     };
+    const t = await getTranslations("NewsPage");
     return (
       <Container>
         <div className="p-6 min-h-[1000px]">
@@ -83,10 +85,7 @@ export default async function ArticlePage({
                     const day = date.getDate();
                     const month = date.getMonth();
                     const year = date.getFullYear();
-                    const months = [
-                      "января", "февраля", "марта", "апреля", "мая", "июня",
-                      "июля", "августа", "сентября", "октября", "ноября", "декабря",
-                    ];
+                    const months: string[] = Array.from({ length: 12 }, (_, i) =>t(`monthly.${i}`));
                     return `${day} ${months[month]} ${year}`;
                   })()
                 : ""}

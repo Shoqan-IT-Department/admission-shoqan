@@ -4,6 +4,7 @@ import {Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle} f
 import {SyncLoader} from "react-spinners";
 import {PATHS} from "@/config/paths";
 import {Link} from "@/i18n/navigation";
+import { getTranslations } from "next-intl/server";
 
 type StaticArticleType = {
     id: number;
@@ -58,6 +59,7 @@ export const revalidate = 600;
 
 export default async function NewsCard({ locale }: { locale: string }){
     const articles = await getNewsArticle(locale);
+    const t = await getTranslations("NewsPage");
     if (!articles.length) {
         return <span className="pt-6 pb-6 flex justify-center items-center"><SyncLoader color="#1470B9FF" /></span>;
     }
@@ -70,13 +72,13 @@ return (
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 pt-6 pb-6 items-start">
     {articles.slice(0, 3).map((article) => (
       <div key={article.id}>
-        <Card className="flex flex-col rounded-4xl overflow-hidden">
+        <Card className="flex flex-col rounded-4xl overflow-hidden hover:shadow-xl hover:transition hover:duration-700 hover:ease-in-out">
           <Link href={PATHS.NEWS} className="flex flex-col">
             {article.fullImageUrl && (
               <CardContent className="p-4 pt-1 flex justify-center items-center">
                 <img
                   src={article.fullImageUrl}
-                  alt={article.title ?? "Изображение"}
+                  alt={article.title ?? "NOT FOUND"}
                   className="w-full object-cover aspect-[16/9] rounded-3xl"
                 />
               </CardContent>
@@ -105,10 +107,7 @@ return (
                       const day = date.getDate();
                       const month = date.getMonth();
                       const year = date.getFullYear();
-                      const months = [
-                        "января", "февраля", "марта", "апреля", "мая", "июня",
-                        "июля", "августа", "сентября", "октября", "ноября", "декабря",
-                      ];
+                      const months: string[] = Array.from({ length: 12 }, (_, i) =>t(`monthly.${i}`));
                       return `${day} ${months[month]} ${year}`;
                     })()
                   : ""}
