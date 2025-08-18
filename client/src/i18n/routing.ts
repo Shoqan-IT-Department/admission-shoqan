@@ -3,6 +3,6 @@ import { LANGUAGES } from '@/config/languages';
 
 export const routing = defineRouting({
   locales: LANGUAGES.map((lng) => lng.code),
-  defaultLocale: 'ru',
+  defaultLocale: 'kk',
   localeDetection: true,
 });

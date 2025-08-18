@@ -72,29 +72,29 @@ export default async function CommisionBlock() {
                     </h2>
                     <div className="m-6 ">
                         <div className="flex items-center mb-4">
-                            <Phone className="text-muted" />
+                            <div><Phone className="text-muted" /></div>
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="tel:+77084443051">+77084443051</Link>, <Link href="tel:+77162721112">+77162721112</Link></p>
                         </div>
                         <div className="flex items-center mb-4">
-                            <MapPinCheckInside className="text-muted" />
+                            <div><MapPinCheckInside className="text-muted" /></div>
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl"><Link href="https://go.2gis.com/MWQci">{t("commisionblock.toogis")}</Link></p>
                         </div>
-                        <div className="flex items-center mb-4 lg:font-medium md:font-medium ">
-                            <Map className="text-muted " />
-                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.locale")}</p>
+                        <div className="flex items-center mb-4 ">
+                            <div><Map className="text-muted " /></div>
+                            <p className="ml-2 scroll-m-20 font-semibold xl:text-xl lg:text-md md:text-sm ">{t("commisionblock.locale")}</p>
                         </div>
                          <div className="flex items-center mb-4">
-                           <Instagram className="text-muted"/>
+                            <div><Instagram className="text-muted"/></div>
                            <Link href="https://www.instagram.com/ualikhanov.university/?igsh=Y2JtOWQzdzdoN2Q0&utm_source=qr#">
                            <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.insta")}</p>
                            </Link>
                         </div>
                         <div className="flex items-center mb-4">
-                            <Mail className="text-muted" />
+                            <div><Mail className="text-muted" /></div>
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl">university@shokan.edu.kz</p>
                         </div>
                         <div className="flex items-center">
-                            <Clock className="text-muted" />
+                            <div><Clock className="text-muted" /></div>
                             <p className="ml-2 scroll-m-20 font-semibold  text-xl">{t("commisionblock.schedule")}</p>
                         </div>
                     </div>
