@@ -4,6 +4,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   outputFileTracingRoot: __dirname, // исправляем предупреждение lockfile
+  output: 'standalone',
 
   webpack(config) {
     const fileLoaderRule = config.module?.rules?.find((rule: any) =>

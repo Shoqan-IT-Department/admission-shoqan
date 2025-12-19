@@ -1,0 +1,44 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - admission_shoqan_net
+    depends_on:
+      - server
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file: ./server/.env
+    ports:
+      - "1337:1337"
+    networks:
+      - admission_shoqan_net
+
+  db:
+    restart: unless-stopped
+    env_file: ./server/.env
+    image: postgres:16.0-alpine
+    volumes:
+      - admission_shoqan_data:/var/lib/postgresql/data/
+
+    ports:
+      - "5432:5432"
+    networks:
+      - admission_shoqan_net
+
+volumes:
+  admission_shoqan_data:
+
+networks:
+  admission_shoqan_net:
+    name: admission_shoqan_net
+    driver: bridge
