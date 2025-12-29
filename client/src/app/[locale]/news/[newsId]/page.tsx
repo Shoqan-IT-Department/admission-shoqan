@@ -41,6 +41,7 @@ export default async function ArticlePage({
         break;
       }
     }
+
     if (!article) return notFound();
     const formatRichTextToMarkdown = (text: string) => {
       return text
@@ -85,7 +86,10 @@ export default async function ArticlePage({
                     const day = date.getDate();
                     const month = date.getMonth();
                     const year = date.getFullYear();
-                    const months: string[] = Array.from({ length: 12 }, (_, i) =>t(`monthly.${i}`));
+                    const months: string[] = Array.from(
+                      { length: 12 },
+                      (_, i) => t(`monthly.${i}`)
+                    );
                     return `${day} ${months[month]} ${year}`;
                   })()
                 : ""}
