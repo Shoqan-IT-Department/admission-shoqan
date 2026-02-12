@@ -49,9 +49,9 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(0.402 0.128 256.674);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(1 0 89.876);
+  --primary: #004da8;
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.627 0.033 268.916);
+  --secondary: #ffffff;
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.594 0.173 251.04);
   --muted-foreground: oklch(0.958 0 89.876);
@@ -127,18 +127,18 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-primary text-foreground;
   }
 }
 
 body {
   overflow: auto;
-  scrollbar-width: none;          /* Firefox */
-  -ms-overflow-style: none;       /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
 }
 
 body::-webkit-scrollbar {
-  display: none;                  /* Chrome, Safari, Opera */
+  display: none; /* Chrome, Safari, Opera */
 }
 
 html {
@@ -160,7 +160,7 @@ html {
 }
 
 .animated-border::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: 0.5rem; /* такой же как у rounded-lg */
@@ -170,7 +170,7 @@ html {
 }
 
 .animated-border:hover::after {
-  border-color: #D1D5DB; /* например, цвет popover или muted */
+  border-color: #d1d5db; /* например, цвет popover или muted */
   animation: dashAround 1.5s linear forwards;
   mask-image: linear-gradient(90deg, black 50%, transparent 50%);
   mask-size: 200% 100%;
@@ -179,5 +179,4 @@ html {
 
 ::-webkit-scrollbar {
   width: 0.5px;
-
 }
