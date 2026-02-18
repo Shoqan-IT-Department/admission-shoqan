@@ -1,4 +1,12 @@
+#switcher-lang {
+  background: #e7e9ed;
+}
 
-#switcher-lang{
-    background: #e7e9ed;
+.logo-full svg .alikhanov,
+.logo-full svg .niversity,
+.logo-full svg .ulogo {
+  fill: rgb(255, 255, 255);
+}
+.logo-full svg .shoqan {
+  fill: #fad713;
 }

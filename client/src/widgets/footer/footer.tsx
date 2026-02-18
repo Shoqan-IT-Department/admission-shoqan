@@ -47,7 +47,7 @@ async function getLinks(): Promise<FooterType[]> {
 async function getCommission(): Promise<CommisionContactsType[]> {
   try {
     const res = await ADM_URL.get<{ data: CommisionContactsType[] }>(
-      ENDPOINTS.GET.CONTACTS_COMISSION
+      ENDPOINTS.GET.CONTACTS_COMISSION,
     );
     return res.data.data;
   } catch (err) {
@@ -72,7 +72,7 @@ export default async function Footer({ className }: Props) {
   const number = comission[0]?.number || "";
 
   return (
-    <footer className={`bg-popover w-full bottom-0 ${className}`}>
+    <footer className={`text-secondary w-full bottom-0 ${className}`}>
       <Container>
         <div className="max-w-[2000 px] mx-auto px-4 space-y-12 pt-10 pb-12">
           {/* ===== Первая строка: Логотип, Контакты, Соцсети ===== */}
@@ -84,10 +84,10 @@ export default async function Footer({ className }: Props) {
 
             {/* Контакты */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight ">
                 {t("contact.title")}
               </h3>
-              <p className="leading-7 font-semibold text-primary ">
+              <p className="leading-7 font-semibold ">
                 <Link href={`mailto: university@shoqan.edu.kz`}>
                   <span className="hover:underline">
                     university@shoqan.edu.kz
@@ -98,10 +98,10 @@ export default async function Footer({ className }: Props) {
 
             {/* Соцсети */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-secondary  mb-2">
                 {t("social")}
               </h3>
-              <div className="flex gap-4 text-xl text-primary">
+              <div className="flex gap-4 text-xl ">
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
                   href={toogis}
@@ -138,13 +138,13 @@ export default async function Footer({ className }: Props) {
           </div>
 
           {/* ===== Вторая строка: Школы / Поступающим / Дополнительно ===== */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-secondary">
             {/* Школы */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-3">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight  mb-3">
                 {t("school.title")}
               </h3>
-              <ul className="space-y-1 text-primary font-semibold ">
+              <ul className="space-y-1 font-semibold ">
                 <Link
                   href={
                     "https://shokan.edu.kz/ru/schools/agrotehnicheskij-institut-im-sadvakasova/"
@@ -180,10 +180,10 @@ export default async function Footer({ className }: Props) {
 
             {/* Поступающим */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-3 ">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-secondary mb-3 ">
                 {t("incoming.title")}
               </h3>
-              <ul className="space-y-1 text-primary font-semibold ">
+              <ul className="space-y-1 font-semibold ">
                 <Link href={"https://shokan.edu.kz/ru/undergraduate/"}>
                   <li className="hover:underline">{t("incoming.bacalaur")}</li>
                 </Link>
@@ -199,34 +199,34 @@ export default async function Footer({ className }: Props) {
             </div>
             {/* Дополнительно */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-3">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-3">
                 {t("additionally")}
               </h3>
-              <ul className="space-y-1 text-primary font-semibold ">
+              <ul className="space-y-1 font-semibold ">
                 <Link href={"https://shokan.edu.kz/ru/e-university/"}>
                   <li className="hover:underline">{t("electronic")}</li>
                 </Link>
               </ul>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 font-semibold ">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 font-semibold text-secondary ">
             {/* Приемная комиссия */}
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight  mb-2">
                 {t("commision.title")}
               </h3>
-              <p className="hover:underlin eleading-7 font-semibold text-primary">
+              <p className="hover:underlin eleading-7 font-semibold">
                 <Link href="tel:+77084443051">+77084443051</Link>
               </p>
-              <p className="hover:underline leading-7 font-semibold text-primary">
+              <p className="hover:underline leading-7 font-semibold">
                 <Link href="tel:+77162721112">+77162721112</Link>
               </p>
             </div>
             <div>
-              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-primary mb-2">
+              <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
                 {t("student.title")}
               </h3>
-              <ul className="space-y-1 text-primary font-semibold ">
+              <ul className="space-y-1 font-semibold ">
                 <Link
                   href={
                     "https://shokan.edu.kz/ru/student-life/struktura-departamenta-molodezhnoj-politiki/"
@@ -253,7 +253,7 @@ export default async function Footer({ className }: Props) {
           </div>
         </div>
       </Container>
-      <div className="flex  border-t flex-col sm:flex-row justify-center items-center pt-3 pb-3 text-primary text-center text-sm gap-4">
+      <div className="flex  border-t flex-col sm:flex-row justify-center items-center pt-3 pb-3 text-secondary text-center text-sm gap-4">
         <p>{t("copyright")}</p>
       </div>
     </footer>

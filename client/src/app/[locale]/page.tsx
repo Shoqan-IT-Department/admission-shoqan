@@ -8,6 +8,8 @@ import { META_INFO } from "@/shared/constants/meta/meta-info";
 import { PATHS } from "@/config/paths";
 import { PageLocaleParamsType } from "@/shared/types/params.type";
 import { getMetaTags } from "@/shared/helpers/get-meta-tags";
+import DocumentsBlock from "./(components)/(blocks)/documents-block";
+import ContactsComissionBlock from "./(components)/(blocks)/contacts-comission-block";
 
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
@@ -15,7 +17,7 @@ type PageProps = {
 
 export async function generateMetadata(
   { params }: PageProps,
-  parent: ResolvingMetadata
+  parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { locale } = await params;
   const title = META_INFO.home.title[locale];
@@ -44,7 +46,9 @@ export default async function HomePage({
   return (
     <Container>
       <ComponentsBlock locale={locale} />
+      <ContactsComissionBlock />
       <CommisionBlock />
+      <DocumentsBlock />
       <NewsBlock locale={locale} />
     </Container>
   );
