@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "@/shared/ui/wrappers/container";
-import NewsBlock from "@/app/[locale]/(components)/(blocks)/news-block";
+// import NewsBlock from "@/app/[locale]/(components)/(blocks)/news-block";
 import ComponentsBlock from "@/app/[locale]/(components)/(blocks)/components-block";
 import CommisionBlock from "@/app/[locale]/(components)/(blocks)/comission-block";
 import type { Metadata, ResolvingMetadata } from "next";
@@ -49,7 +49,7 @@ export default async function HomePage({
       <ContactsComissionBlock />
       <CommisionBlock />
       <DocumentsBlock />
-      <NewsBlock locale={locale} />
+      {/* <NewsBlock locale={locale} /> */}
     </Container>
   );
 }

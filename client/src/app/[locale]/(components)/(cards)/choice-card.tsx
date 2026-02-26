@@ -55,7 +55,7 @@ export default async function ChoiceCard({ locale }: StaticProgramBlockProps) {
   const attributes = await getStaticAttributes();
   return (
     <div id="choice">
-      <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight my-8 text-primary">
+      <h1 className="text-4xl font-semibold text-primary my-8">
         {t("choiceblock.title")}
       </h1>
 
@@ -65,17 +65,15 @@ export default async function ChoiceCard({ locale }: StaticProgramBlockProps) {
             {contents.map((item, key) => (
               <div
                 key={key}
-                className="bg-card h-[268px] rounded-4xl border p-4 sm:p-6 flex flex-col justify-between  hover:bg-gradient-to-br hover:from-[#0E468B] hover:via-[#1370B9] hover:to-[#1370B9] transition-all hover:text-white duration-700"
+                className="bg-card h-[268px] rounded-4xl border p-4 sm:p-6 flex flex-col justify-between hover:shadow-2xl transition duration-300"
               >
                 <h1 className="text-4xl sm:text-2xl lg:text-3xl font-semibold tracking-tight mb-10 text-primary">
                   {item.title}
                 </h1>
 
-                <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4 ">
+                <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2">
                   <div>{item.more}</div>
-                  <Button className="bg-popover hover:bg-muted border w-max">
-                    <ArrowRight />
-                  </Button>
+                  <ArrowRight />
                 </div>
               </div>
             ))}

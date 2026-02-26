@@ -50,7 +50,7 @@ const ProfessionList = ({ locale }: Props) => {
     graduates: string[],
     loc: string,
     start: number,
-    limit: number
+    limit: number,
   ) => {
     const params = new URLSearchParams();
     params.set("locale", loc);
@@ -120,7 +120,7 @@ const ProfessionList = ({ locale }: Props) => {
               <Container>
                 <Link href={prof.url || ""}>
                   <CardHeader className="border-b">
-                    <CardTitle>
+                    <CardTitle className="text-foreground">
                       {prof.code} {prof.subtitle || ""}
                     </CardTitle>
                     <CardDescription>{prof.title}</CardDescription>
@@ -130,11 +130,11 @@ const ProfessionList = ({ locale }: Props) => {
 
               <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
                 <CardContent className="flex flex-wrap gap-2 p-0">
-                  <span className="bg-muted-foreground p-2 rounded-2xl">
+                  <span className="bg-primary p-2 rounded-2xl">
                     {prof.graduates}
                   </span>
                   {prof.form && (
-                    <span className="bg-muted-foreground p-2 rounded-2xl">
+                    <span className="bg-primary p-2 rounded-2xl">
                       {prof.form}
                     </span>
                   )}
