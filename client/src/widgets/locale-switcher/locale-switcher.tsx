@@ -42,7 +42,7 @@ export default function LocaleSwitcher() {
         onValueChange={handleChangeLocale}
         disabled={isPending}
       >
-        <SelectTrigger className="border  text-secondary shadow-none">
+        <SelectTrigger className="border-[.5px] pt-6 pb-6 px-7  rounded-2xl text-secondary">
           <SelectValue placeholder="language" />
         </SelectTrigger>
         <SelectContent className="shadow-xl text-secondary shadow-primary/5">

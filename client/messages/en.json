@@ -9,6 +9,7 @@
     },
     "commisionblock": {
       "title": "Admission Office Contacts",
+      "information": "Information",
       "subtitle": "All news",
       "more": "Read more",
       "med": "- Medical certificate (Form №075-U)",
@@ -26,7 +27,17 @@
       "schedule": "Mon - Fri: 09:00-18:00, Break: 1:00 PM – 2:00 PM",
       "folder": "- Cardboard fastener folder – 1 piece",
       "insta": "You can find us on Instagram",
-      "exam":"- Results of the special examination (for applicants to pedagogical and medical educational programs)"
+      "exam": "- Results of the special examination (for applicants to pedagogical and medical educational programs)"
+    },
+    "contacts": {
+      "title": "Admissions Office Contacts",
+      "contact_phone": "Contact Phone Number",
+      "address": "Address",
+      "working_hours": "Working Hours"
+    },
+    "documents": {
+      "title": "Documents",
+      "road": "Applicant Roadmap 2024"
     }
   },
   "Header": {
@@ -84,7 +95,7 @@
       "dormitories": "Dormitories"
     }
   },
- "ProffesionPage": {
+  "ProffesionPage": {
     "title": "Educational Programs",
     "button": "Reset",
     "graduateLevels": {
@@ -96,11 +107,24 @@
   },
   "NewsPage": {
     "title": "News",
-    "monthly": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    "monthly": [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December"
+    ]
   },
   "Decoration": {
-  "learn": "Learn.",
-  "explore": "Explore.",
-  "act": "Act."
-}
+    "learn": "Learn.",
+    "explore": "Explore.",
+    "act": "Act."
+  }
 }
