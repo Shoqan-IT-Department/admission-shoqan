@@ -35,15 +35,17 @@ export default async function LocaleLayout({
       translate="no"
       className="select-none"
     >
-      <body className="bg-primary">
+      <body className="bg-primary min-h-screen flex flex-col">
         <NextIntlClientProvider>
           <Header />
+
           <Suspense fallback={<LoaderSkeleton />}>
-            <main className="bg-secondary rounded-[54px] text-foreground">
+            <main className="flex-1 bg-secondary rounded-[54px] text-foreground">
               {children}
             </main>
           </Suspense>
-          <Footer className="" />
+
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

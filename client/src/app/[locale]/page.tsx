@@ -10,6 +10,8 @@ import { PageLocaleParamsType } from "@/shared/types/params.type";
 import { getMetaTags } from "@/shared/helpers/get-meta-tags";
 import DocumentsBlock from "./(components)/(blocks)/documents-block";
 import ContactsComissionBlock from "./(components)/(blocks)/contacts-comission-block";
+import CarouselBlock from "./(components)/(blocks)/carousel-block";
+import NewsBlock from "./(components)/(blocks)/news-block";
 
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
@@ -49,7 +51,8 @@ export default async function HomePage({
       <ContactsComissionBlock />
       <CommisionBlock />
       <DocumentsBlock />
-      {/* <NewsBlock locale={locale} /> */}
+      <NewsBlock locale={locale} />
+      <CarouselBlock />
     </Container>
   );
 }
