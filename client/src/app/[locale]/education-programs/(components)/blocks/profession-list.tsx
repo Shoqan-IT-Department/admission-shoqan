@@ -140,7 +140,7 @@ const ProfessionList = ({ locale }: Props) => {
                   )}
                 </CardContent>
                 <Link href={prof.url || ""}>
-                  <Button className="hover:bg-ring text-secondary border self-end sm:self-auto">
+                  <Button className="rounded-2xl text-secondary border self-end sm:self-auto">
                     <ArrowRight />
                   </Button>
                 </Link>

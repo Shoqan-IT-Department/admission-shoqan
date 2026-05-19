@@ -40,7 +40,8 @@ export default async function LocaleLayout({
           <Header />
 
           <Suspense fallback={<LoaderSkeleton />}>
-            <main className="flex-1 bg-secondary rounded-[54px] text-foreground">
+            <main className="flex-1 bg-secondary text-foreground pt-[72px]">
+              {/* rounded-[54px] */}
               {children}
             </main>
           </Suspense>

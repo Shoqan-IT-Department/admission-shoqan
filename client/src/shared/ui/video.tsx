@@ -1,13 +1,35 @@
-import Video from "next-video";
+"use client";
+
+import MuxVideo from "@mux/mux-video-react";
+import { useState } from "react";
+import { SyncLoader } from "react-spinners";
 
 export default function VideoComponent() {
+  const [loading, setLoading] = useState(true);
+
+  if (!setLoading) {
+    return <SyncLoader color="#1470B9FF" />;
+  }
+
   return (
-    <div className="rounded-[15%]">
-      {" "}
-      <Video
+    <div className="rounded-[26px] overflow-hidden relative">
+      {loading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <div className="w-10 h-10 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin" />
+        </div>
+      )}
+      <MuxVideo
         playbackId="xdykrfJPbk7GKrXIQKreMCfWJpkZWtYBSqtm3bwiZdc"
-        autoplay
+        autoPlay
+        controls
         muted
+        loop
+        style={{
+          width: "100%",
+          opacity: loading ? 0 : 1,
+          transition: "opacity 0.3s",
+        }}
+        onCanPlay={() => setLoading(false)}
       />
     </div>
   );

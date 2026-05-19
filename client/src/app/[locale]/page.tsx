@@ -11,7 +11,7 @@ import { getMetaTags } from "@/shared/helpers/get-meta-tags";
 import DocumentsBlock from "./(components)/(blocks)/documents-block";
 import ContactsComissionBlock from "./(components)/(blocks)/contacts-comission-block";
 import CarouselBlock from "./(components)/(blocks)/carousel-block";
-import NewsBlock from "./(components)/(blocks)/news-block";
+// import NewsBlock from "./(components)/(blocks)/news-block";
 
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
@@ -46,13 +46,13 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   return (
-    <Container>
+    <div>
       <ComponentsBlock locale={locale} />
       <ContactsComissionBlock />
       <CommisionBlock />
       <DocumentsBlock />
-      <NewsBlock locale={locale} />
+      {/* <NewsBlock locale={locale} /> */}
       <CarouselBlock />
-    </Container>
+    </div>
   );
 }

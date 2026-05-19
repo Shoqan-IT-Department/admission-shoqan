@@ -32,7 +32,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
   };
 
   return (
-    <aside className="bg-card rounded-2xl w-full lg:w-[300px] mr-0 lg:mr-2 ">
+    <aside className="bg-card border rounded-4xl w-full lg:w-[300px] mr-0 lg:mr-2 ">
       {graduateLevels.map((graduate, key) => (
         <Container key={key}>
           <div className=" select-none border-b cursor-default leading-none font-semibold text-2xs">
@@ -54,7 +54,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
       <div className="flex justify-center items-center px-4 py-6">
         <Button
           onClick={handleReset}
-          className="px-4 py-1 w-max bg-popover hover:bg-muted rounded-xl"
+          className="mt-6 w-full bg-popover hover:bg-muted rounded-xl"
         >
           {t("button")}
         </Button>

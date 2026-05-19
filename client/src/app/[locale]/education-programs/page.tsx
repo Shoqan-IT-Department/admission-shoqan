@@ -43,9 +43,11 @@ export default async function EducationProgramsPage({
   const t = await getTranslations("ProffesionPage");
   return (
     <Container>
-      <h1 className="scroll-m-20 pt-6 text-4xl text-primary font-bold tracking-tight text-balance mb-10">
-        {t("title")}
-      </h1>
+      <div>
+        <h1 className="scroll-m-20 py-10 text-4xl text-primary font-bold tracking-tight text-balance">
+          {t("title")}
+        </h1>
+      </div>
       <ProfessionListWrapper locale={locale} />
     </Container>
   );

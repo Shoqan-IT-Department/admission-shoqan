@@ -1,10 +1,12 @@
+import Container from "@/shared/ui/wrappers/container";
 import { FileText } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const DocumentsBlock = () => {
   const t = useTranslations("HomePage");
   return (
-    <div className="text-2xl font-semibold tracking-tight text-primary">
+    <Container>
+       <div className="text-2xl font-semibold tracking-tight text-primary">
       <div>
         <h1 className="text-4xl">{t("documents.title")}</h1>
       </div>
@@ -21,6 +23,7 @@ const DocumentsBlock = () => {
         </a>
       </div>
     </div>
+    </Container>
   );
 };
 

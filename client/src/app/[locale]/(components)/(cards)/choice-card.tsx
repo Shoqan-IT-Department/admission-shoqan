@@ -1,5 +1,5 @@
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/shared/ui/button";
+// import { ArrowRight } from "lucide-react";
+// import { Button } from "@/shared/ui/button";
 import { PATHS } from "@/config/paths";
 import { ADM_URL } from "@/config/instance";
 import { ENDPOINTS } from "@/config/endpoints";
@@ -8,6 +8,12 @@ import { Link } from "@/i18n/navigation";
 type StaticProgrammType = {
   title: string;
   more: string;
+};
+
+type InfoType = {
+  id: number;
+  title: string;
+  description: string;
 };
 
 type StaticProgramBlockProps = {
@@ -47,12 +53,42 @@ async function getStaticProfession(locale: string = "ru") {
     return [];
   }
 }
+
+async function getStaticInfo(locale: string = "ru-RU"): Promise<InfoType[]> {
+  const localesToTry = [locale, "ru-RU"];
+
+  for (const loc of localesToTry) {
+    try {
+      const res = await ADM_URL.get<{
+        data: { block: InfoType; content: InfoType; item: InfoType }[];
+      }>(`${ENDPOINTS.GET.STATIC_INFO}&locale=${loc}`);
+
+      const rawData = res.data.data;
+
+      if (rawData.length > 0) {
+        return rawData.flatMap((item) => [item.block, item.content, item.item]);
+      }
+    } catch (err) {
+      console.error(
+        `Ошибка при получении статической информации (locale=${loc}):`,
+        err,
+      );
+    }
+  }
+
+  return [];
+}
+
 export const revalidate = 600;
 
 export default async function ChoiceCard({ locale }: StaticProgramBlockProps) {
   const t = await getTranslations("HomePage");
   const contents = await getStaticProfession(locale);
-  const attributes = await getStaticAttributes();
+  const content = await getStaticInfo(locale);
+  console.log(content);
+
+  const [title, description] = await getStaticInfo(locale);
+  // const attributes = await getStaticAttributes();
   return (
     <div id="choice">
       <h1 className="text-4xl font-semibold text-primary my-8">
@@ -72,8 +108,10 @@ export default async function ChoiceCard({ locale }: StaticProgramBlockProps) {
                 </h1>
 
                 <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-2">
-                  <div>{item.more}</div>
-                  <ArrowRight />
+                  <div className="hover:shadow-[8px_18px_80px_2px_rgba(0,_0,_0,_0.1)] border hover:border-primary rounded-xl px-4 py-2">
+                    {item.more}
+                  </div>
+                  {/* <ArrowRight /> */}
                 </div>
               </div>
             ))}
