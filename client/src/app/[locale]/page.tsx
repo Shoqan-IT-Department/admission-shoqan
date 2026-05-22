@@ -2,15 +2,15 @@ import React from "react";
 import Container from "@/shared/ui/wrappers/container";
 // import NewsBlock from "@/app/[locale]/(components)/(blocks)/news-block";
 import ComponentsBlock from "@/app/[locale]/(components)/(blocks)/components-block";
-import CommisionBlock from "@/app/[locale]/(components)/(blocks)/comission-block";
 import type { Metadata, ResolvingMetadata } from "next";
 import { META_INFO } from "@/shared/constants/meta/meta-info";
 import { PATHS } from "@/config/paths";
 import { PageLocaleParamsType } from "@/shared/types/params.type";
 import { getMetaTags } from "@/shared/helpers/get-meta-tags";
-import DocumentsBlock from "./(components)/(blocks)/documents-block";
-import ContactsComissionBlock from "./(components)/(blocks)/contacts-comission-block";
 import CarouselBlock from "./(components)/(blocks)/carousel-block";
+import { ContactsBlock } from "./(components)/(blocks)/contacts-block";
+import DocumentsBlock from "./(components)/(blocks)/documents-block";
+import { ComissionBlock } from "./(components)/(blocks)/comission-block";
 // import NewsBlock from "./(components)/(blocks)/news-block";
 
 type PageProps = {
@@ -48,8 +48,8 @@ export default async function HomePage({
   return (
     <div>
       <ComponentsBlock locale={locale} />
-      <ContactsComissionBlock />
-      <CommisionBlock />
+      <ContactsBlock />
+      <ComissionBlock />
       <DocumentsBlock />
       {/* <NewsBlock locale={locale} /> */}
       <CarouselBlock />

@@ -5,7 +5,7 @@ export default function Container({ children, className }: WrapperPropsType) {
   return (
     <div
       className={cn(
-        "w-full max-w-[1920px] px-0 sm:px-4 mx-auto transition-all duration-1000",
+        "w-full max-w-[1920px] px-0 mx-auto transition-all duration-1000",
         className,
       )}
     >

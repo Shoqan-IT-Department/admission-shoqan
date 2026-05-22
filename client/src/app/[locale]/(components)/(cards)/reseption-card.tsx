@@ -1,0 +1,85 @@
+import {
+  CalendarDays,
+  HelpCircle,
+  GraduationCap,
+  ArrowUpRight,
+} from "lucide-react";
+
+export function ReseptionCard() {
+  return (
+    <aside className="space-y-6">
+      <div className="relative overflow-hidden rounded-3xl bg-primary p-8 text-primary-foreground shadow-xl">
+        <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary-foreground/10 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-20 -left-10 h-56 w-56 rounded-full bg-[var(--accent-gold)]/15 blur-3xl" />
+
+        <div className="relative flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary-foreground/70">
+          <span className="h-px w-8 bg-primary-foreground/40" />
+          Информация
+        </div>
+        <h3 className="relative mt-4 text-2xl font-semibold tracking-tight">
+          Срок приёма заявлений
+        </h3>
+
+        <div className="relative mt-6 flex items-center gap-4 rounded-2xl bg-primary-foreground/10 p-5 ring-1 ring-primary-foreground/15 backdrop-blur-sm">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary-foreground/15">
+            <CalendarDays className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <div>
+            <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
+              2025
+            </p>
+            <p className="text-lg font-medium">1 июля — 25 августа</p>
+          </div>
+        </div>
+
+        <div className="relative mt-6 space-y-1">
+          <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
+            Консультации по вопросам приёма
+          </p>
+          <a
+            href="tel:+77162721112"
+            className="block text-xl font-medium tracking-tight transition hover:text-primary-foreground/80"
+          >
+            +7 716 272 11 12
+          </a>
+        </div>
+      </div>
+
+      <a
+        href="#faq"
+        className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <HelpCircle className="h-6 w-6" />
+        </div>
+        <div className="flex-1">
+          <p className="text-xs uppercase tracking-wider text-foreground/50">
+            Часто задаваемые
+          </p>
+          <p className="mt-1 text-base font-medium text-foreground">
+            Часто задаваемые вопросы
+          </p>
+        </div>
+        <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+      </a>
+
+      <a
+        href="#ent"
+        className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
+      >
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <GraduationCap className="h-6 w-6" />
+        </div>
+        <div className="flex-1">
+          <p className="text-xs uppercase tracking-wider text-foreground/50">
+            ЕНТ
+          </p>
+          <p className="mt-1 text-base font-medium text-foreground">
+            Единое Национальное Тестирование
+          </p>
+        </div>
+        <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
+      </a>
+    </aside>
+  );
+}
