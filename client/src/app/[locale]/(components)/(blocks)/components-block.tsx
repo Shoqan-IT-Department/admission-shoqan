@@ -7,7 +7,7 @@ export default async function ComponentsBlock({ locale }: { locale: string }) {
     <div className="">
       <Container>
         <div className="pt-6">
-          <div className="mt-4 rounded-md">
+          <div className="">
             <VideoComponent />
           </div>
           <ChoiceCard locale={locale} />
