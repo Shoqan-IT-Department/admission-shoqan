@@ -1,6 +1,6 @@
 import Container from "@/shared/ui/wrappers/container";
 import { ScrollDocuments } from "../(cards)/scroll-documents";
-import { ReseptionCard } from "../(cards)/reseption-card";
+import ReseptionCard from "../(cards)/reseption-card";
 
 export function ComissionBlock() {
   return (

@@ -5,15 +5,33 @@ import { AdmissionType } from "@/shared/types/promise.type";
 import Container from "@/shared/ui/wrappers/container";
 import { GraduationCap, BookOpen, Award, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
+import { PuffLoader } from "react-spinners";
 
 const ICONS = [GraduationCap, BookOpen, Award];
 
 export function AdmissionBlock() {
   const [admissions, setAdmissions] = useState<AdmissionType[]>([]);
-
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getAdmission().then(setAdmissions);
+    getAdmission()
+      .then(setAdmissions)
+      .catch(() => setIsError(false))
+      .finally(() => setIsLoading(false));
   }, []);
+
+  if (isLoading || isError)
+    return (
+      <Container>
+        <div className="flex justify-center items-center">
+          {isLoading ? (
+            <PuffLoader color="#1470B9FF" />
+          ) : (
+            <p>Что-то пошло не так</p>
+          )}
+        </div>
+      </Container>
+    );
 
   return (
     <Container>

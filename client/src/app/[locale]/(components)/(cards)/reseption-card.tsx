@@ -1,11 +1,22 @@
+"use client";
+
 import {
   CalendarDays,
   HelpCircle,
   GraduationCap,
   ArrowUpRight,
 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { DeadlineType } from "@/shared/types/promise.type";
+import { getReceptions } from "@/shared/rest/get/get-receptions";
 
-export function ReseptionCard() {
+export default function DeadlineAside() {
+  const [receptions, setReceptions] = useState<DeadlineType | null>(null);
+
+  useEffect(() => {
+    getReceptions().then(setReceptions);
+  }, []);
+
   return (
     <aside className="space-y-6">
       <div className="relative overflow-hidden rounded-3xl bg-primary p-8 text-primary-foreground shadow-xl">
@@ -14,10 +25,10 @@ export function ReseptionCard() {
 
         <div className="relative flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary-foreground/70">
           <span className="h-px w-8 bg-primary-foreground/40" />
-          Информация
+          {receptions?.title}
         </div>
         <h3 className="relative mt-4 text-2xl font-semibold tracking-tight">
-          Срок приёма заявлений
+          {receptions?.subtitle}
         </h3>
 
         <div className="relative mt-6 flex items-center gap-4 rounded-2xl bg-primary-foreground/10 p-5 ring-1 ring-primary-foreground/15 backdrop-blur-sm">
@@ -26,21 +37,21 @@ export function ReseptionCard() {
           </div>
           <div>
             <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
-              2025
+              {receptions?.year}
             </p>
-            <p className="text-lg font-medium">1 июля — 25 августа</p>
+            <p className="text-lg font-medium">{receptions?.days}</p>
           </div>
         </div>
 
         <div className="relative mt-6 space-y-1">
           <p className="text-xs uppercase tracking-wider text-primary-foreground/70">
-            Консультации по вопросам приёма
+            {receptions?.consult}
           </p>
           <a
-            href="tel:+77162721112"
+            href={`tel:${receptions?.phone}`}
             className="block text-xl font-medium tracking-tight transition hover:text-primary-foreground/80"
           >
-            +7 716 272 11 12
+            {receptions?.phone}
           </a>
         </div>
       </div>
@@ -54,10 +65,10 @@ export function ReseptionCard() {
         </div>
         <div className="flex-1">
           <p className="text-xs uppercase tracking-wider text-foreground/50">
-            Часто задаваемые
+            {receptions?.asked}
           </p>
           <p className="mt-1 text-base font-medium text-foreground">
-            Часто задаваемые вопросы
+            {receptions?.questions}
           </p>
         </div>
         <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
@@ -72,10 +83,10 @@ export function ReseptionCard() {
         </div>
         <div className="flex-1">
           <p className="text-xs uppercase tracking-wider text-foreground/50">
-            ЕНТ
+            {receptions?.nationalExam}
           </p>
           <p className="mt-1 text-base font-medium text-foreground">
-            Единое Национальное Тестирование
+            {receptions?.testingExam}
           </p>
         </div>
         <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />

@@ -13,13 +13,13 @@ export type AdmissionType = {
 export type ContactsType = {
   id: number;
   documentId: string;
-  title: string; 
-  subtitle: string; 
+  title: string;
+  subtitle: string;
   phone: number;
-  address: string; 
+  address: string;
   room: string;
-  schedule: string; 
-  socialMedia: string; 
+  schedule: string;
+  socialMedia: string;
 };
 
 type DocumentItem = {
@@ -34,4 +34,23 @@ export type ListDocumentsType = {
   subtitle: string;
   description: string;
   items: DocumentItem[];
+};
+
+export type DeadlineType = {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string;
+  year: string;
+  days: string;
+  consult: string;
+  phone: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  asked: string;
+  questions: string;
+  nationalExam: string;
+  testingExam: string;
 };
