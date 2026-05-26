@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Phone,
   MapPin,
@@ -10,6 +12,9 @@ import {
 } from "lucide-react";
 import { ContactCard } from "../(cards)/contact-card";
 import Container from "@/shared/ui/wrappers/container";
+import { useEffect, useState } from "react";
+import { ContactsType } from "@/shared/types/promise.type";
+import { getContacts } from "@/shared/rest/get/get-contacts";
 
 const socials = [
   { icon: Facebook, label: "Facebook" },
@@ -20,6 +25,16 @@ const socials = [
 ];
 
 export function ContactsBlock() {
+  const [contacts, setContacts] = useState<ContactsType | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getContacts()
+      .then(setContacts)
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return null; // или скелетон
   return (
     <Container>
       <section className="relative overflow-hidden rounded-3xl bg-primary p-8 text-primary-foreground lg:p-14 my-4">
@@ -35,49 +50,34 @@ export function ContactsBlock() {
         <div className="relative">
           <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary-foreground/70">
             <span className="h-px w-10 bg-primary-foreground/40" />
-            Свяжитесь с нами
+            {contacts?.title}
           </div>
           <h1 className="mt-4 text-4xl font-semibold tracking-tight lg:text-5xl">
-            Контакты приёмной комиссии
+            {contacts?.subtitle}
           </h1>
 
           <div className="mt-12 grid gap-8 lg:grid-cols-3">
             <ContactCard icon={Phone} label="Номер телефона для связи">
               <a
-                href="tel:+77783967678"
+                href={`tel:${contacts?.phone}`}
                 className="block text-2xl font-medium tracking-tight"
               >
-                8-778-396-76-78
+                {contacts?.phone}
               </a>
-              <p className="mt-2 text-sm text-primary-foreground/70">
-                Пн–Пт · 09:00–18:00
-              </p>
             </ContactCard>
 
             <ContactCard icon={MapPin} label="Адрес">
-              <p className="text-base leading-relaxed">
-                Казахстан, 020000, г. Кокшетау,
-                <br />
-                ул. Абая, 76, главный корпус,
-                <br />
-                ауд. 126а
-              </p>
+              <p className="text-base leading-relaxed">{contacts?.address}</p>
             </ContactCard>
 
             <ContactCard icon={Clock} label="График работы">
-              <p className="text-base leading-relaxed">
-                Казахстан, 020000, г. Кокшетау,
-                <br />
-                ул. Абая, 76, главный корпус,
-                <br />
-                ауд. 116а
-              </p>
+              <p className="text-base leading-relaxed">{contacts?.schedule}</p>
             </ContactCard>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-t border-primary-foreground/15 pt-8">
             <p className="text-sm text-primary-foreground/70">
-              Мы в социальных сетях — пишите, следите за новостями приёма
+              {contacts?.socialMedia}
             </p>
             <div className="flex flex-wrap gap-3">
               {socials.map(({ icon: Icon, label }) => (

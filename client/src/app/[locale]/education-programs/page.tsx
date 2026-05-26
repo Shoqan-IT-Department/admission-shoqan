@@ -17,7 +17,6 @@ export async function generateMetadata(
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
   const { locale } = await params;
-
   const title = META_INFO.education.title[locale];
   const description = META_INFO.education.description[locale];
   const tags = META_INFO.education.keywords[locale];

@@ -2,17 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { ADM_URL } from "@/config/instance";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/shared/ui/card";
-import { Button } from "@/shared/ui/button";
+
 import { ArrowRight } from "lucide-react";
-import Container from "@/shared/ui/wrappers/container";
 import Link from "next/link";
 import GraduateCheckboxes from "@/app/[locale]/education-programs/(components)/blocks/сheckbox-filter";
 import Pagination from "@/shared/ui/pagination";
@@ -111,42 +102,54 @@ const ProfessionList = ({ locale }: Props) => {
       </div>
 
       <div className="min-h-[800px] w-full">
-        <main>
+        <main className="space-y-4">
           {professions.map((prof) => (
-            <Card
+            <Link
               key={prof.id}
-              className="mb-4 rounded-4xl select-none cursor-default"
+              href={prof.url || ""}
+              className="group relative flex items-center gap-6 overflow-hidden rounded-3xl border border-primary/10 bg-card p-6 pr-8 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl lg:p-8"
             >
-              <Container>
-                <Link href={prof.url || ""}>
-                  <CardHeader className="border-b">
-                    <CardTitle className="text-foreground">
-                      {prof.code} {prof.subtitle || ""}
-                    </CardTitle>
-                    <CardDescription>{prof.title}</CardDescription>
-                  </CardHeader>
-                </Link>
-              </Container>
+              <div className="min-w-0 flex-1">
+                <div className="text-xs font-medium tracking-wide text-foreground/55">
+                  <span className="text-primary">{prof.code}</span>
+                  {prof.subtitle && (
+                    <>
+                      <span className="mx-2 text-foreground/30">·</span>
+                      {prof.subtitle}
+                    </>
+                  )}
+                </div>
 
-              <CardFooter className="flex flex-col sm:flex-row justify-between gap-4 sm:gap-0">
-                <CardContent className="flex flex-wrap gap-2 p-0">
-                  <span className="bg-primary p-2 rounded-2xl">
+                <h3 className="mt-2 text-lg font-semibold leading-snug text-foreground lg:text-xl">
+                  {prof.title}
+                </h3>
+
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
                     {prof.graduates}
                   </span>
                   {prof.form && (
-                    <span className="bg-primary p-2 rounded-2xl">
+                    <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
                       {prof.form}
                     </span>
                   )}
-                </CardContent>
-                <Link href={prof.url || ""}>
-                  <Button className="rounded-2xl text-secondary border self-end sm:self-auto">
-                    <ArrowRight />
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
+                </div>
+              </div>
+
+              <span
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition group-hover:scale-110 group-hover:shadow-lg"
+                aria-hidden
+              >
+                <ArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" />
+              </span>
+            </Link>
           ))}
+
+          {professions.length === 0 && (
+            <div className="rounded-3xl border border-dashed border-primary/20 bg-card p-12 text-center text-sm text-foreground/60">
+              По выбранным фильтрам ничего не найдено.
+            </div>
+          )}
         </main>
 
         <div className="w-full items-center pb-6">

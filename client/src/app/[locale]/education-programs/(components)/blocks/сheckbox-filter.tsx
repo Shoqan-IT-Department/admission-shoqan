@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/shared/ui/button";
-import Container from "@/shared/ui/wrappers/container";
+import { SlidersHorizontal } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type GraduateCheckboxesProps = {
@@ -32,33 +32,68 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
   };
 
   return (
-    <aside className="bg-card border rounded-4xl w-full lg:w-[300px] mr-0 lg:mr-2 ">
-      {graduateLevels.map((graduate, key) => (
-        <Container key={key}>
-          <div className=" select-none border-b cursor-default leading-none font-semibold text-2xs">
-            <div className="flex justify-between items-center  px-6 py-4 md:px-6 md:py-4">
-              <div className="p-2">{graduate}</div>
-              <div>
+    <aside className="h-fit rounded-3xl border border-primary/15 bg-card p-6 shadow-sm lg:sticky lg:top-6">
+      <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary">
+        <SlidersHorizontal className="h-4 w-4" />
+        {t("filter")}
+      </div>
+
+      <ul className="mt-5 space-y-1">
+        {graduateLevels.map((graduate, key) => {
+          const checked = selected.includes(graduate);
+          return (
+            <li key={key}>
+              <label
+                className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
+                  checked
+                    ? "border-primary/40 bg-primary/10 text-primary"
+                    : "border-transparent text-foreground/70 hover:bg-primary/5 hover:text-primary"
+                }`}
+              >
+                <span className="font-medium">{graduate}</span>
+                <span
+                  className={`flex h-5 w-5 items-center justify-center rounded-md border transition ${
+                    checked
+                      ? "border-primary bg-primary"
+                      : "border-foreground/25 bg-transparent"
+                  }`}
+                  aria-hidden
+                >
+                  {checked && (
+                    <svg
+                      viewBox="0 0 12 12"
+                      className="h-3 w-3 text-primary-foreground"
+                    >
+                      <path
+                        d="M2 6.5L5 9.5L10 3.5"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  )}
+                </span>
                 <input
                   type="checkbox"
-                  checked={selected.includes(graduate)}
+                  checked={checked}
                   onChange={() => handleChange(graduate)}
-                  className="text-primary"
+                  className="sr-only"
                 />
-              </div>
-            </div>
-          </div>
-        </Container>
-      ))}
+              </label>
+            </li>
+          );
+        })}
+      </ul>
 
-      <div className="flex justify-center items-center px-4 py-6">
-        <Button
-          onClick={handleReset}
-          className="mt-6 w-full bg-popover hover:bg-muted rounded-xl"
-        >
-          {t("button")}
-        </Button>
-      </div>
+      <button
+        type="button"
+        onClick={handleReset}
+        className="mt-6 w-full rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 active:scale-[0.98]"
+      >
+        {t("button")}
+      </button>
     </aside>
   );
 };

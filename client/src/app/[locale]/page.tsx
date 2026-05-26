@@ -1,7 +1,4 @@
 import React from "react";
-import Container from "@/shared/ui/wrappers/container";
-// import NewsBlock from "@/app/[locale]/(components)/(blocks)/news-block";
-import ComponentsBlock from "@/app/[locale]/(components)/(blocks)/components-block";
 import type { Metadata, ResolvingMetadata } from "next";
 import { META_INFO } from "@/shared/constants/meta/meta-info";
 import { PATHS } from "@/config/paths";
@@ -11,8 +8,8 @@ import CarouselBlock from "./(components)/(blocks)/carousel-block";
 import { ContactsBlock } from "./(components)/(blocks)/contacts-block";
 import DocumentsBlock from "./(components)/(blocks)/documents-block";
 import { ComissionBlock } from "./(components)/(blocks)/comission-block";
-// import NewsBlock from "./(components)/(blocks)/news-block";
-
+import { AdmissionBlock } from "./(components)/(blocks)/admission-block";
+import VideoBlock from "@/app/[locale]/(components)/(blocks)/video-block";
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
 };
@@ -47,11 +44,11 @@ export default async function HomePage({
   const { locale } = await params;
   return (
     <div>
-      <ComponentsBlock locale={locale} />
+      <VideoBlock />
+      <AdmissionBlock />
       <ContactsBlock />
       <ComissionBlock />
       <DocumentsBlock />
-      {/* <NewsBlock locale={locale} /> */}
       <CarouselBlock />
     </div>
   );

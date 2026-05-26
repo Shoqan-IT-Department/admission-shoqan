@@ -21,7 +21,6 @@ export interface SharedItem extends Struct.ComponentSchema {
     displayName: 'item';
   };
   attributes: {
-    description: Schema.Attribute.Text;
     title: Schema.Attribute.Text;
   };
 }

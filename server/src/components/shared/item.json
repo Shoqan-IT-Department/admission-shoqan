@@ -7,9 +7,6 @@
   "attributes": {
     "title": {
       "type": "text"
-    },
-    "description": {
-      "type": "text"
     }
   }
 }
