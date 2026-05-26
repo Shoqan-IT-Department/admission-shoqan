@@ -46,10 +46,10 @@ export default async function HomePage({
     <div>
       <VideoBlock />
       <AdmissionBlock />
-      <ContactsBlock />
       <ComissionBlock />
       <DocumentsBlock />
       <CarouselBlock />
+      <ContactsBlock />
     </div>
   );
 }

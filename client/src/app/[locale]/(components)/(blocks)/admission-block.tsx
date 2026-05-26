@@ -36,7 +36,7 @@ export function AdmissionBlock() {
   return (
     <Container>
       <section>
-        <div className="flex items-end justify-between gap-6">
+        <div className="flex items-end justify-between gap-6 my-6">
           <h2 className="text-3xl font-semibold tracking-tight text-primary lg:text-4xl">
             Поступление
           </h2>
