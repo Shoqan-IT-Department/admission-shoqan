@@ -9,13 +9,15 @@ import {
 import { useEffect, useState } from "react";
 import { DeadlineType } from "@/shared/types/promise.type";
 import { getReceptions } from "@/shared/rest/get/get-receptions";
+import { useLocale } from "next-intl";
 
 export default function DeadlineAside() {
+  const locale = useLocale();
   const [receptions, setReceptions] = useState<DeadlineType | null>(null);
 
   useEffect(() => {
-    getReceptions().then(setReceptions);
-  }, []);
+    getReceptions(locale).then(setReceptions);
+  }, [locale]);
 
   return (
     <aside className="space-y-6">

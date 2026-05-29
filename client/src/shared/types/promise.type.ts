@@ -67,3 +67,25 @@ export type DocsType = {
   text: string;
   url: string;
 };
+
+export type GraduateType = {
+  id: number;
+  documentId: string;
+  graduates: string;
+  url: string;
+};
+
+export type ProfessionType = {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string | null;
+  code: string;
+  form: string | null;
+  graduates: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  url: string | null;
+};

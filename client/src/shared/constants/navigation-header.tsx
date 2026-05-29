@@ -12,10 +12,6 @@ export const NAVIGATION_HEADER = [
         pathname: PATHS.CHOICE,
 
     },
-    // {
-    //     label: 'newsblock',
-    //     pathname: PATHS.NEWSBLOCK,
-    // },
     {
         label: 'commision',
         pathname: PATHS.COMISSION,

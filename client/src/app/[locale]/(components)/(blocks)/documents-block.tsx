@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getHeads } from "@/shared/rest/get/get-heads";
 import { DocsType, HeadType } from "@/shared/types/promise.type";
 import { getDocs } from "@/shared/rest/get/get-docs";
+import { useLocale } from "next-intl";
 
 const files = [
   {
@@ -16,11 +17,15 @@ const files = [
 ];
 
 const DocumentsBlock = () => {
+  const locale = useLocale();
   const [docs, setDocs] = useState<DocsType[]>([]);
   const [heads, setHeads] = useState<HeadType[]>([]);
   useEffect(() => {
-    Promise.all([getHeads().then(setHeads), getDocs().then(setDocs)]);
-  }, []);
+    Promise.all([
+      getHeads(locale).then(setHeads),
+      getDocs(locale).then(setDocs),
+    ]);
+  }, [locale]);
   return (
     <Container>
       <section>

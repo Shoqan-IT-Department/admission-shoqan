@@ -33,12 +33,7 @@ export async function generateMetadata(
   });
 }
 
-export default async function EducationProgramsPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default async function EducationProgramsPage() {
   const t = await getTranslations("ProffesionPage");
   return (
     <Container>
@@ -47,7 +42,7 @@ export default async function EducationProgramsPage({
           {t("title")}
         </h1>
       </div>
-      <ProfessionListWrapper locale={locale} />
+      <ProfessionListWrapper />
     </Container>
   );
 }

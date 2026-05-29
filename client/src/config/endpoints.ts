@@ -6,5 +6,7 @@ export const ENDPOINTS = {
     RECEPTIONS: "reseptions",
     HEAD: "heads",
     DOCS: "docs",
+    GRADUATES: "graduates",
+    PROFESSIONS: "professions",
   },
 } as const;

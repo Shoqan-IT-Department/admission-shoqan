@@ -1,9 +1,10 @@
 "use client";
 
-import React from "react";
-import { Button } from "@/shared/ui/button";
+import React, { useEffect, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { getGraduates } from "@/shared/rest/get/get-graduates";
+import { GraduateType } from "@/shared/types/promise.type";
+import { useLocale } from "next-intl";
 
 type GraduateCheckboxesProps = {
   selected: string[];
@@ -14,11 +15,12 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
   selected,
   onChange,
 }) => {
-  const t = useTranslations("ProffesionPage");
+  const [graduates, setGraduates] = useState<GraduateType[]>([]);
+  const locale = useLocale();
 
-  const graduateLevels: string[] = Array.from({ length: 4 }, (_, i) =>
-    t(`graduateLevels.${i}`),
-  );
+  useEffect(() => {
+    getGraduates(locale).then(setGraduates);
+  }, [locale]);
 
   const handleChange = (graduate: string) => {
     const newSelected = selected.includes(graduate)
@@ -27,22 +29,20 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
     onChange(newSelected);
   };
 
-  const handleReset = () => {
-    onChange([]);
-  };
+  const handleReset = () => onChange([]);
 
   return (
     <aside className="h-fit rounded-3xl border border-primary/15 bg-card p-6 shadow-sm lg:sticky lg:top-6">
       <div className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-primary">
         <SlidersHorizontal className="h-4 w-4" />
-        {t("filter")}
+        Фильтр
       </div>
 
       <ul className="mt-5 space-y-1">
-        {graduateLevels.map((graduate, key) => {
-          const checked = selected.includes(graduate);
+        {graduates.map((graduate) => {
+          const checked = selected.includes(graduate.graduates);
           return (
-            <li key={key}>
+            <li key={graduate.id}>
               <label
                 className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
                   checked
@@ -50,7 +50,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
                     : "border-transparent text-foreground/70 hover:bg-primary/5 hover:text-primary"
                 }`}
               >
-                <span className="font-medium">{graduate}</span>
+                <span className="font-medium">{graduate.graduates}</span>
                 <span
                   className={`flex h-5 w-5 items-center justify-center rounded-md border transition ${
                     checked
@@ -78,7 +78,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
                 <input
                   type="checkbox"
                   checked={checked}
-                  onChange={() => handleChange(graduate)}
+                  onChange={() => handleChange(graduate.graduates)}
                   className="sr-only"
                 />
               </label>
@@ -92,7 +92,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
         onClick={handleReset}
         className="mt-6 w-full rounded-full bg-primary py-3 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90 active:scale-[0.98]"
       >
-        {t("button")}
+        Сбросить
       </button>
     </aside>
   );

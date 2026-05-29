@@ -1,8 +1,6 @@
 "use client";
 
 import Container from "@/shared/ui/wrappers/container";
-import "@/app/[locale]/styles.css";
-import Logotype from "@/widgets/logotype/logo.svg";
 import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/config/paths";
 import LocaleSwitcher from "@/widgets/locale-switcher/locale-switcher";
@@ -20,18 +18,13 @@ const Header = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY < 10) {
-        // Вверху страницы — всегда показываем
         setIsVisible(true);
       } else if (currentScrollY > lastScrollY) {
-        // Скролл вниз — прячем
         setIsVisible(false);
       } else {
-        // Скролл вверх — показываем
         setIsVisible(true);
       }
-
       setLastScrollY(currentScrollY);
     };
 

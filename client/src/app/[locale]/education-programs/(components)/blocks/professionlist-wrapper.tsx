@@ -7,8 +7,8 @@ type Props = {
   locale: string;
 };
 
-const ProfessionListWrapper = ({ locale }: Props) => {
-  return <ProfessionList locale={locale} />;
+const ProfessionListWrapper = () => {
+  return <ProfessionList />;
 };
 
 export default ProfessionListWrapper;
