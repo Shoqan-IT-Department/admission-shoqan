@@ -54,3 +54,16 @@ export type DeadlineType = {
   nationalExam: string;
   testingExam: string;
 };
+
+export type HeadType = {
+  id: number;
+  documentId: string;
+  heading: string;
+};
+
+export type DocsType = {
+  id: number;
+  documentId: string;
+  text: string;
+  url: string;
+};

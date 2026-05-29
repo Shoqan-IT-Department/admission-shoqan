@@ -1,7 +1,8 @@
 "use client";
 
 import { getAdmission } from "@/shared/rest/get/get-admissions";
-import { AdmissionType } from "@/shared/types/promise.type";
+import { getHeads } from "@/shared/rest/get/get-heads";
+import { AdmissionType, HeadType } from "@/shared/types/promise.type";
 import Container from "@/shared/ui/wrappers/container";
 import { GraduationCap, BookOpen, Award, ArrowUpRight } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -11,12 +12,12 @@ const ICONS = [GraduationCap, BookOpen, Award];
 
 export function AdmissionBlock() {
   const [admissions, setAdmissions] = useState<AdmissionType[]>([]);
+  const [heads, setHeads] = useState<HeadType[]>([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    getAdmission()
-      .then(setAdmissions)
-      .catch(() => setIsError(false))
+    Promise.all([getAdmission().then(setAdmissions), getHeads().then(setHeads)])
+      .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -38,7 +39,7 @@ export function AdmissionBlock() {
       <section>
         <div className="flex items-end justify-between gap-6 my-6">
           <h2 className="text-3xl font-semibold tracking-tight text-primary lg:text-4xl">
-            Поступление
+            {heads[0]?.heading}
           </h2>
           <span className="hidden h-px flex-1 translate-y-[-0.6rem] bg-primary/15 sm:block" />
         </div>

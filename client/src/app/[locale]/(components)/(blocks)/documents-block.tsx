@@ -1,7 +1,12 @@
+"use client";
+
 import Container from "@/shared/ui/wrappers/container";
 import { FileText } from "lucide-react";
-import { useTranslations } from "next-intl";
 import { Download } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getHeads } from "@/shared/rest/get/get-heads";
+import { DocsType, HeadType } from "@/shared/types/promise.type";
+import { getDocs } from "@/shared/rest/get/get-docs";
 
 const files = [
   {
@@ -11,21 +16,25 @@ const files = [
 ];
 
 const DocumentsBlock = () => {
-  // const t = useTranslations("HomePage");
+  const [docs, setDocs] = useState<DocsType[]>([]);
+  const [heads, setHeads] = useState<HeadType[]>([]);
+  useEffect(() => {
+    Promise.all([getHeads().then(setHeads), getDocs().then(setDocs)]);
+  }, []);
   return (
     <Container>
       <section>
         <div className="flex items-end justify-between gap-6">
           <h2 className="text-3xl font-semibold tracking-tight text-primary lg:text-4xl">
-            Документы
+            {heads[1]?.heading}
           </h2>
           <span className="hidden h-px flex-1 translate-y-[-0.6rem] bg-primary/15 sm:block" />
         </div>
         <ul className="mt-8 space-y-4">
-          {files.map((f) => (
-            <li key={f.title}>
+          {docs.map((item) => (
+            <li key={item.id}>
               <a
-                href={f.href}
+                href={item.url}
                 className="group flex items-center gap-5 rounded-2xl border border-primary/15 bg-card px-6 py-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
@@ -33,7 +42,7 @@ const DocumentsBlock = () => {
                 </div>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-base font-medium text-primary lg:text-lg">
-                    {f.title}
+                    {item.text}
                   </p>
                 </div>
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/20 text-primary transition group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
