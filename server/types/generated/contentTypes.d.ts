@@ -602,6 +602,46 @@ export interface ApiDocDoc extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiErrorError extends Struct.CollectionTypeSchema {
+  collectionName: 'errors';
+  info: {
+    displayName: 'Errors';
+    pluralName: 'errors';
+    singularName: 'error';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::error.error'>;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
   collectionName: 'globals';
   info: {
@@ -1464,6 +1504,7 @@ declare module '@strapi/strapi' {
       'api::admission.admission': ApiAdmissionAdmission;
       'api::contact.contact': ApiContactContact;
       'api::doc.doc': ApiDocDoc;
+      'api::error.error': ApiErrorError;
       'api::global.global': ApiGlobalGlobal;
       'api::graduate.graduate': ApiGraduateGraduate;
       'api::head.head': ApiHeadHead;

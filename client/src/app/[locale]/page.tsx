@@ -1,4 +1,3 @@
-import React from "react";
 import type { Metadata, ResolvingMetadata } from "next";
 import { META_INFO } from "@/shared/constants/meta/meta-info";
 import { PATHS } from "@/config/paths";
@@ -36,20 +35,15 @@ export async function generateMetadata(
   });
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
+export default async function HomePage() {
   return (
-    <div>
+    <>
       <VideoBlock />
       <AdmissionBlock />
       <ComissionBlock />
       <DocumentsBlock />
-      <CarouselBlock />
       <ContactsBlock />
-    </div>
+      <CarouselBlock />
+    </>
   );
 }

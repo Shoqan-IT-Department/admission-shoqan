@@ -23,7 +23,7 @@ export default function Error({
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-4">
         <h2 className="text-2xl font-semibold mb-4">Something went wrong!</h2>
         <p className="text-popover mb-8">
-          {error.message || "An unexpected error occurred"}
+          An unexpected error occurred
         </p>
         <div className="flex gap-4">
           <Button onClick={() => reset()}>Try again</Button>

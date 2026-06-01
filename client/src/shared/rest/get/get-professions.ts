@@ -9,13 +9,14 @@ export async function getProfessions(filters: {
   page?: number;
 }) {
   const params = new URLSearchParams();
+
   params.set("locale", filters.locale);
   params.set("pagination[page]", String(filters.page ?? 1));
   params.set("pagination[pageSize]", "5");
 
   if (filters.graduates?.length) {
-    filters.graduates.forEach((g, i) => {
-      params.set(`filters[graduates][$in][${i}]`, g);
+    filters.graduates.forEach((g) => {
+      params.append(`filters[graduates][$in]`, g.trim());
     });
   }
 

@@ -89,3 +89,10 @@ export type ProfessionType = {
   locale: string;
   url: string | null;
 };
+
+export type ErrorsType = {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string;
+};

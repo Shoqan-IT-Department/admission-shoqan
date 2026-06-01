@@ -58,7 +58,7 @@ const Header = () => {
                   <Link key={pathname} href={pathname}>
                     <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
                       <span className="relative z-10 hover:text-[#FAD713] transition duration-300">
-                        {t(label)}
+                        {label}
                       </span>
                     </small>
                   </Link>
