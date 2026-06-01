@@ -1,93 +1,37 @@
-"use client";
-
 import React, { useEffect, useState } from "react";
-import { ADM_URL } from "@/config/instance";
-
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import GraduateCheckboxes from "@/app/[locale]/education-programs/(components)/blocks/сheckbox-filter";
 import Pagination from "@/shared/ui/pagination";
-
-type ProfessionType = {
-  id: number;
-  documentId: string;
-  title: string;
-  subtitle: string | null;
-  code: string;
-  form: string | null;
-  graduates: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
-  locale: string;
-  url: string | null;
-};
-
-type Props = {
-  locale: string;
-};
+import { getProfessions } from "@/shared/rest/get/get-professions";
+import { usePagination } from "@/shared/hooks/usePagination";
+import { ProfessionType } from "@/shared/types/promise.type";
+import { useLocale } from "next-intl";
 
 const ITEMS_PER_PAGE = 5;
 
-const ProfessionList = ({ locale }: Props) => {
+const ProfessionList = () => {
   const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
   const [professions, setProfessions] = useState<ProfessionType[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
+  const locale = useLocale();
 
-  const fallbackLocale = "ru-RU";
-
-  const buildQuery = (
-    graduates: string[],
-    loc: string,
-    start: number,
-    limit: number,
-  ) => {
-    const params = new URLSearchParams();
-    params.set("locale", loc);
-    params.set("pagination[start]", start.toString());
-    params.set("pagination[limit]", limit.toString());
-
-    if (graduates.length === 1) {
-      params.set("filters[graduates][$eq]", graduates[0]);
-    } else if (graduates.length > 1) {
-      params.set("filters[graduates][$in]", graduates.join(","));
-    }
-
-    return `/api/professions?${params.toString()}`;
-  };
-
-  const fetchProfessions = async () => {
-    try {
-      const localesToTry = [locale, fallbackLocale];
-      let result: ProfessionType[] = [];
-      let total = 0;
-
-      for (const loc of localesToTry) {
-        const start = (currentPage - 1) * ITEMS_PER_PAGE;
-        const url = buildQuery(selectedGraduates, loc, start, ITEMS_PER_PAGE);
-        const res = await ADM_URL.get<{
-          data: ProfessionType[];
-          meta: { pagination: { total: number } };
-        }>(url);
-        result = res.data.data;
-        total = res.data.meta.pagination.total;
-        if (result.length > 0) break;
-      }
-
-      setProfessions(result);
-      setTotalCount(total);
-    } catch (error) {
-      console.error("Ошибка при загрузке профессий:", error);
-    }
-  };
+  const { currentPage, totalPages, setCurrentPage, reset } = usePagination(
+    totalCount,
+    ITEMS_PER_PAGE,
+  );
 
   useEffect(() => {
-    fetchProfessions();
+    getProfessions({
+      locale,
+      graduates: selectedGraduates,
+      page: currentPage,
+    }).then((res) => {
+      setProfessions(res.data);
+      setTotalCount(res.meta.pagination.total);
+    });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedGraduates, locale, currentPage]);
-
-  const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   return (
     <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
@@ -95,7 +39,7 @@ const ProfessionList = ({ locale }: Props) => {
         <GraduateCheckboxes
           selected={selectedGraduates}
           onChange={(selected) => {
-            setCurrentPage(1);
+            reset();
             setSelectedGraduates(selected);
           }}
         />
@@ -119,11 +63,9 @@ const ProfessionList = ({ locale }: Props) => {
                     </>
                   )}
                 </div>
-
                 <h3 className="mt-2 text-lg font-semibold leading-snug text-foreground lg:text-xl">
                   {prof.title}
                 </h3>
-
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
                     {prof.graduates}
@@ -135,16 +77,11 @@ const ProfessionList = ({ locale }: Props) => {
                   )}
                 </div>
               </div>
-
-              <span
-                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition group-hover:scale-110 group-hover:shadow-lg"
-                aria-hidden
-              >
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-sm transition group-hover:scale-110 group-hover:shadow-lg">
                 <ArrowRight className="h-5 w-5 transition group-hover:translate-x-0.5" />
               </span>
             </Link>
           ))}
-
           {professions.length === 0 && (
             <div className="rounded-3xl border border-dashed border-primary/20 bg-card p-12 text-center text-sm text-foreground/60">
               По выбранным фильтрам ничего не найдено.

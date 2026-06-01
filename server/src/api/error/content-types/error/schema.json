@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "docs",
+  "collectionName": "errors",
   "info": {
-    "singularName": "doc",
-    "pluralName": "docs",
-    "displayName": "Docs"
+    "singularName": "error",
+    "pluralName": "errors",
+    "displayName": "Errors"
   },
   "options": {
     "draftAndPublish": true
@@ -15,7 +15,7 @@
     }
   },
   "attributes": {
-    "text": {
+    "title": {
       "type": "text",
       "pluginOptions": {
         "i18n": {
@@ -23,7 +23,7 @@
         }
       }
     },
-    "url": {
+    "subtitle": {
       "type": "text",
       "pluginOptions": {
         "i18n": {

@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "docs",
+  "collectionName": "graduates",
   "info": {
-    "singularName": "doc",
-    "pluralName": "docs",
-    "displayName": "Docs"
+    "singularName": "graduate",
+    "pluralName": "graduates",
+    "displayName": "Graduate"
   },
   "options": {
     "draftAndPublish": true
@@ -15,16 +15,8 @@
     }
   },
   "attributes": {
-    "text": {
-      "type": "text",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
-    "url": {
-      "type": "text",
+    "graduates": {
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true

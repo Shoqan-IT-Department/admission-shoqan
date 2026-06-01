@@ -10,8 +10,6 @@ import {
   FaFacebookF,
   FaYoutube,
   FaLinkedinIn,
-  FaTelegramPlane,
-  FaTiktok,
 } from "react-icons/fa";
 import { CiMap } from "react-icons/ci";
 import Decoration from "@/shared/ui/decoration";
@@ -44,32 +42,17 @@ async function getLinks(): Promise<FooterType[]> {
     return [];
   }
 }
-async function getCommission(): Promise<CommisionContactsType[]> {
-  try {
-    const res = await ADM_URL.get<{ data: CommisionContactsType[] }>(
-      ENDPOINTS.GET.CONTACTS_COMISSION,
-    );
-    return res.data.data;
-  } catch (err) {
-    console.error("Ошибка при получении статьи:", err);
-    return [];
-  }
-}
 
 export default async function Footer({ className }: Props) {
   const t = await getTranslations("Footer");
 
   const contents = await getLinks();
-  const comission = await getCommission();
 
   const instagram = contents[0]?.instagram || "";
   const toogis = contents[0]?.toogis || "";
   const youtube = contents[0]?.youtube || "";
   const linkedin = contents[0]?.linkedin || "";
   const facebook = contents[0]?.facebook || "";
-  const mail = comission[0]?.email || "";
-  const locales = comission[0]?.locales || "";
-  const number = comission[0]?.number || "";
 
   return (
     <footer className={`text-secondary w-full bottom-0 ${className}`}>

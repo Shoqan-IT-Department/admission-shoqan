@@ -15,6 +15,7 @@ import Container from "@/shared/ui/wrappers/container";
 import { useEffect, useState } from "react";
 import { ContactsType } from "@/shared/types/promise.type";
 import { getContacts } from "@/shared/rest/get/get-contacts";
+import { useLocale } from "next-intl";
 
 const socials = [
   { icon: Facebook, label: "Facebook" },
@@ -25,14 +26,15 @@ const socials = [
 ];
 
 export function ContactsBlock() {
+  const locale = useLocale();
   const [contacts, setContacts] = useState<ContactsType | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getContacts()
+    getContacts(locale)
       .then(setContacts)
       .finally(() => setLoading(false));
-  }, []);
+  }, [locale]);
 
   if (loading) return null; // или скелетон
   return (

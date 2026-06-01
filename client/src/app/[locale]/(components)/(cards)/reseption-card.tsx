@@ -9,13 +9,17 @@ import {
 import { useEffect, useState } from "react";
 import { DeadlineType } from "@/shared/types/promise.type";
 import { getReceptions } from "@/shared/rest/get/get-receptions";
+import { useLocale } from "next-intl";
+import { PATHS } from "@/config/paths";
+import { Link } from "@/i18n/navigation";
 
 export default function DeadlineAside() {
+  const locale = useLocale();
   const [receptions, setReceptions] = useState<DeadlineType | null>(null);
 
   useEffect(() => {
-    getReceptions().then(setReceptions);
-  }, []);
+    getReceptions(locale).then(setReceptions);
+  }, [locale]);
 
   return (
     <aside className="space-y-6">
@@ -56,8 +60,8 @@ export default function DeadlineAside() {
         </div>
       </div>
 
-      <a
-        href="#faq"
+      <Link
+        href={PATHS.QUESTIONS}
         className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
       >
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -72,10 +76,10 @@ export default function DeadlineAside() {
           </p>
         </div>
         <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-      </a>
+      </Link>
 
-      <a
-        href="#ent"
+      <Link
+        href="https://testcenter.kz/?page_id=22722"
         className="group flex items-start gap-4 rounded-3xl border border-border bg-card p-6 transition hover:border-primary/30 hover:shadow-md"
       >
         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
@@ -90,7 +94,7 @@ export default function DeadlineAside() {
           </p>
         </div>
         <ArrowUpRight className="h-5 w-5 text-foreground/40 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
-      </a>
+      </Link>
     </aside>
   );
 }

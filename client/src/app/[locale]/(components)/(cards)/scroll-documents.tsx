@@ -4,14 +4,16 @@ import { getListDocuments } from "@/shared/rest/get/get-list-documents";
 import { ListDocumentsType } from "@/shared/types/promise.type";
 import Container from "@/shared/ui/wrappers/container";
 import { FileText } from "lucide-react";
+import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 
 export function ScrollDocuments() {
+  const locale = useLocale();
   const [list, setList] = useState<ListDocumentsType | null>(null);
 
   useEffect(() => {
-    getListDocuments().then(setList);
-  }, []);
+    getListDocuments(locale).then(setList);
+  }, [locale]);
 
   return (
     <Container>

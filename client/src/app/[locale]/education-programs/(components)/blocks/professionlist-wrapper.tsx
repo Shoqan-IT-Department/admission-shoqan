@@ -1,14 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import ProfessionList from './profession-list';
+import ProfessionList from "./profession-list";
 
-type Props = {
-  locale: string;
-};
-
-const ProfessionListWrapper = ({ locale }: Props) => {
-  return <ProfessionList locale={locale} />;
+const ProfessionListWrapper = () => {
+  return <ProfessionList />;
 };
 
 export default ProfessionListWrapper;
