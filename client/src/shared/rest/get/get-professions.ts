@@ -24,6 +24,5 @@ export async function getProfessions(filters: {
     data: ProfessionType[];
     meta: { pagination: { total: number; pageCount: number } };
   }>(`${ENDPOINTS.GET.PROFESSIONS}?${params.toString()}`);
-
   return res.data;
 }

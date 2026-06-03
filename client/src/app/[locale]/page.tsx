@@ -9,6 +9,7 @@ import DocumentsBlock from "./(components)/(blocks)/documents-block";
 import { ComissionBlock } from "./(components)/(blocks)/comission-block";
 import { AdmissionBlock } from "./(components)/(blocks)/admission-block";
 import VideoBlock from "@/app/[locale]/(components)/(blocks)/video-block";
+import Container from "@/shared/ui/wrappers/container";
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
 };
@@ -35,15 +36,17 @@ export async function generateMetadata(
   });
 }
 
+export const revalidate = 600;
+
 export default async function HomePage() {
   return (
-    <>
+    <Container>
       <VideoBlock />
       <AdmissionBlock />
       <ComissionBlock />
       <DocumentsBlock />
       <ContactsBlock />
       <CarouselBlock />
-    </>
+    </Container>
   );
 }

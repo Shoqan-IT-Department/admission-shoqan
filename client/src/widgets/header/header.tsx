@@ -37,7 +37,7 @@ const Header = () => {
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
-      <div className="border-b pb-3 pt-3">
+      <div className="pb-3 pt-3">
         <Container>
           <div className="sm:hidden flex items-center justify-end">
             <MobileMenu />
@@ -58,7 +58,7 @@ const Header = () => {
                   <Link key={pathname} href={pathname}>
                     <small className="relative inline-block text-lg font-medium leading-none cursor-pointer group pb-1.5">
                       <span className="relative z-10 hover:text-[#FAD713] transition duration-300">
-                        {label}
+                        {t(`${label}`)}
                       </span>
                     </small>
                   </Link>

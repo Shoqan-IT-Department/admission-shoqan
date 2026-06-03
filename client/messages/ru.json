@@ -41,15 +41,19 @@
     },
     "roadblock": {
       "home": "home",
-      "education":"edu_programs"
+      "education": "edu_programs"
     }
+  },
+  "UI": {
+    "all": "Все"
   },
   "Header": {
     "home": "Главная",
     "commision": "Контакты приёмной комиссии",
     "newsblock": "Новости",
     "choice": "Поступление",
-    "education-programs": "Список образовательных программ"
+    "education-programs": "Список образовательных программ",
+    "questions": "Часто задаваемые вопросы"
   },
   "Footer": {
     "home": "Главная",

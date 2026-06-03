@@ -96,3 +96,35 @@ export type ErrorsType = {
   title: string;
   subtitle: string;
 };
+
+export type HeroTextType = {
+  id: number;
+  documentId: string;
+  title: string;
+  heading: string;
+  paragraph: string;
+  placeholder: string;
+};
+
+export type CategoryType = {
+  id: number;
+  documentId: string;
+  title: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+};
+
+export type QuestionType = {
+  id: number;
+  documentId: string;
+  title: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  categories: CategoryType[];
+  localizations: [];
+};

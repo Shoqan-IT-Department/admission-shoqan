@@ -32,7 +32,7 @@ const ProfessionList = () => {
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedGraduates, locale, currentPage]);
-
+  
   return (
     <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
       <div className="w-full lg:w-[300px]">

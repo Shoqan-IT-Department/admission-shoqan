@@ -33,6 +33,8 @@ export async function generateMetadata(
   });
 }
 
+export const revalidate = 600;
+
 export default async function EducationProgramsPage() {
   const t = await getTranslations("ProffesionPage");
   return (
