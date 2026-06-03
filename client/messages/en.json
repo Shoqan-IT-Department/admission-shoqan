@@ -40,12 +40,16 @@
       "road": "Applicant Roadmap 2024"
     }
   },
+  "UI": {
+    "all": "All"
+  },
   "Header": {
     "home": "Home",
     "commision": "Admission Office Contacts",
     "newsblock": "News",
     "choice": "Admission",
-    "education-programs": "List of Educational Programs"
+    "education-programs": "List of Educational Programs",
+    "questions": "Часто задаваемые вопросы"
   },
   "Footer": {
     "home": "Home",

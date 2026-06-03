@@ -8,5 +8,7 @@ export const ENDPOINTS = {
     DOCS: "docs",
     GRADUATES: "graduates",
     PROFESSIONS: "professions",
+    HERO_QUESTIONS: "questions-statics",
+    QUESTIONS: "questions",
   },
 } as const;

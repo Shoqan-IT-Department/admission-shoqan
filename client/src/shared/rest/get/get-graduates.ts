@@ -7,6 +7,7 @@ export async function getGraduates(locale: string) {
     ENDPOINTS.GET.GRADUATES,
     { params: { locale } },
   );
-  console.log(res.data);
   return res.data.data;
 }
+
+

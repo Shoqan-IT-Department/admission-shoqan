@@ -16,7 +16,7 @@ export function ScrollDocuments() {
   }, [locale]);
 
   return (
-    <Container>
+    <>
       <div className="rounded-3xl border border-border bg-card p-8 shadow-sm lg:p-12">
         <div className="flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-primary">
           <FileText className="h-4 w-4" />
@@ -45,6 +45,6 @@ export function ScrollDocuments() {
           ))}
         </ol>
       </div>
-    </Container>
+    </>
   );
 }
