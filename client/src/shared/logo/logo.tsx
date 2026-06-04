@@ -1,11 +1,12 @@
 import "@/app/[locale]/styles.css";
+import { LogoPropsType } from "../types/props.type";
 
-export function Logo() {
+export function Logo({ width }: LogoPropsType) {
   return (
     <div className="logo-full">
       <svg
-        width="192"
-        height="50"
+        width={width}
+        height="auto"
         viewBox="0 0 192 50"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

@@ -1,45 +1,4 @@
 {
-  "HomePage": {
-    "choiceblock": {
-      "title": "Admission"
-    },
-    "newsblock": {
-      "title": "News",
-      "subtitle": "All news"
-    },
-    "commisionblock": {
-      "title": "Admission Office Contacts",
-      "information": "Information",
-      "subtitle": "All news",
-      "more": "Read more",
-      "med": "- Medical certificate (Form №075-U)",
-      "identifycard": "- Copy of vaccination passport (for full-time study)",
-      "photos": "- 4 photos 3×4 cm",
-      "card": "- Copy of ID card (must have original with you)",
-      "certificate": "- UNT certificate (if available)",
-      "grant": "- Grant certificate (if available)",
-      "cardboard": "- Cardboard folder – 1 pc.",
-      "envelope": "- A5 envelope – 1 pc.",
-      "doc": "- Original educational document",
-      "sectitle": "List of required documents",
-      "toogis": "You can find us on 2GIS",
-      "locale": "Kazakhstan, 020000, Kokshetau, Abay Street, 76, Main Building, Admissions Office Room",
-      "schedule": "Mon - Fri: 09:00-18:00, Break: 1:00 PM – 2:00 PM",
-      "folder": "- Cardboard fastener folder – 1 piece",
-      "insta": "You can find us on Instagram",
-      "exam": "- Results of the special examination (for applicants to pedagogical and medical educational programs)"
-    },
-    "contacts": {
-      "title": "Admissions Office Contacts",
-      "contact_phone": "Contact Phone Number",
-      "address": "Address",
-      "working_hours": "Working Hours"
-    },
-    "documents": {
-      "title": "Documents",
-      "road": "Applicant Roadmap 2024"
-    }
-  },
   "UI": {
     "all": "All"
   },
@@ -49,7 +8,7 @@
     "newsblock": "News",
     "choice": "Admission",
     "education-programs": "List of Educational Programs",
-    "questions": "Часто задаваемые вопросы"
+    "questions": "Frequently Asked Questions"
   },
   "Footer": {
     "home": "Home",
@@ -98,33 +57,6 @@
       "psychology": "Psychologist's Blog",
       "dormitories": "Dormitories"
     }
-  },
-  "ProffesionPage": {
-    "title": "Educational Programs",
-    "button": "Reset",
-    "graduateLevels": {
-      "0": "Undergraduate",
-      "1": "Graduate",
-      "2": "Doctoral Studies",
-      "3": "Residency"
-    }
-  },
-  "NewsPage": {
-    "title": "News",
-    "monthly": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
   },
   "Decoration": {
     "learn": "Learn.",
