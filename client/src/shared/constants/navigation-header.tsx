@@ -2,10 +2,6 @@ import { PATHS } from "@/config/paths";
 
 export const NAVIGATION_HEADER = [
   {
-    label: "home",
-    pathname: PATHS.HOME,
-  },
-  {
     label: "choice",
     pathname: PATHS.CHOICE,
   },

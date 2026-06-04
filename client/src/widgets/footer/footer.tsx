@@ -1,9 +1,5 @@
-import React from "react";
 import Container from "@/shared/ui/wrappers/container";
-import { ADM_URL } from "@/config/instance";
-import { ENDPOINTS } from "@/config/endpoints";
 import { getTranslations } from "next-intl/server";
-import Logotype from "@/widgets/logotype/logo.svg";
 import Link from "next/link";
 import {
   FaInstagram,
@@ -14,45 +10,12 @@ import {
 import { CiMap } from "react-icons/ci";
 import Decoration from "@/shared/ui/decoration";
 
-type FooterType = {
-  instagram: string;
-  toogis: string;
-  youtube: string;
-  linkedin: string;
-  facebook: string;
-  tiktok: string;
-};
-
 type Props = {
   className?: string;
 };
 
-type CommisionContactsType = {
-  email: string;
-  locales: string;
-  number: string;
-};
-
-async function getLinks(): Promise<FooterType[]> {
-  try {
-    const res = await ADM_URL.get<{ data: FooterType[] }>(ENDPOINTS.GET.LINK);
-    return res.data.data;
-  } catch (err) {
-    console.error("Ошибка при получении статьи:", err);
-    return [];
-  }
-}
-
 export default async function Footer({ className }: Props) {
   const t = await getTranslations("Footer");
-
-  const contents = await getLinks();
-
-  const instagram = contents[0]?.instagram || "";
-  const toogis = contents[0]?.toogis || "";
-  const youtube = contents[0]?.youtube || "";
-  const linkedin = contents[0]?.linkedin || "";
-  const facebook = contents[0]?.facebook || "";
 
   return (
     <footer className={`text-secondary w-full bottom-0 ${className}`}>
@@ -87,32 +50,31 @@ export default async function Footer({ className }: Props) {
               <div className="flex gap-4 text-xl ">
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
-                  href={toogis}
+                  href={"/"}
                 >
                   <CiMap />
                 </Link>
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
-                  href={instagram}
+                  href={"/"}
                 >
                   <FaInstagram />
                 </Link>
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
-                  href={youtube}
+                  href={"/"}
                 >
                   <FaYoutube />
                 </Link>
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
-                  href={linkedin}
+                  href={"/"}
                 >
-                  {" "}
                   <FaLinkedinIn />
                 </Link>
                 <Link
                   className="hover:text-chart-4 transition-transform duration-300 ease-in-out hover:scale-110 hover:rotate-1"
-                  href={facebook}
+                  href={"/"}
                 >
                   <FaFacebookF />
                 </Link>

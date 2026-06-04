@@ -39,17 +39,20 @@ const Header = () => {
     >
       <div className="pb-3 pt-3">
         <Container>
-          <div className="sm:hidden flex items-center justify-end">
-            <MobileMenu />
-            <Suspense fallback={<div>Loading...</div>}>
-              <LocaleSwitcher />
-            </Suspense>
+          <div className="sm:hidden flex items-center justify-between">
+            <Logo width="120px" />
+            <div className="flex justify-center items-center">
+              <Suspense fallback={<div>Loading...</div>}>
+                <LocaleSwitcher />
+              </Suspense>
+              <MobileMenu />
+            </div>
           </div>
 
           <div className="hidden sm:flex justify-between items-center gap-4">
             <div className="flex gap-2 items-center">
               <Link href={PATHS.HOME}>
-                <Logo />
+                <Logo height="50px" width="192px" />
               </Link>
             </div>
             <div className="hidden lg:flex sm:flex justify-center items-center gap-4 my-6 text-secondary">

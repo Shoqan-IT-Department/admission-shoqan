@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/shared/ui/wrappers/container";
 import { FileText } from "lucide-react";
 import { Download } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -27,7 +26,7 @@ const DocumentsBlock = () => {
     ]);
   }, [locale]);
   return (
-    <Container>
+    <>
       <section>
         <div className="flex items-end justify-between gap-6">
           <h2 className="text-3xl font-semibold tracking-tight text-primary lg:text-4xl">
@@ -58,7 +57,7 @@ const DocumentsBlock = () => {
           ))}
         </ul>
       </section>
-    </Container>
+    </>
   );
 };
 

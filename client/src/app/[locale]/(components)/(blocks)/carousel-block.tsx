@@ -12,7 +12,7 @@ import * as React from "react";
 const CarouselBlock = () => {
   return (
     <div className="relative w-full my-8">
-      <Container>
+      <>
         <Carousel opts={{ align: "start", loop: true }} className="w-full">
           <CarouselContent className="-ml-4">
             {Array.from({ length: 5 }).map((_, index) => (
@@ -32,7 +32,7 @@ const CarouselBlock = () => {
           {/* <CarouselPrevious className="left-0" />
         <CarouselNext className="right-0" /> */}
         </Carousel>
-      </Container>
+      </>
     </div>
   );
 };
