@@ -40,7 +40,9 @@ const Header = () => {
       <div className="pb-3 pt-3">
         <Container>
           <div className="sm:hidden flex items-center justify-between">
-            <Logo width="120px" />
+            <Link href={PATHS.HOME}>
+              <Logo width="120px" />
+            </Link>
             <div className="flex justify-center items-center">
               <Suspense fallback={<div>Loading...</div>}>
                 <LocaleSwitcher />

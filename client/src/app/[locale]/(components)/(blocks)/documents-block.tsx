@@ -26,7 +26,7 @@ const DocumentsBlock = () => {
     ]);
   }, [locale]);
   return (
-    <>
+    <div className="my-15">
       <section>
         <div className="flex items-end justify-between gap-6">
           <h2 className="text-3xl font-semibold tracking-tight text-primary lg:text-4xl">
@@ -57,7 +57,7 @@ const DocumentsBlock = () => {
           ))}
         </ul>
       </section>
-    </>
+    </div>
   );
 };
 

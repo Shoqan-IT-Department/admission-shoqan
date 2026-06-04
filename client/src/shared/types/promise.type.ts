@@ -95,6 +95,8 @@ export type ErrorsType = {
   documentId: string;
   title: string;
   subtitle: string;
+  home: string;
+  again: string;
 };
 
 export type HeroTextType = {
