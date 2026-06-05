@@ -1,0 +1,55 @@
+services:
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - server
+    networks:
+      - admission_shoqan_net
+
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - ./server/.env
+    environment:
+      - NODE_ENV=production
+      - STRAPI_LOG_LEVEL=debug
+      - DEBUG=strapi:*
+    volumes:
+      - ./server/public/uploads:/opt/app/public/uploads
+    ports:
+      - "1337:1337"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    # depends_on:
+    #   - db
+    networks:
+      - admission_shoqan_net
+
+  # db:
+  #   image: postgres:16.0-alpine
+  #   restart: unless-stopped
+  #   env_file:
+  #     - ./server/.env
+  #   volumes:
+  #     - admission_shoqan_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - admission_shoqan_net
+
+volumes:
+  admission_shoqan_data:
+
+networks:
+  admission_shoqan_net:
+    driver: bridge
+    name: admission_shoqan_net
