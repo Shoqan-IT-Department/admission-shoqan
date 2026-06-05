@@ -37,7 +37,7 @@ export function ContactsBlock() {
 
   if (loading) return null; // или скелетон
   return (
-    <>
+    <div className="my-15">
       <section className="relative overflow-hidden rounded-3xl bg-primary p-8 text-primary-foreground lg:p-14 my-4">
         <div
           className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-white/10 blur-3xl"
@@ -95,6 +95,6 @@ export function ContactsBlock() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 }

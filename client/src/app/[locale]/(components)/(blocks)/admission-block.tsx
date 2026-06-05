@@ -42,7 +42,7 @@ export function AdmissionBlock() {
     );
 
   return (
-    <>
+    <div className="my-15">
       <section>
         <Link href={PATHS.EDU_PROGRAMS}>
           <div className="flex items-end justify-between gap-6 my-6">
@@ -87,6 +87,6 @@ export function AdmissionBlock() {
           </div>
         </Link>
       </section>
-    </>
+    </div>
   );
 }

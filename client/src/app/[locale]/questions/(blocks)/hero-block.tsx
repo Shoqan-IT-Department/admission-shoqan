@@ -17,7 +17,7 @@ export function HeroQuestions({ query, setQuery }: HeroPropsType) {
   }, []);
 
   return (
-    <div className="relative mt-8 overflow-hidden rounded-3xl bg-primary p-10 text-primary-foreground shadow-xl lg:p-14">
+    <div className="relative overflow-hidden rounded-3xl bg-primary p-10 text-primary-foreground shadow-xl lg:p-14">
       <div>
         <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-primary-foreground/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-12 h-64 w-64 rounded-full bg-[var(--accent-gold)]/15 blur-3xl" />
