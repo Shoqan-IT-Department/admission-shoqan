@@ -54,7 +54,7 @@ const Header = () => {
           <div className="hidden sm:flex justify-between items-center gap-4">
             <div className="flex gap-2 items-center">
               <Link href={PATHS.HOME}>
-                <Logo height="50px" width="192px" />
+                <Logo width="192px" />
               </Link>
             </div>
             <div className="hidden lg:flex sm:flex justify-center items-center gap-4 my-6 text-secondary">

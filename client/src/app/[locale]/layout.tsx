@@ -7,6 +7,7 @@ import Header from "@/widgets/header/header";
 import Footer from "@/widgets/footer/footer";
 import { Suspense } from "react";
 import LoaderSkeleton from "@/shared/ui/loader-skeleton";
+import PuffLoader from "react-spinners/PuffLoader";
 // import {ThemeProvider} from "@/shared/helpers/theme-provider";
 
 export const metadata: Metadata = {
@@ -39,7 +40,13 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <Header />
 
-          <Suspense fallback={<LoaderSkeleton />}>
+          <Suspense
+            fallback={
+              <div className="w-full h-full">
+                <PuffLoader color="#ffff" />
+              </div>
+            }
+          >
             <main className="flex-1 bg-secondary text-foreground pt-[72px]">
               {/* rounded-[54px] */}
               {children}

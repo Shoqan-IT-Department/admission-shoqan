@@ -62,5 +62,8 @@
     "learn": "Learn.",
     "explore": "Explore.",
     "act": "Act."
+  },
+  "ProfessionPage": {
+    "title": "Образоваетльные программы"
   }
 }
