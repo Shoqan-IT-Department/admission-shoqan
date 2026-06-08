@@ -42,7 +42,7 @@ export default async function LocaleLayout({
 
           <Suspense
             fallback={
-              <div className="w-full h-full">
+              <div className="w-screen h-screen">
                 <PuffLoader color="#ffff" />
               </div>
             }
