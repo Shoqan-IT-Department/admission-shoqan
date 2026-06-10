@@ -11,7 +11,7 @@ import { AdmissionBlock } from "./(components)/(blocks)/admission-block";
 import VideoBlock from "@/app/[locale]/(components)/(blocks)/video-block";
 import Container from "@/shared/ui/wrappers/container";
 import { Suspense } from "react";
-import PuffLoader from "react-spinners/PuffLoader";
+import { SkeletonLoad } from "@/shared/ui/wrappers/load-skeleton";
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
 };
@@ -43,9 +43,7 @@ export const revalidate = 600;
 export default async function HomePage() {
   return (
     <Container>
-      <Suspense
-        fallback={<PuffLoader size={180} className="p-10" color="#1470B9FF" />}
-      >
+      <Suspense fallback={<SkeletonLoad />}>
         <VideoBlock />
         <AdmissionBlock />
         <ComissionBlock />

@@ -3,6 +3,7 @@
 import { getListDocuments } from "@/shared/rest/get/get-list-documents";
 import { ListDocumentsType } from "@/shared/types/promise.type";
 import Container from "@/shared/ui/wrappers/container";
+import { SkeletonLoad } from "@/shared/ui/wrappers/load-skeleton";
 import { FileText } from "lucide-react";
 import { useLocale } from "next-intl";
 import { useEffect, useState } from "react";
@@ -10,10 +11,24 @@ import { useEffect, useState } from "react";
 export function ScrollDocuments() {
   const locale = useLocale();
   const [list, setList] = useState<ListDocumentsType | null>(null);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getListDocuments(locale).then(setList);
+    getListDocuments(locale)
+      .then(setList)
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
   }, [locale]);
+
+  if (isLoading || isError)
+    return (
+      <Container>
+        <div className="flex justify-center items-center">
+          {isLoading ? <SkeletonLoad /> : <p>Что-то пошло не так</p>}
+        </div>
+      </Container>
+    );
 
   return (
     <>

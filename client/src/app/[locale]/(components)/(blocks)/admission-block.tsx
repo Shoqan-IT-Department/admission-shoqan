@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { PuffLoader } from "react-spinners";
 import { Link } from "@/i18n/navigation";
 import { PATHS } from "@/config/paths";
+import { SkeletonLoad } from "@/shared/ui/wrappers/load-skeleton";
 
 const ICONS = [GraduationCap, BookOpen, Award];
 
@@ -30,15 +31,9 @@ export function AdmissionBlock() {
 
   if (isLoading || isError)
     return (
-      <Container>
         <div className="flex justify-center items-center">
-          {isLoading ? (
-            <PuffLoader color="#1470B9FF" />
-          ) : (
-            <p>Что-то пошло не так</p>
-          )}
+          {isLoading ? <SkeletonLoad /> : <p>Что-то пошло не так</p>}
         </div>
-      </Container>
     );
 
   return (

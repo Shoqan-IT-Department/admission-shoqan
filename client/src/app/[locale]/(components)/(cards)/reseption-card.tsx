@@ -12,14 +12,30 @@ import { getReceptions } from "@/shared/rest/get/get-receptions";
 import { useLocale } from "next-intl";
 import { PATHS } from "@/config/paths";
 import { Link } from "@/i18n/navigation";
+import { SkeletonLoad } from "@/shared/ui/wrappers/load-skeleton";
+import Container from "@/shared/ui/wrappers/container";
 
 export default function DeadlineAside() {
   const locale = useLocale();
   const [receptions, setReceptions] = useState<DeadlineType | null>(null);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getReceptions(locale).then(setReceptions);
+    getReceptions(locale)
+      .then(setReceptions)
+      .catch(() => setIsError(true))
+      .finally(() => setIsLoading(false));
   }, [locale]);
+
+  if (isLoading || isError)
+    return (
+      <Container>
+        <div className="flex justify-center items-center">
+          {isLoading ? <SkeletonLoad /> : <p>Что-то пошло не так</p>}
+        </div>
+      </Container>
+    );
 
   return (
     <aside className="space-y-6">
