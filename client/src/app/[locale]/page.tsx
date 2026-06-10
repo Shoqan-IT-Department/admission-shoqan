@@ -12,6 +12,7 @@ import VideoBlock from "@/app/[locale]/(components)/(blocks)/video-block";
 import Container from "@/shared/ui/wrappers/container";
 import { Suspense } from "react";
 import { SkeletonLoad } from "@/shared/ui/wrappers/load-skeleton";
+import { AdmissionInfoBlock } from "./(components)/(blocks)/admission-info-block";
 type PageProps = {
   params: Promise<PageLocaleParamsType>;
 };
@@ -46,6 +47,7 @@ export default async function HomePage() {
       <Suspense fallback={<SkeletonLoad />}>
         <VideoBlock />
         <AdmissionBlock />
+        <AdmissionInfoBlock />
         <ComissionBlock />
         <DocumentsBlock />
         <ContactsBlock />

@@ -130,3 +130,38 @@ export type QuestionType = {
   categories: CategoryType[];
   localizations: [];
 };
+
+export type Link = {
+  id: number;
+  text: string;
+  url: string;
+};
+
+export type InfoAdmission = {
+  id: number;
+  documentId: string;
+  title: string;
+  subtitle: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  links: Link[];
+  localizations: InfoAdmission[];
+};
+
+export interface Pagination {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface Meta {
+  pagination: Pagination;
+}
+
+export interface InfoAdmissionsResponse {
+  data: InfoAdmission[];
+  meta: Meta;
+}

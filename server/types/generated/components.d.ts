@@ -25,6 +25,17 @@ export interface SharedItem extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedLinks extends Struct.ComponentSchema {
+  collectionName: 'components_shared_links';
+  info: {
+    displayName: 'links';
+  };
+  attributes: {
+    text: Schema.Attribute.String;
+    url: Schema.Attribute.Text;
+  };
+}
+
 export interface SharedMagistr extends Struct.ComponentSchema {
   collectionName: 'components_shared_magistrs';
   info: {
@@ -52,6 +63,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'shared.component': SharedComponent;
       'shared.item': SharedItem;
+      'shared.links': SharedLinks;
       'shared.magistr': SharedMagistr;
       'shared.title': SharedTitle;
     }

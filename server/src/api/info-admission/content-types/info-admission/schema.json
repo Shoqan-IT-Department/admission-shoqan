@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "info_admissions",
+  "info": {
+    "singularName": "info-admission",
+    "pluralName": "info-admissions",
+    "displayName": "Info Admission"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "subtitle": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "links": {
+      "type": "component",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.links",
+      "repeatable": true
+    }
+  }
+}

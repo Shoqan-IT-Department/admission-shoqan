@@ -10,6 +10,7 @@ export const ENDPOINTS = {
     PROFESSIONS: "professions",
     HERO_QUESTIONS: "questions-statics",
     QUESTIONS: "questions",
-    ERROR: "/errors",
+    ERROR: "errors",
+    INFO_ADMISSION: "/info-admissions",
   },
 } as const;

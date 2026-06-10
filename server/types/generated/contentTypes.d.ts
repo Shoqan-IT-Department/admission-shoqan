@@ -793,6 +793,56 @@ export interface ApiHeadHead extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiInfoAdmissionInfoAdmission
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'info_admissions';
+  info: {
+    displayName: 'Info Admission';
+    pluralName: 'info-admissions';
+    singularName: 'info-admission';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    links: Schema.Attribute.Component<'shared.links', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::info-admission.info-admission'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLinkLink extends Struct.CollectionTypeSchema {
   collectionName: 'links';
   info: {
@@ -1637,6 +1687,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::graduate.graduate': ApiGraduateGraduate;
       'api::head.head': ApiHeadHead;
+      'api::info-admission.info-admission': ApiInfoAdmissionInfoAdmission;
       'api::link.link': ApiLinkLink;
       'api::list-document.list-document': ApiListDocumentListDocument;
       'api::profession.profession': ApiProfessionProfession;
