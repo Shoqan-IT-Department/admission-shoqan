@@ -1,13 +1,13 @@
 import { Card, CardContent } from "@/shared/ui/card";
 import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
+// import Autoplay from "embla-carousel-autoplay";
 
 const CarouselBlock = () => {
   return (
     <div className="relative w-full my-8">
       <div className="my-15">
         <Carousel
-          plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
+          // plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
           opts={{ align: "start", loop: true }}
           className="w-full"
         >
