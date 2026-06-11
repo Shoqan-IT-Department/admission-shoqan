@@ -1,13 +1,32 @@
+"use client";
+
 import { Card, CardContent } from "@/shared/ui/card";
-import { Carousel, CarouselContent, CarouselItem } from "@/shared/ui/carousel";
-// import Autoplay from "embla-carousel-autoplay";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/shared/ui/carousel";
+import { useEffect, useState } from "react";
 
 const CarouselBlock = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [api]);
+
   return (
     <div className="relative w-full my-8">
       <div className="my-15">
         <Carousel
-          // plugins={[Autoplay({ delay: 2000, stopOnInteraction: false })]}
+          setApi={setApi}
           opts={{ align: "start", loop: true }}
           className="w-full"
         >
@@ -26,8 +45,6 @@ const CarouselBlock = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* <CarouselPrevious className="left-0" />
-        <CarouselNext className="right-0" /> */}
         </Carousel>
       </div>
     </div>
