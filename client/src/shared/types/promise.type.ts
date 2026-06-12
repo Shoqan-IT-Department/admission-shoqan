@@ -165,3 +165,64 @@ export interface InfoAdmissionsResponse {
   data: InfoAdmission[];
   meta: Meta;
 }
+
+export interface StrapiMeta {
+  pagination: Pagination;
+}
+
+export interface StrapiResponse<T> {
+  data: T[];
+  meta: Meta;
+}
+
+export interface ImageFormat {
+  ext: string;
+  url: string;
+  hash: string;
+  mime: string;
+  name: string;
+  path: string | null;
+  size: number;
+  width: number;
+  height: number;
+  sizeInBytes: number;
+}
+
+export interface ImageFormats {
+  large?: ImageFormat;
+  medium?: ImageFormat;
+  small?: ImageFormat;
+  thumbnail?: ImageFormat;
+}
+
+export interface ImagesType {
+  id: number;
+  documentId: string;
+  name: string;
+  alternativeText: string | null;
+  caption: string | null;
+  focalPoint: null;
+  width: number;
+  height: number;
+  formats: ImageFormats;
+  hash: string;
+  ext: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl: string | null;
+  provider: string;
+  provider_metadata: null;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
+export interface ImageResponse {
+  id: number;
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  image: ImagesType;
+}

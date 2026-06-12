@@ -793,6 +793,31 @@ export interface ApiHeadHead extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiImageImage extends Struct.CollectionTypeSchema {
+  collectionName: 'images';
+  info: {
+    displayName: 'Image';
+    pluralName: 'images';
+    singularName: 'image';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::image.image'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiInfoAdmissionInfoAdmission
   extends Struct.CollectionTypeSchema {
   collectionName: 'info_admissions';
@@ -1687,6 +1712,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::graduate.graduate': ApiGraduateGraduate;
       'api::head.head': ApiHeadHead;
+      'api::image.image': ApiImageImage;
       'api::info-admission.info-admission': ApiInfoAdmissionInfoAdmission;
       'api::link.link': ApiLinkLink;
       'api::list-document.list-document': ApiListDocumentListDocument;

@@ -1,5 +1,7 @@
 "use client";
 
+import { getImage } from "@/shared/rest/get/get-image";
+import { ImagesType } from "@/shared/types/promise.type";
 import { Card, CardContent } from "@/shared/ui/card";
 import {
   Carousel,
@@ -10,6 +12,10 @@ import {
 import { useEffect, useState } from "react";
 
 const CarouselBlock = () => {
+  const [image, setImage] = useState<ImagesType[]>([]);
+  useEffect(() => {
+    getImage().then((data) => setImage(data.map((item) => item.image)));
+  }, []);
   const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {
@@ -17,7 +23,7 @@ const CarouselBlock = () => {
 
     const interval = setInterval(() => {
       api.scrollNext();
-    }, 2000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [api]);
@@ -27,18 +33,20 @@ const CarouselBlock = () => {
       <div className="my-15">
         <Carousel
           setApi={setApi}
-          opts={{ align: "start", loop: true }}
+          opts={{ align: "start", loop: true, duration: 100 }}
           className="w-full"
         >
           <CarouselContent className="-ml-4">
-            {Array.from({ length: 5 }).map((_, index) => (
-              <CarouselItem key={index} className="basis-full sm:basis-1/3">
+            {image.map((img) => (
+              <CarouselItem key={img.id} className="basis-full sm:basis-1/3">
                 <div>
                   <Card>
-                    <CardContent className="flex aspect-video items-center justify-center p-6">
-                      <span className="text-4xl sm:text-5xl font-semibold">
-                        {index + 1}
-                      </span>
+                    <CardContent className="flex aspect-video items-center justify-center p-2">
+                      <img
+                        src={`http://localhost:1337${img.formats.medium?.url ?? img.url}`}
+                        alt={img.alternativeText ?? img.name}
+                        className="w-full h-full object-cover rounded-md"
+                      />
                     </CardContent>
                   </Card>
                 </div>

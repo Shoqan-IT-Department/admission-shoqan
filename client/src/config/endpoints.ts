@@ -12,5 +12,6 @@ export const ENDPOINTS = {
     QUESTIONS: "questions",
     ERROR: "errors",
     INFO_ADMISSION: "/info-admissions",
+    IMAGE:"/images"
   },
 } as const;

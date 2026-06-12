@@ -12,6 +12,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useLocale } from "use-intl";
 import Cookies from "js-cookie";
 import { LANGUAGES } from "@/config/languages";
+import { Globe } from "lucide-react";
 
 export default function LocaleSwitcher() {
   const locale = useLocale();
@@ -42,12 +43,42 @@ export default function LocaleSwitcher() {
         onValueChange={handleChangeLocale}
         disabled={isPending}
       >
-        <SelectTrigger className=" pt-4 pb-4 pl-3 pr-1 rounded-[10px] text-secondary">
+        <SelectTrigger
+          className="
+        h-auto w-auto gap-1.5 rounded-full
+        border border-input bg-primary
+        px-3 py-1.5
+        text-xs font-semibold uppercase tracking-wider text-input
+        shadow-none ring-offset-0
+        transition hover:border-primary/40 hover:bg-background
+        hover:text-primary
+        focus:ring-0 focus-visible:ring-0
+        data-[placeholder]:text-primary/60
+        [&>svg:last-child]:h-3 [&>svg:last-child]:w-3 [&>svg:last-child]:opacity-70
+      "
+        >
+          <Globe className="h-3.5 w-3.5 hover:text-primary" />
           <SelectValue placeholder="language" />
         </SelectTrigger>
-        <SelectContent className="shadow-xl text-secondary shadow-primary/5">
+
+        <SelectContent
+          className="
+        mt-2 min-w-28 overflow-hidden rounded-2xl
+        border border-primary/15 bg-background
+        p-1 shadow-xl shadow-primary/5
+      "
+        >
           {LANGUAGES.map((lng) => (
-            <SelectItem key={lng.id} value={lng.code}>
+            <SelectItem
+              key={lng.id}
+              value={lng.code}
+              className="
+            cursor-pointer rounded-xl px-3 py-2
+            text-xs font-semibold uppercase tracking-wider text-foreground/70
+            focus:bg-primary/5 focus:text-primary
+            data-[state=checked]:text-primary
+          "
+            >
               {lng.label}
             </SelectItem>
           ))}
