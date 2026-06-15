@@ -1,3 +1,5 @@
+import { Meta } from "./constants-query.type";
+
 export type AdmissionType = {
   id: number;
   documentId: string;
@@ -150,28 +152,8 @@ export type InfoAdmission = {
   localizations: InfoAdmission[];
 };
 
-export interface Pagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-export interface Meta {
-  pagination: Pagination;
-}
-
 export interface InfoAdmissionsResponse {
   data: InfoAdmission[];
-  meta: Meta;
-}
-
-export interface StrapiMeta {
-  pagination: Pagination;
-}
-
-export interface StrapiResponse<T> {
-  data: T[];
   meta: Meta;
 }
 
@@ -226,3 +208,12 @@ export interface ImageResponse {
   publishedAt: string;
   image: ImagesType;
 }
+export interface FooterQuestionType {
+  title: string;
+  subtitle: string;
+}
+
+export type FooterQuestionResponse = {
+  data: FooterQuestionType[];
+  meta: Meta[];
+};

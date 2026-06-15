@@ -11,7 +11,8 @@ export const ENDPOINTS = {
     HERO_QUESTIONS: "questions-statics",
     QUESTIONS: "questions",
     ERROR: "errors",
-    INFO_ADMISSION: "/info-admissions",
-    IMAGE:"/images"
+    INFO_ADMISSION: "info-admissions",
+    IMAGE: "images",
+    FOOTER_QUESTIONS: "footer-questions",
   },
 } as const;

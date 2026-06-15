@@ -11,8 +11,13 @@ import {
 import Container from "@/shared/ui/wrappers/container";
 import { HeroQuestions } from "./(blocks)/hero-block";
 import { getQuestions } from "@/shared/rest/get/getQuestions";
-import { CategoryType, QuestionType } from "@/shared/types/promise.type";
+import {
+  CategoryType,
+  FooterQuestionType,
+  QuestionType,
+} from "@/shared/types/promise.type";
 import { useLocale, useTranslations } from "next-intl";
+import { getFooterQuestion } from "@/shared/rest/get/get-footer-question";
 
 const QuestionsPage = () => {
   const t = useTranslations("UI");
@@ -21,17 +26,21 @@ const QuestionsPage = () => {
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(t("all"));
+  const [info, setInfo] = useState<FooterQuestionType[]>([]);
 
   useEffect(() => {
-    getQuestions(locale, active === t("all") ? undefined : active).then(
-      (data) => {
-        setQuestions(data);
-        if (active === t("all")) {
-          const all = data.flatMap((q) => q.categories);
-          setCategories([...new Map(all.map((c) => [c.id, c])).values()]);
-        }
-      },
-    );
+    Promise.all([
+      getQuestions(locale, active === t("all") ? undefined : active).then(
+        (data) => {
+          setQuestions(data);
+          if (active === t("all")) {
+            const all = data.flatMap((q) => q.categories);
+            setCategories([...new Map(all.map((c) => [c.id, c])).values()]);
+          }
+        },
+      ),
+      getFooterQuestion(locale).then(setInfo),
+    ]);
   }, [locale, active]);
 
   const filtered = useMemo(() => {
@@ -118,10 +127,10 @@ const QuestionsPage = () => {
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider text-foreground/50">
-                Позвоните нам
+                {info[0]?.title}
               </p>
               <p className="mt-1 text-lg font-medium text-foreground">
-                +7 716 272 11 12
+                {info[0]?.subtitle}
               </p>
             </div>
           </a>
@@ -135,10 +144,10 @@ const QuestionsPage = () => {
             </div>
             <div>
               <p className="text-xs uppercase tracking-wider text-foreground/50">
-                Напишите письмо
+                {info[1]?.title}
               </p>
               <p className="mt-1 text-lg font-medium text-foreground">
-                admission@university.kz
+                {info[1]?.subtitle}
               </p>
             </div>
           </a>
