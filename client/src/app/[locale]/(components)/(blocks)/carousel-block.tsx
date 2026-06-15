@@ -43,7 +43,7 @@ const CarouselBlock = () => {
                   <Card>
                     <CardContent className="flex aspect-video items-center justify-center p-2">
                       <img
-                        src={`http://localhost:1337${img.formats.medium?.url ?? img.url}`}
+                        src={`https://admission-api.shokan.edu.kz${img.formats.medium?.url ?? img.url}`}
                         alt={img.alternativeText ?? img.name}
                         className="w-full h-full object-cover rounded-md"
                       />
