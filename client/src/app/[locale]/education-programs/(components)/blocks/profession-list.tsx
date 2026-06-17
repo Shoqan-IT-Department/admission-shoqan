@@ -75,9 +75,9 @@ const ProgramList = () => {
                   <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
                     {program.level_name}
                   </span>
-                  {program.form && (
+                  {program.form_name && (
                     <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
-                      {program.form}
+                      {program.form_name}
                     </span>
                   )}
                 </div>
