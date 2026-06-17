@@ -1,23 +1,39 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SlidersHorizontal } from "lucide-react";
+import { getGraduates } from "@/shared/rest/get/get-graduates";
+import { GraduateType } from "@/shared/types/promise.type";
+import { useLocale } from "next-intl";
 
-type ProgramLevel = "ungraduate" | "graduate" | "postgraduate";
-
-const LEVELS: { value: ProgramLevel; label: string }[] = [
-  { value: "ungraduate", label: "Бакалавриат" },
-  { value: "graduate", label: "Магистратура" },
-  { value: "postgraduate", label: "Докторантура" },
-];
+const LEVEL_MAP: Record<string, string> = {
+  "Бакалавриат": "undergraduate",
+  "Магистратура": "graduate",
+  "Докторантура": "doctoral",
+};
 
 type LevelFilterProps = {
-  selected: ProgramLevel;
-  onChange: (selected: ProgramLevel) => void;
+  selected: string[];
+  onChange: (selected: string[]) => void;
 };
 
 const LevelFilter: React.FC<LevelFilterProps> = ({ selected, onChange }) => {
-  const handleReset = () => onChange("ungraduate");
+  const [graduates, setGraduates] = useState<GraduateType[]>([]);
+  const locale = useLocale();
+
+  useEffect(() => {
+    getGraduates(locale).then(setGraduates);
+  }, [locale]);
+
+  const handleChange = (graduate: string) => {
+    const value = LEVEL_MAP[graduate] ?? graduate;
+    const newSelected = selected.includes(value)
+      ? selected.filter((g) => g !== value)
+      : [...selected, value];
+    onChange(newSelected);
+  };
+
+  const handleReset = () => onChange([]);
 
   return (
     <aside className="h-fit rounded-3xl border border-primary/15 bg-card p-6 shadow-sm lg:sticky lg:top-6">
@@ -27,10 +43,11 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selected, onChange }) => {
       </div>
 
       <ul className="mt-5 space-y-1">
-        {LEVELS.map((level) => {
-          const checked = selected === level.value;
+        {graduates.map((graduate) => {
+          const value = LEVEL_MAP[graduate.graduates] ?? graduate.graduates;
+          const checked = selected.includes(value);
           return (
-            <li key={level.value}>
+            <li key={graduate.id}>
               <label
                 className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
                   checked
@@ -38,7 +55,7 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selected, onChange }) => {
                     : "border-transparent text-foreground/70 hover:bg-primary/5 hover:text-primary"
                 }`}
               >
-                <span className="font-medium">{level.label}</span>
+                <span className="font-medium">{graduate.graduates}</span>
                 <span
                   className={`flex h-5 w-5 items-center justify-center rounded-md border transition ${
                     checked
@@ -64,9 +81,9 @@ const LevelFilter: React.FC<LevelFilterProps> = ({ selected, onChange }) => {
                   )}
                 </span>
                 <input
-                  type="radio"
+                  type="checkbox"
                   checked={checked}
-                  onChange={() => onChange(level.value)}
+                  onChange={() => handleChange(graduate.graduates)}
                   className="sr-only"
                 />
               </label>

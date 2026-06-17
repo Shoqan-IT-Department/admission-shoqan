@@ -138,6 +138,7 @@ export interface EducationalProgramListItem {
   language: string[];
   profile_subjects_list: string[];
   level_name: string;
+  form_name: string;
 }
 
 export interface ProgramsResponse {

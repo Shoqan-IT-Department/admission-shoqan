@@ -6,5 +6,5 @@ export const ADM_URL = axios.create({
 });
 
 export const Program = axios.create({
-  baseURL: "https://shokan.edu.kz/api/v2/edu_programs/",
+  baseURL: "https://shokan.edu.kz/api/v2/",
 });

@@ -16,7 +16,7 @@ const ITEMS_PER_PAGE = 5;
 
 const ProgramList = () => {
   const [selectedLevel, setSelectedLevel] =
-    useState<ProgramLevel>("ungraduate");
+    useState<string[]>([]);
   const [programs, setPrograms] = useState<EducationalProgramListItem[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const locale = useLocale();
