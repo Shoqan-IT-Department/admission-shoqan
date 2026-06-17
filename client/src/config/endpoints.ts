@@ -8,6 +8,7 @@ export const ENDPOINTS = {
     DOCS: "docs",
     GRADUATES: "graduates",
     PROFESSIONS: "professions",
+    EDU_PROGRAM: "edu_programs",
     HERO_QUESTIONS: "questions-statics",
     QUESTIONS: "questions",
     ERROR: "errors",

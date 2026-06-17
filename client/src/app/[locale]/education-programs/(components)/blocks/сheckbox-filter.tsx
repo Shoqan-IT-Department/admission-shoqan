@@ -1,35 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SlidersHorizontal } from "lucide-react";
-import { getGraduates } from "@/shared/rest/get/get-graduates";
-import { GraduateType } from "@/shared/types/promise.type";
-import { useLocale } from "next-intl";
 
-type GraduateCheckboxesProps = {
-  selected: string[];
-  onChange: (selected: string[]) => void;
+type ProgramLevel = "ungraduate" | "graduate" | "postgraduate";
+
+const LEVELS: { value: ProgramLevel; label: string }[] = [
+  { value: "ungraduate", label: "Бакалавриат" },
+  { value: "graduate", label: "Магистратура" },
+  { value: "postgraduate", label: "Докторантура" },
+];
+
+type LevelFilterProps = {
+  selected: ProgramLevel;
+  onChange: (selected: ProgramLevel) => void;
 };
 
-const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
-  selected,
-  onChange,
-}) => {
-  const [graduates, setGraduates] = useState<GraduateType[]>([]);
-  const locale = useLocale();
-
-  useEffect(() => {
-    getGraduates(locale).then(setGraduates);
-  }, [locale]);
-
-  const handleChange = (graduate: string) => {
-    const newSelected = selected.includes(graduate)
-      ? selected.filter((g) => g !== graduate)
-      : [...selected, graduate];
-    onChange(newSelected);
-  };
-
-  const handleReset = () => onChange([]);
+const LevelFilter: React.FC<LevelFilterProps> = ({ selected, onChange }) => {
+  const handleReset = () => onChange("ungraduate");
 
   return (
     <aside className="h-fit rounded-3xl border border-primary/15 bg-card p-6 shadow-sm lg:sticky lg:top-6">
@@ -39,10 +27,10 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
       </div>
 
       <ul className="mt-5 space-y-1">
-        {graduates.map((graduate) => {
-          const checked = selected.includes(graduate.graduates);
+        {LEVELS.map((level) => {
+          const checked = selected === level.value;
           return (
-            <li key={graduate.id}>
+            <li key={level.value}>
               <label
                 className={`flex cursor-pointer items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm transition ${
                   checked
@@ -50,7 +38,7 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
                     : "border-transparent text-foreground/70 hover:bg-primary/5 hover:text-primary"
                 }`}
               >
-                <span className="font-medium">{graduate.graduates}</span>
+                <span className="font-medium">{level.label}</span>
                 <span
                   className={`flex h-5 w-5 items-center justify-center rounded-md border transition ${
                     checked
@@ -76,9 +64,9 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
                   )}
                 </span>
                 <input
-                  type="checkbox"
+                  type="radio"
                   checked={checked}
-                  onChange={() => handleChange(graduate.graduates)}
+                  onChange={() => onChange(level.value)}
                   className="sr-only"
                 />
               </label>
@@ -98,4 +86,4 @@ const GraduateCheckboxes: React.FC<GraduateCheckboxesProps> = ({
   );
 };
 
-export default GraduateCheckboxes;
+export default LevelFilter;

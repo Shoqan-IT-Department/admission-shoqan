@@ -1,18 +1,23 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import GraduateCheckboxes from "@/app/[locale]/education-programs/(components)/blocks/сheckbox-filter";
 import Pagination from "@/shared/ui/pagination";
-import { getProfessions } from "@/shared/rest/get/get-professions";
 import { usePagination } from "@/shared/hooks/usePagination";
-import { ProfessionType } from "@/shared/types/promise.type";
 import { useLocale } from "next-intl";
+import { EducationalProgramListItem } from "@/shared/types/profession.type";
+import { getPrograms } from "@/shared/rest/get/get-professions";
+import LevelFilter from "./сheckbox-filter";
+
+type ProgramLevel = "ungraduate" | "graduate" | "postgraduate";
 
 const ITEMS_PER_PAGE = 5;
 
-const ProfessionList = () => {
-  const [selectedGraduates, setSelectedGraduates] = useState<string[]>([]);
-  const [professions, setProfessions] = useState<ProfessionType[]>([]);
+const ProgramList = () => {
+  const [selectedLevel, setSelectedLevel] =
+    useState<ProgramLevel>("ungraduate");
+  const [programs, setPrograms] = useState<EducationalProgramListItem[]>([]);
   const [totalCount, setTotalCount] = useState(0);
   const locale = useLocale();
 
@@ -22,57 +27,57 @@ const ProfessionList = () => {
   );
 
   useEffect(() => {
-    getProfessions({
+    getPrograms({
       locale,
-      graduates: selectedGraduates,
+      level: selectedLevel,
       page: currentPage,
     }).then((res) => {
-      setProfessions(res.data);
-      setTotalCount(res.meta.pagination.total);
+      setPrograms(res.items);
+      setTotalCount(res.meta.total_count);
     });
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [selectedGraduates, locale, currentPage]);
-  
+  }, [selectedLevel, locale, currentPage]);
+
   return (
     <div className="flex flex-col lg:flex-row items-start gap-4 w-full">
       <div className="w-full lg:w-[300px]">
-        <GraduateCheckboxes
-          selected={selectedGraduates}
+        <LevelFilter
+          selected={selectedLevel}
           onChange={(selected) => {
             reset();
-            setSelectedGraduates(selected);
+            setSelectedLevel(selected);
           }}
         />
       </div>
 
       <div className="min-h-[800px] w-full">
         <main className="space-y-4">
-          {professions.map((prof) => (
+          {programs.map((program) => (
             <Link
-              key={prof.id}
-              href={prof.url || ""}
+              key={program.id}
+              href={program.meta.html_url || ""}
               className="group relative flex items-center gap-6 overflow-hidden rounded-3xl border border-primary/10 bg-card p-6 pr-8 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-xl lg:p-8"
             >
               <div className="min-w-0 flex-1">
                 <div className="text-xs font-medium tracking-wide text-foreground/55">
-                  <span className="text-primary">{prof.code}</span>
-                  {prof.subtitle && (
+                  <span className="text-primary">{program.index}</span>
+                  {program.profile_subjects_list?.length > 0 && (
                     <>
                       <span className="mx-2 text-foreground/30">·</span>
-                      {prof.subtitle}
+                      {program.profile_subjects_list.join(", ")}
                     </>
                   )}
                 </div>
                 <h3 className="mt-2 text-lg font-semibold leading-snug text-foreground lg:text-xl">
-                  {prof.title}
+                  {program.title}
                 </h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
-                    {prof.graduates}
+                    {program.level_name}
                   </span>
-                  {prof.form && (
+                  {program.form && (
                     <span className="rounded-full bg-primary px-4 py-1.5 text-xs font-medium text-primary-foreground">
-                      {prof.form}
+                      {program.form}
                     </span>
                   )}
                 </div>
@@ -82,7 +87,7 @@ const ProfessionList = () => {
               </span>
             </Link>
           ))}
-          {professions.length === 0 && (
+          {programs.length === 0 && (
             <div className="rounded-3xl border border-dashed border-primary/20 bg-card p-12 text-center text-sm text-foreground/60">
               По выбранным фильтрам ничего не найдено.
             </div>
@@ -101,4 +106,4 @@ const ProfessionList = () => {
   );
 };
 
-export default ProfessionList;
+export default ProgramList;

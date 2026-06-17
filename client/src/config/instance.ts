@@ -4,3 +4,7 @@ import axios from "axios";
 export const ADM_URL = axios.create({
   baseURL: "https://admission-api.shokan.edu.kz/api/",
 });
+
+export const Program = axios.create({
+  baseURL: "https://shokan.edu.kz/api/v2/edu_programs/",
+});
