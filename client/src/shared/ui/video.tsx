@@ -19,7 +19,7 @@ export default function VideoComponent() {
         </div>
       )}
       <MuxVideo
-        playbackId="xdykrfJPbk7GKrXIQKreMCfWJpkZWtYBSqtm3bwiZdc"
+        playbackId="ffaSBQyb7MCcZTW81zVDt7fCsEeBJzUW3fO8YApLrC8"
         autoPlay
         controls
         muted
